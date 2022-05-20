@@ -18,6 +18,6 @@ public class Movement : MonoBehaviour
     {
         inputs.PlayerBasicStuff.Movement.performed += _ => movementInputs = _.ReadValue<Vector2>();
     }
-
+    //asokfm aspkm
 
 }
