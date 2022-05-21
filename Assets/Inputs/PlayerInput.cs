@@ -35,6 +35,15 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""MeleeAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""72a89628-3ca7-4d34-8ed1-3d8ddef0bc22"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -92,6 +101,17 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""e8830469-8eb2-49d9-ae28-7f86a87dcb65"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MeleeAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -101,6 +121,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         // PlayerBasic
         m_PlayerBasic = asset.FindActionMap("PlayerBasic", throwIfNotFound: true);
         m_PlayerBasic_Movement = m_PlayerBasic.FindAction("Movement", throwIfNotFound: true);
+        m_PlayerBasic_MeleeAttack = m_PlayerBasic.FindAction("MeleeAttack", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -161,11 +182,13 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_PlayerBasic;
     private IPlayerBasicActions m_PlayerBasicActionsCallbackInterface;
     private readonly InputAction m_PlayerBasic_Movement;
+    private readonly InputAction m_PlayerBasic_MeleeAttack;
     public struct PlayerBasicActions
     {
         private @PlayerInput m_Wrapper;
         public PlayerBasicActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_PlayerBasic_Movement;
+        public InputAction @MeleeAttack => m_Wrapper.m_PlayerBasic_MeleeAttack;
         public InputActionMap Get() { return m_Wrapper.m_PlayerBasic; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -178,6 +201,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Movement.started -= m_Wrapper.m_PlayerBasicActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_PlayerBasicActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_PlayerBasicActionsCallbackInterface.OnMovement;
+                @MeleeAttack.started -= m_Wrapper.m_PlayerBasicActionsCallbackInterface.OnMeleeAttack;
+                @MeleeAttack.performed -= m_Wrapper.m_PlayerBasicActionsCallbackInterface.OnMeleeAttack;
+                @MeleeAttack.canceled -= m_Wrapper.m_PlayerBasicActionsCallbackInterface.OnMeleeAttack;
             }
             m_Wrapper.m_PlayerBasicActionsCallbackInterface = instance;
             if (instance != null)
@@ -185,6 +211,9 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
+                @MeleeAttack.started += instance.OnMeleeAttack;
+                @MeleeAttack.performed += instance.OnMeleeAttack;
+                @MeleeAttack.canceled += instance.OnMeleeAttack;
             }
         }
     }
@@ -192,5 +221,6 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     public interface IPlayerBasicActions
     {
         void OnMovement(InputAction.CallbackContext context);
+        void OnMeleeAttack(InputAction.CallbackContext context);
     }
 }

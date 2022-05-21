@@ -7,10 +7,11 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Adjustment")]
     [SerializeField] [Range(0, 500)] float speed = 10f;
-    [SerializeField] [Range(0, 500)] float radius = 10f;
+
+    [Header("Fool around, delete later")]
+    [SerializeField] bool isDead;
 
     [Header("Better not touch")]
-    [SerializeField] bool isDead;
     [SerializeField] Rigidbody2D ghostRb;
 
     Vector2 movementInputs;
@@ -74,11 +75,4 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
     }
 
-    private void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.cyan;
-
-        Gizmos.DrawWireSphere(transform.position, radius);
-    }
-    public void bla() { }
 }
