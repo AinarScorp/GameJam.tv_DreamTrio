@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
     [Header("Adjustment")]
     [SerializeField] [Range(0, 500)] float speed = 10f;
     [SerializeField] [Range(0, 500)] float radius = 10f;
+
+    [Header("Better not touch")]
     [SerializeField] bool isDead;
     [SerializeField] Rigidbody2D ghostRb;
 
@@ -78,5 +80,5 @@ public class PlayerMovement : MonoBehaviour
 
         Gizmos.DrawWireSphere(transform.position, radius);
     }
-
+    public void bla() { }
 }

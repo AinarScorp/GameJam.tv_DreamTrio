@@ -22,7 +22,6 @@ public class AdjustCollider : MonoBehaviour
 
     void Update()
     {
-        // If the radius or point count has changed, update the circle
         if (NumPoints != EdgeCollider.pointCount || CurrentRadius != Radius)
         {
             CreateCircle();
