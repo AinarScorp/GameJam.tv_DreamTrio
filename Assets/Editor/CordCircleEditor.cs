@@ -10,6 +10,9 @@ public class CordCircleEditor : Editor
 
     SerializedProperty propNewSize;
     SerializedProperty propTargetFollow;
+    SerializedProperty propDefaultCordLength;
+    SerializedProperty propScaleSpeed;
+
 
 
 
@@ -20,11 +23,14 @@ public class CordCircleEditor : Editor
 
         propNewSize = so.FindProperty("newRadius");
         propTargetFollow = so.FindProperty("target");
+        propDefaultCordLength = so.FindProperty("defaultCordLength");
+        propScaleSpeed = so.FindProperty("scaleSpeed");
     }
 
     public override void OnInspectorGUI()
     {
         CordCircle cordCircle = target as CordCircle;
+        
 
         GUILayout.Space(10);
         GUILayout.Label("Here you can play with Size of the circle", EditorStyles.boldLabel);
@@ -72,6 +78,11 @@ public class CordCircleEditor : Editor
         }
         GUILayout.Space(10);
 
+        so.Update();
+        EditorGUILayout.PropertyField(propDefaultCordLength);
+        EditorGUILayout.PropertyField(propScaleSpeed);
+
+        so.ApplyModifiedProperties();
 
         if (cordCircle.AutoApplySize)
         {
