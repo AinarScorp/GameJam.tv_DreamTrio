@@ -11,7 +11,7 @@ public class CordCircleEditor : Editor
     SerializedProperty propNewSize;
     SerializedProperty propTargetFollow;
     SerializedProperty propDefaultCordLength;
-    SerializedProperty propScaleSpeed;
+    SerializedProperty propSizeToShrinkTo;
     SerializedProperty propSubtractCordAmount;
     SerializedProperty propCordLength;
 
@@ -27,7 +27,7 @@ public class CordCircleEditor : Editor
         propNewSize = so.FindProperty("newRadius");
         propTargetFollow = so.FindProperty("target");
         propDefaultCordLength = so.FindProperty("defaultCordLength");
-        propScaleSpeed = so.FindProperty("scaleSpeed");
+        propSizeToShrinkTo = so.FindProperty("sizeToShrinkTo");
         propSubtractCordAmount = so.FindProperty("subtractCordAmount");
         propCordLength = so.FindProperty("cordLength");
     }
@@ -36,7 +36,11 @@ public class CordCircleEditor : Editor
     {
         CordCircle cordCircle = target as CordCircle;
         Handles.color = Color.cyan;
-        Handles.DrawWireDisc(cordCircle.transform.position, Vector3.forward, propDefaultCordLength.floatValue/2, 2f);
+        Handles.DrawWireDisc(cordCircle.transform.position, Vector3.forward, propSizeToShrinkTo.floatValue/2, 2f);
+        Handles.color = Color.green;
+        Handles.DrawWireDisc(cordCircle.transform.position, Vector3.forward, propDefaultCordLength.floatValue / 2, 2f);
+
+
     }
     public override void OnInspectorGUI()
     {
@@ -91,11 +95,16 @@ public class CordCircleEditor : Editor
             }
 
         }
-        GUILayout.Space(10);
 
         so.Update();
-        EditorGUILayout.PropertyField(propDefaultCordLength);
-        EditorGUILayout.PropertyField(propScaleSpeed);
+
+        GUILayout.Space(10);
+        EditorGUILayout.PropertyField(propDefaultCordLength, new GUIContent("Starting Cord Length", "Green line"));
+        GUILayout.Space(5);
+
+        EditorGUILayout.PropertyField(propSizeToShrinkTo, new GUIContent("Shrink Radius", "Cyan line"));
+        GUILayout.Space(10);
+
         EditorGUILayout.PropertyField(propSubtractCordAmount);
         EditorGUILayout.PropertyField(propCordLength);
 
