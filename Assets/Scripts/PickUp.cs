@@ -6,6 +6,14 @@ using UnityEngine;
 public class PickUp : MonoBehaviour
 {
     [SerializeField] bool isHearth;
+
+    LineRenderer lineRenderer;
+
+
+    private void Awake()
+    {
+        lineRenderer = GetComponentInChildren<LineRenderer>();
+    }
     private void Start()
     {
         GetComponent<Collider2D>().isTrigger = true;
@@ -17,8 +25,14 @@ public class PickUp : MonoBehaviour
 
         if (isHearth)
         {
-            FindObjectOfType<PlayerHealth>().AddCollectedHearth();
-            this.gameObject.SetActive(false);
+            lineRenderer.positionCount = 2;
+
+
+            PlayerHealth playerHealth = FindObjectOfType<PlayerHealth>();
+            playerHealth.AddCollectedHearth();
+            lineRenderer.SetPosition(0, this.transform.position);
+            lineRenderer.SetPosition(1, playerHealth.transform.position);
+            //this.gameObject.SetActive(false);
         }
     }
 }
