@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(EnemyDrop))]
 public class EnemyHealth : MonoBehaviour
 {
     [Header("Adjustment")]
@@ -22,8 +23,6 @@ public class EnemyHealth : MonoBehaviour
     {
         if (currentHealth <= 0)
             return;
-        Debug.Log("I am damaged said: " + name);
-
         currentHealth -= amount;
         if (currentHealth <= 0)
         {
@@ -34,10 +33,14 @@ public class EnemyHealth : MonoBehaviour
 
     void Die()
     {
-
+        GetComponent<EnemyDrop>().DropStuffUponDeath();
         FindObjectOfType<CordCircle>().IncreaseCordLength(cordIncreaseAmount);
         this.gameObject.SetActive(false);
 
 
     }
+
+
+
+
 }

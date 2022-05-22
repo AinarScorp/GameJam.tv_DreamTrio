@@ -11,7 +11,7 @@ public class CordCircle : MonoBehaviour
     [HideInInspector] [SerializeField] 
     Transform target;
     [SerializeField] [Range(0, 10)] float scaleSpeed;
-    [SerializeField] [Range(0, 10)] float subtractCordAmount = 2f;
+    [SerializeField] [Range(0, 2)] float subtractCordAmount = 2f;
 
     [HideInInspector][SerializeField] [Range(0, 20)]
     float defaultCordLength = 1f;
