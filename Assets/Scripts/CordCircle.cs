@@ -106,4 +106,6 @@ public class CordCircle : MonoBehaviour
         GetComponent<AdjustCollider>().enabled = turnOn;
         GetComponent<SpriteRenderer>().enabled = turnOn;
     }
+
+
 }

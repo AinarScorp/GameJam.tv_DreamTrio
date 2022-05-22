@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -17,6 +18,9 @@ public class PlayerHealth : MonoBehaviour
     Transform parentForHearts;
     List<GameObject> heartImages =  new List<GameObject>();
     int collectedHearths;
+
+    Action revival;
+
     public int CurrentHealth { get => currentHealth; }
     private void Awake()
     {
@@ -103,5 +107,13 @@ public class PlayerHealth : MonoBehaviour
 
         GetComponent<PlayerBasicAttack>().SetEnabled(true);
 
+        revival();
+        revival = null;
+
     }
+    public void SubscribeToRevival(Action actionToAdd)
+    {
+        revival += actionToAdd;
+    }
+
 }
