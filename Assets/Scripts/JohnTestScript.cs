@@ -5,7 +5,10 @@ using UnityEngine;
 
 public class JohnTestScript : MonoBehaviour
 {
+    [SerializeField] Material flashMaterial;
+    [SerializeField] Material originalMaterial;
     JohnTestInput input;
+    bool flashInProgress;
 
     private void Awake()
     {
@@ -35,6 +38,24 @@ public class JohnTestScript : MonoBehaviour
 
     private void EnemyFlash()
     {
+        if (flashInProgress)
+        {
+            StopCoroutine(Flash());
+        }
 
+        StartCoroutine(Flash());
+    }
+
+    IEnumerator Flash()
+    {
+        flashInProgress = true;
+
+        transform.GetComponent<SpriteRenderer>().material = flashMaterial;
+
+        yield return new WaitForSeconds(0.1f);
+
+        transform.GetComponent<SpriteRenderer>().material = originalMaterial;
+
+        flashInProgress = false;
     }
 }
