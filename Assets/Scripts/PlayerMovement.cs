@@ -8,11 +8,11 @@ public class PlayerMovement : MonoBehaviour
     [Header("Adjustment")]
     [SerializeField] [Range(0, 500)] float speed = 10f;
 
-    [Header("Fool around, delete later")]
-    [SerializeField] bool isDead;
 
     [Header("Better not touch")]
     [SerializeField] Rigidbody2D ghostRb;
+    [SerializeField] PlayerGhostMovement ghost;
+
 
     Vector2 movementInputs;
 
@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     Rigidbody2D rb;
     PlayerInput input;
 
+    public float Speed { get => speed; }
 
     private void Awake()
     {
@@ -28,11 +29,13 @@ public class PlayerMovement : MonoBehaviour
     }
     private void OnEnable()
     {
+        ghost.enabled = false;
         input.Enable();
     }
     private void OnDisable()
     {
         input.Disable();
+        rb.velocity *= 0;
     }
     private void Start()
     {
@@ -46,11 +49,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void HandleMovement()
     {
-        if (isDead)
-        {
-            ghostRb.velocity = movementInputs * speed * Time.fixedDeltaTime;
-            return;
-        }
+
         rb.velocity = movementInputs * speed * Time.fixedDeltaTime;
     }
     void HandleRotation()
@@ -61,10 +60,6 @@ public class PlayerMovement : MonoBehaviour
         //    return;
         //Quaternion targetDirection = Quaternion.LookRotation(lookDirection, Vector3.forward);
         //transform.rotation = targetDirection;
-        if (isDead)
-        {
-            return;
-        }
         if (movementInputs.magnitude <=0.1f)
         {
             return;
@@ -73,6 +68,14 @@ public class PlayerMovement : MonoBehaviour
         var angle = Mathf.Atan2(movementInputs.y, movementInputs.x) * Mathf.Rad2Deg;
 
         transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
+    }
+
+    public void TurnIntoGhost()
+    {
+
+        ghost.transform.position = this.transform.position;
+        ghost.enabled = true;
+        this.enabled = false;
     }
 
 }

@@ -11,6 +11,11 @@ public class PlayerHealth : MonoBehaviour
     [Header("Fool around, delete later")]
     [SerializeField] int currentHealth;
 
+    [Header("Better not touch")]
+
+
+
+    int collectedHearths;
     public int CurrentHealth { get => currentHealth; }
 
     private void Start()
@@ -42,14 +47,29 @@ public class PlayerHealth : MonoBehaviour
         EnemyMovement[] enemies = FindObjectsOfType<EnemyMovement>();
 
         enemies.ToList().ForEach(enemy => enemy.TogglePlayerDeath());
+        GetComponent<PlayerBasicAttack>().SetEnabled(false);
+        GetComponent<PlayerMovement>().TurnIntoGhost();
         //spawn ghost
         //encircle
         //adjust the circle with the radius stuff
-        Debug.Log("player has died");
     }
 
     void InstaKill()
     {
         ReceiveDamage(currentHealth);
+    }
+
+
+    public void AddCollectedHearth(int amount = 1) => collectedHearths += amount;
+    public void Revive()
+    {
+        currentHealth = collectedHearths;
+        GetComponent<PlayerMovement>().enabled = true;
+        EnemyMovement[] enemies = FindObjectsOfType<EnemyMovement>();
+
+        enemies.ToList().ForEach(enemy => enemy.TogglePlayerDeath());
+
+        GetComponent<PlayerBasicAttack>().SetEnabled(true);
+
     }
 }

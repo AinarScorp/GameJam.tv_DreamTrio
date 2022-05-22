@@ -5,21 +5,25 @@ using UnityEngine;
 [ExecuteAlways]
 public class CordCircle : MonoBehaviour
 {
-    [HideInInspector][SerializeField][Range(0,50)] 
+    [HideInInspector]
+    [SerializeField]
+    [Range(0, 50)]
     float newRadius;
 
-    [HideInInspector] [SerializeField] 
+    [HideInInspector]
+    [SerializeField]
     Transform target;
     [SerializeField] [Range(0, 10)] float scaleSpeed;
-    [SerializeField] [Range(0, 2)] float subtractCordAmount = 2f;
+    [SerializeField] [Range(0, 20f)] float subtractCordAmount = 0f;
 
-    [HideInInspector][SerializeField] [Range(0, 20)]
+    [HideInInspector]
+    [SerializeField]
+    [Range(0, 20)]
     float defaultCordLength = 1f;
 
     [SerializeField] float cordLength = 1f;
     bool autoApplySize;
 
-    Coroutine shrinkingCorotine;
 
     UI_Manager uI_Manager;
     private void Awake()
@@ -30,6 +34,7 @@ public class CordCircle : MonoBehaviour
     {
         cordLength = defaultCordLength;
         uI_Manager.DisplayNewCordLength(cordLength);
+        SwitchCordCircle(false);
     }
     public bool AutoApplySize { get => autoApplySize; }
     public float NewRadius { get => newRadius; }
@@ -47,7 +52,8 @@ public class CordCircle : MonoBehaviour
     }
     public void EncircleTarget(Transform newTarget = null)
     {
-        this.gameObject.SetActive(true);
+        Debug.Log("boo");
+        SwitchCordCircle(true);
 
         newRadius = cordLength;
         cordLength = defaultCordLength;
@@ -68,7 +74,7 @@ public class CordCircle : MonoBehaviour
 
     public void StartCircleShrinking()
     {
-        shrinkingCorotine = StartCoroutine(StartShrinking());
+        StartCoroutine(StartShrinking());
     }
     IEnumerator StartShrinking()
     {
@@ -86,14 +92,20 @@ public class CordCircle : MonoBehaviour
 
         while (transform.localScale.x > defaultCordLength)
         {
-            Vector3 newScale = transform.localScale - new Vector3(subtractCordAmount, subtractCordAmount);
+            Vector3 newScale = transform.localScale - new Vector3(subtractCordAmount, subtractCordAmount) * Time.deltaTime;
             transform.localScale = newScale;
             yield return new WaitForEndOfFrame();
 
         }
 
+        FindObjectOfType<PlayerHealth>().Revive();
 
+        SwitchCordCircle(false);
+    }
 
-        this.gameObject.SetActive(false);
+    void SwitchCordCircle(bool turnOn)
+    {
+        GetComponent<AdjustCollider>().enabled = turnOn;
+        GetComponent<SpriteRenderer>().enabled = turnOn;
     }
 }
