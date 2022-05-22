@@ -11,11 +11,12 @@ public class CordCircle : MonoBehaviour
     [HideInInspector] [SerializeField] 
     Transform target;
     [SerializeField] [Range(0, 10)] float scaleSpeed;
+    [SerializeField] [Range(0, 10)] float subtractCordAmount = 2f;
 
     [HideInInspector][SerializeField] [Range(0, 20)]
     float defaultCordLength = 1f;
 
-    float cordLength = 1f;
+    [SerializeField] float cordLength = 1f;
     bool autoApplySize;
 
     Coroutine shrinkingCorotine;
@@ -46,6 +47,8 @@ public class CordCircle : MonoBehaviour
     }
     public void EncircleTarget(Transform newTarget = null)
     {
+        this.gameObject.SetActive(true);
+
         newRadius = cordLength;
         cordLength = defaultCordLength;
         ApplyNewSize();
@@ -69,18 +72,27 @@ public class CordCircle : MonoBehaviour
     }
     IEnumerator StartShrinking()
     {
-        this.gameObject.SetActive(true);
 
-        Vector3 startScale = transform.localScale;
-        Vector3 endScale = new Vector3(defaultCordLength, defaultCordLength);
-        float percent = 0f;
+        //Vector3 startScale = transform.localScale;
+        //Vector3 endScale = new Vector3(defaultCordLength, defaultCordLength);
+        //float percent = 0f;
 
-        while (percent < 1f)
+        //while (percent < 1f)
+        //{
+        //    percent += Time.deltaTime * scaleSpeed;
+        //    transform.localScale = Vector3.Lerp(startScale, endScale, percent);
+        //    yield return new WaitForEndOfFrame();
+        //}
+
+        while (transform.localScale.x > defaultCordLength)
         {
-            percent += Time.deltaTime * scaleSpeed;
-            transform.localScale = Vector3.Lerp(startScale, endScale, percent);
+            Vector3 newScale = transform.localScale - new Vector3(subtractCordAmount, subtractCordAmount);
+            transform.localScale = newScale;
             yield return new WaitForEndOfFrame();
+
         }
+
+
 
         this.gameObject.SetActive(false);
     }

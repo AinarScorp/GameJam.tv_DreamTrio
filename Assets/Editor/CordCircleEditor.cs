@@ -12,9 +12,12 @@ public class CordCircleEditor : Editor
     SerializedProperty propTargetFollow;
     SerializedProperty propDefaultCordLength;
     SerializedProperty propScaleSpeed;
+    SerializedProperty propSubtractCordAmount;
+    SerializedProperty propCordLength;
 
 
 
+    //cordLength
 
 
     private void OnEnable()
@@ -25,8 +28,16 @@ public class CordCircleEditor : Editor
         propTargetFollow = so.FindProperty("target");
         propDefaultCordLength = so.FindProperty("defaultCordLength");
         propScaleSpeed = so.FindProperty("scaleSpeed");
+        propSubtractCordAmount = so.FindProperty("subtractCordAmount");
+        propCordLength = so.FindProperty("cordLength");
     }
 
+    private void OnSceneGUI()
+    {
+        CordCircle cordCircle = target as CordCircle;
+        Handles.color = Color.cyan;
+        Handles.DrawWireDisc(cordCircle.transform.position, Vector3.forward, propDefaultCordLength.floatValue/2, 2f);
+    }
     public override void OnInspectorGUI()
     {
         CordCircle cordCircle = target as CordCircle;
@@ -36,7 +47,7 @@ public class CordCircleEditor : Editor
         GUILayout.Label("Here you can play with Size of the circle", EditorStyles.boldLabel);
         GUILayout.Space(5);
 
-
+        
         using (new GUILayout.HorizontalScope())
         {
             using( new GUILayout.VerticalScope())
@@ -72,15 +83,21 @@ public class CordCircleEditor : Editor
         so.Update();
         EditorGUILayout.PropertyField(propTargetFollow);
         so.ApplyModifiedProperties();
-        if (GUILayout.Button("Encircle The Target", GUILayout.Width(200), GUILayout.Height(25)))
+        if (Application.isPlaying)
         {
-            cordCircle.EncircleTarget();
+            if (GUILayout.Button("Start Shrinking", GUILayout.Width(200), GUILayout.Height(25)))
+            {
+                cordCircle.EncircleTarget();
+            }
+
         }
         GUILayout.Space(10);
 
         so.Update();
         EditorGUILayout.PropertyField(propDefaultCordLength);
         EditorGUILayout.PropertyField(propScaleSpeed);
+        EditorGUILayout.PropertyField(propSubtractCordAmount);
+        EditorGUILayout.PropertyField(propCordLength);
 
         so.ApplyModifiedProperties();
 

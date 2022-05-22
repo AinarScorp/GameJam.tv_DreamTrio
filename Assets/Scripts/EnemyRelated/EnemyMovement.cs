@@ -28,6 +28,8 @@ public class EnemyMovement : MonoBehaviour
     {
         if (playerIsDead)
         {
+            rb.velocity = Vector2.zero;
+
             return;
         }
 
@@ -58,13 +60,8 @@ public class EnemyMovement : MonoBehaviour
     }
     public void TogglePlayerDeath()
     {
-        Debug.Log("I am moving " + playerIsDead);
 
         playerIsDead = !playerIsDead;
 
-        if (playerIsDead)
-        {
-            rb.velocity = Vector2.zero;
-        }
     }
 }
