@@ -12,11 +12,11 @@ TagManager:
   - Water
   - UI
   - 
-  - 
-  - 
+  - PickUp
+  - CircleCord
   - Enemy
-  - 
-  - 
+  - PlayerGhost
+  - PlayerAlive
   - 
   - 
   - 

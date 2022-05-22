@@ -18,7 +18,17 @@ public class AdjustCollider : MonoBehaviour
     {
         CreateCircle();
     }
+    private void OnEnable()
+    {
+        if (EdgeCollider != null)
+            EdgeCollider.enabled = true;
+    }
+    private void OnDisable()
+    {
+        if (EdgeCollider != null)
+            EdgeCollider.enabled = false;
 
+    }
 
     void Update()
     {

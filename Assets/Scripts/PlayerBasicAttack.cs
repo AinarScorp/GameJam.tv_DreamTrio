@@ -62,4 +62,6 @@ public class PlayerBasicAttack : MonoBehaviour
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
     }
+
+    public void SetEnabled(bool enable) => this.enabled = enable;
 }

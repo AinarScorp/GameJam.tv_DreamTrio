@@ -14,6 +14,7 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] int currentHealth;
 
 
+
     private void Start()
     {
         currentHealth = startingHealth;
@@ -34,7 +35,7 @@ public class EnemyHealth : MonoBehaviour
     void Die()
     {
         GetComponent<EnemyDrop>().DropStuffUponDeath();
-        FindObjectOfType<CordCircle>().IncreaseCordLength(cordIncreaseAmount);
+        FindObjectOfType<CordCircle>()?.IncreaseCordLength(cordIncreaseAmount);
         this.gameObject.SetActive(false);
 
 
