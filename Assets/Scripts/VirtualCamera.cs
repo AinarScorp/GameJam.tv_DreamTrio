@@ -5,12 +5,17 @@ using Cinemachine;
 public class VirtualCamera : MonoBehaviour
 {
     [SerializeField] CinemachineVirtualCamera virtualCamera;
-    [SerializeField] [Range(0.1f, 30f)] float startingCameraValue;
+    [SerializeField] Transform player;
+
+    float startingCameraValue;
 
     [SerializeField] [Range(0.1f, 30f)] float zoomInValue;
     [SerializeField] [Range(0.1f, 30f)] float zoomOutValue;
     [SerializeField] [Range (0.1f, 30f)] float zoomInTime;
     [SerializeField] [Range(0.1f, 30f)] float zoomOutTime;
+    [SerializeField] [Range(0.1f, 30f)] float centerTime;
+    [SerializeField] [Range(0.1f, 30f)] float revivalWait;
+
     [SerializeField] AnimationCurve inCurve;
     [SerializeField] AnimationCurve outCurve;
 
@@ -72,11 +77,12 @@ public class VirtualCamera : MonoBehaviour
     void StartZoomIn()
     {
         StartCoroutine(ZoomIn(zoomInValue));
-
     }
 
     void StartZoomOut()
     {
+        virtualCamera.PreviousStateIsValid = false;
+        //transform.position = player.position;
         StartCoroutine(ZoomOut(zoomOutValue));
     }
 
@@ -95,7 +101,7 @@ public class VirtualCamera : MonoBehaviour
 
         virtualCamera.m_Lens.OrthographicSize = zoomInValue;
 
-        yield return null;
+        yield return new WaitForSeconds(revivalWait);
         yield return ZoomOut(startingCameraValue);
 
     }
@@ -130,7 +136,7 @@ public class VirtualCamera : MonoBehaviour
             yield return null;
         }
 
-        virtualCamera.m_Lens.OrthographicSize = zoomOutValue;
+        virtualCamera.m_Lens.OrthographicSize = endValue;
 
         yield return null;
     }

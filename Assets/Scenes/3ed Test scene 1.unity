@@ -523,7 +523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4e6ce4a3022a3647902bb3550d7b0d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageInterval: 8
+  damageInterval: 5
   poisonDamage: 1
 --- !u!1 &318945185
 GameObject:
@@ -556,10 +556,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   virtualCamera: {fileID: 318945187}
-  zoomInValue: 7
+  player: {fileID: 543423577}
+  zoomInValue: 2.5
   zoomOutValue: 10
-  zoomInTime: 2
-  zoomOutTime: 2
+  zoomInTime: 0.4
+  zoomOutTime: 1.5
+  centerTime: 0
+  revivalWait: 0.2
   inCurve:
     serializedVersion: 2
     m_Curve:
@@ -590,8 +593,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 0
-      outSlope: 0
+      inSlope: 2
+      outSlope: 2
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
@@ -599,8 +602,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1
       value: 1
-      inSlope: 2
-      outSlope: 2
+      inSlope: 0
+      outSlope: 0
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
@@ -1077,7 +1080,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Cord Length: 3'
+  m_text: 'Cord Length: 4'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -3829,11 +3832,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4430289647722248590, guid: 6d80d64abf50fc14c86032c6357b9602, type: 3}
       propertyPath: cordLength
-      value: 15
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4430289647722248590, guid: 6d80d64abf50fc14c86032c6357b9602, type: 3}
       propertyPath: maxCordLength
-      value: 15
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 4430289647722248590, guid: 6d80d64abf50fc14c86032c6357b9602, type: 3}
       propertyPath: sizeToShrinkTo
@@ -3841,11 +3844,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4430289647722248590, guid: 6d80d64abf50fc14c86032c6357b9602, type: 3}
       propertyPath: defaultCordLength
-      value: 3
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 4430289647722248590, guid: 6d80d64abf50fc14c86032c6357b9602, type: 3}
       propertyPath: subtractCordAmount
-      value: 0.1
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6d80d64abf50fc14c86032c6357b9602, type: 3}
