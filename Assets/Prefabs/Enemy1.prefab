@@ -176,6 +176,7 @@ MonoBehaviour:
     dropChancePercent: 49.2
   - dropObject: {fileID: 3128766248087849206, guid: ed697fc20ec2c60478302abc5ed459d5, type: 3}
     dropChancePercent: 100
+  numberOfDrops: 1
 --- !u!114 &-4887696799744834867
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,6 +190,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flashDuration: 0.1
+  flashAmount: 1
   flashMaterial: {fileID: 2100000, guid: f53a006f62b0f1f428cdf671cc0a952a, type: 2}
 --- !u!1 &3567792791977266460
 GameObject:

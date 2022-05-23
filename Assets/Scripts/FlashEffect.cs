@@ -5,6 +5,7 @@ using UnityEngine;
 public class FlashEffect : MonoBehaviour
 {
     [SerializeField] float flashDuration;
+    [SerializeField] [Range (1, 10)] int flashAmount;
     [SerializeField] Material flashMaterial;
     Material originalMaterial;
 
@@ -34,11 +35,20 @@ public class FlashEffect : MonoBehaviour
 
     IEnumerator Flash()
     {
-        spriteRenderer.material = flashMaterial;
+        float tempValue = 0;
 
-        yield return new WaitForSeconds(flashDuration);
+        while (tempValue != flashAmount)
+        {
+            spriteRenderer.material = flashMaterial;
 
-        spriteRenderer.material = originalMaterial;
+            yield return new WaitForSeconds(flashDuration);
+
+            spriteRenderer.material = originalMaterial;
+
+            yield return new WaitForSeconds(flashDuration);
+
+            tempValue++;
+        }
 
         flashRoutine = null;
     }

@@ -81,8 +81,6 @@ public class VirtualCamera : MonoBehaviour
 
     void StartZoomOut()
     {
-        virtualCamera.PreviousStateIsValid = false;
-        //transform.position = player.position;
         StartCoroutine(ZoomOut(zoomOutValue));
     }
 
