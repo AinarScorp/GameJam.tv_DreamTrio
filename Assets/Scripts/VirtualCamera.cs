@@ -8,7 +8,7 @@ public class VirtualCamera : MonoBehaviour
     //[SerializeField] float amplitude;
     //[SerializeField] float frequency;
     //[SerializeField] float shakeTime;
-
+    Coroutine shakeRoutine;
     CinemachineBasicMultiChannelPerlin noise;
     public static VirtualCamera Instance;
 
@@ -19,7 +19,17 @@ public class VirtualCamera : MonoBehaviour
         noise = camera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }
 
-    public IEnumerator Shake(float amplitude, float frequency, float shakeTime)
+    public void StartShake(float amplitude, float frequency, float shakeTime)
+    {
+        if (shakeRoutine != null)
+        {
+            StopCoroutine(shakeRoutine);
+        }
+
+        shakeRoutine = StartCoroutine(Shake(amplitude, frequency, shakeTime));
+    }
+
+    IEnumerator Shake(float amplitude, float frequency, float shakeTime)
     {
         float elapsedTime = 0;
 
@@ -38,6 +48,8 @@ public class VirtualCamera : MonoBehaviour
         noise.m_AmplitudeGain = 0;
         noise.m_FrequencyGain = 0;
 
-        yield return null;
+        shakeRoutine = null;
+
+       yield return null;
     }
 }
