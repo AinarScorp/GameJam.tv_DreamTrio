@@ -5,6 +5,8 @@ using Cinemachine;
 public class VirtualCamera : MonoBehaviour
 {
     [SerializeField] CinemachineVirtualCamera virtualCamera;
+    [SerializeField] [Range(0.1f, 30f)] float startingCameraValue;
+
     [SerializeField] [Range(0.1f, 30f)] float zoomInValue;
     [SerializeField] [Range(0.1f, 30f)] float zoomOutValue;
     [SerializeField] [Range (0.1f, 30f)] float zoomInTime;
@@ -30,6 +32,7 @@ public class VirtualCamera : MonoBehaviour
     {
         FindObjectOfType<PlayerHealth>().SubscribeToPlayerDeathPermanently(StartZoomOut);
         FindObjectOfType<PlayerHealth>().SubscribeToRevival(StartZoomIn);
+        startingCameraValue = virtualCamera.m_Lens.OrthographicSize;
         noise = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }
 
@@ -68,22 +71,23 @@ public class VirtualCamera : MonoBehaviour
     }
     void StartZoomIn()
     {
-        StartCoroutine(ZoomIn());
+        StartCoroutine(ZoomIn(zoomInValue));
+
     }
 
     void StartZoomOut()
     {
-        StartCoroutine(ZoomOut());
+        StartCoroutine(ZoomOut(zoomOutValue));
     }
 
-    IEnumerator ZoomIn()
+    IEnumerator ZoomIn(float endValue)
     {
         float elapsedTime = 0;
         float currentOrthoSize = virtualCamera.m_Lens.OrthographicSize;;
 
         while (zoomInTime > elapsedTime)
         {
-            virtualCamera.m_Lens.OrthographicSize = Mathf.Lerp(currentOrthoSize, zoomInValue, inCurve.Evaluate(elapsedTime / zoomInTime));
+            virtualCamera.m_Lens.OrthographicSize = Mathf.Lerp(currentOrthoSize, endValue, inCurve.Evaluate(elapsedTime / zoomInTime));
             elapsedTime += Time.deltaTime;
 
             yield return null;
@@ -92,17 +96,35 @@ public class VirtualCamera : MonoBehaviour
         virtualCamera.m_Lens.OrthographicSize = zoomInValue;
 
         yield return null;
+        yield return ZoomOut(startingCameraValue);
 
     }
+    //IEnumerator ZoomIn()
+    //{
+    //    float elapsedTime = 0;
+    //    float currentOrthoSize = virtualCamera.m_Lens.OrthographicSize; ;
 
-    IEnumerator ZoomOut()
+    //    while (zoomInTime > elapsedTime)
+    //    {
+    //        virtualCamera.m_Lens.OrthographicSize = Mathf.Lerp(currentOrthoSize, zoomInValue, inCurve.Evaluate(elapsedTime / zoomInTime));
+    //        elapsedTime += Time.deltaTime;
+
+    //        yield return null;
+    //    }
+
+    //    virtualCamera.m_Lens.OrthographicSize = zoomInValue;
+
+    //    yield return null;
+
+    //}
+    IEnumerator ZoomOut(float endValue)
     {
         float elapsedTime = 0;
         float currentOrthoSize = virtualCamera.m_Lens.OrthographicSize;
 
         while (zoomOutTime > elapsedTime)
         {
-            virtualCamera.m_Lens.OrthographicSize = Mathf.Lerp(currentOrthoSize, zoomOutValue, outCurve.Evaluate(elapsedTime / zoomOutTime));
+            virtualCamera.m_Lens.OrthographicSize = Mathf.Lerp(currentOrthoSize, endValue, outCurve.Evaluate(elapsedTime / zoomOutTime));
             elapsedTime += Time.deltaTime;
 
             yield return null;
@@ -112,4 +134,21 @@ public class VirtualCamera : MonoBehaviour
 
         yield return null;
     }
+    //IEnumerator ZoomOut(float endValue)
+    //{
+    //    float elapsedTime = 0;
+    //    float currentOrthoSize = virtualCamera.m_Lens.OrthographicSize;
+
+    //    while (zoomOutTime > elapsedTime)
+    //    {
+    //        virtualCamera.m_Lens.OrthographicSize = Mathf.Lerp(currentOrthoSize, zoomOutValue, outCurve.Evaluate(elapsedTime / zoomOutTime));
+    //        elapsedTime += Time.deltaTime;
+
+    //        yield return null;
+    //    }
+
+    //    virtualCamera.m_Lens.OrthographicSize = zoomOutValue;
+
+    //    yield return null;
+    //}
 }
