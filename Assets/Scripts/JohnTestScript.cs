@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class JohnTestScript : MonoBehaviour
 {
-    [SerializeField] Material flashMaterial;
-    [SerializeField] Material originalMaterial;
+    [SerializeField] FlashEffect flashScript;
     JohnTestInput input;
     bool flashInProgress;
 
@@ -28,34 +27,16 @@ public class JohnTestScript : MonoBehaviour
     void Start()
     {
         input.Call.Click.performed += _ => CameraMethod();
-        input.Call.Click2.performed += _ => EnemyFlash();
+        input.Call.Click2.performed += _ => flashScript.StartFlash();
     }
 
     private void CameraMethod()
     {
-        StartCoroutine(VirtualCamera.Instance.Shake(5, 2.2f, 0.2f));
+        VirtualCamera.Instance.StartShake(5, 2.2f, 0.2f);
     }
 
-    private void EnemyFlash()
+    private void Flash()
     {
-        if (flashInProgress)
-        {
-            StopCoroutine(Flash());
-        }
 
-        StartCoroutine(Flash());
-    }
-
-    IEnumerator Flash()
-    {
-        flashInProgress = true;
-
-        transform.GetComponent<SpriteRenderer>().material = flashMaterial;
-
-        yield return new WaitForSeconds(0.1f);
-
-        transform.GetComponent<SpriteRenderer>().material = originalMaterial;
-
-        flashInProgress = false;
     }
 }
