@@ -29,6 +29,8 @@ public class CordCircle : MonoBehaviour
     UI_Manager uI_Manager;
     private void Awake()
     {
+        if (target == null)
+            target = FindObjectOfType<PlayerBasicAttack>().transform;
         uI_Manager = FindObjectOfType<UI_Manager>();
     }
     private void Start()
@@ -99,7 +101,7 @@ public class CordCircle : MonoBehaviour
         FindObjectOfType<PlayerHealth>().Revive();
 
         SwitchCordCircle(false);
-        uI_Manager.DisplayNewCordLength(cordLength);
+        uI_Manager?.DisplayNewCordLength(cordLength);
     }
 
     void SwitchCordCircle(bool turnOn)

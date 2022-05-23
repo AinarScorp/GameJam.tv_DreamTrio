@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerBasicAttack : MonoBehaviour
 {
+    public static PlayerBasicAttack Instance { get; private set; }
+
     [Header("Hit enemies Settings")]
     [SerializeField] Transform attackPoint;
     [SerializeField] float attackRadius = 2f;
@@ -20,16 +22,29 @@ public class PlayerBasicAttack : MonoBehaviour
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] float secondsBeforeTurningOffSlash = 0.1f;
 
+    bool isAttacking;
+
     PlayerInput input;
     PlayerMovement playerMovement;
 
 
+
     Animator animator;
+
+    Coroutine firstLightAttack;
+    Coroutine secondLightAttack;
+
+    public bool IsAttacking { get => isAttacking; }
+
 
     //Vector2 movementInputs;
     //Vector2 facingDirection;
     private void Awake()
     {
+        if (Instance !=null)
+            Destroy(this);
+
+        Instance = this;
         input = new PlayerInput();
         playerMovement = GetComponent<PlayerMovement>();
         animator = GetComponent<Animator>();
@@ -80,14 +95,21 @@ public class PlayerBasicAttack : MonoBehaviour
     }
     void Attack()
     {
-        StartCoroutine(StartAttack());
+        if (!IsAttacking)
+        {
+            isAttacking = true;
+            if (!animator.GetBool("FirstLightAttackPlaying"))
+            {
+                animator.SetTrigger("Attack");
+                animator.SetBool("FirstLightAttackPlaying", true);
+            }
+          
+        }
     }
+    public void FinishAttack() => isAttacking = false;
 
-    IEnumerator StartAttack()
+    void ContactAttack()
     {
-        animator.SetTrigger("FirstLightAttack");
-        yield return new WaitForSeconds(timeBeforeContact);
-        Debug.Log("attack now");
         RotateAttackBase();
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, enemyLayer);
         foreach (var enemy in hitEnemies)
@@ -98,8 +120,8 @@ public class PlayerBasicAttack : MonoBehaviour
                 enemyHealth.ReceiveDamage();
             }
         }
-        StartCoroutine(ResetSlash());
     }
+
     IEnumerator ResetSlash()
     {
         yield return new WaitForSeconds(secondsBeforeTurningOffSlash);
