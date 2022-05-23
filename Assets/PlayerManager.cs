@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    [SerializeField] PlayerGhostMovement ghost;
+    PlayerGhostMovement ghost;
 
     PlayerHealth playerHealth;
 
     private void Awake()
     {
         playerHealth = FindObjectOfType<PlayerHealth>();
+        ghost = FindObjectOfType<PlayerGhostMovement>();
     }
     void Start()
     {
