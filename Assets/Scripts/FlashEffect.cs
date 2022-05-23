@@ -12,7 +12,7 @@ public class FlashEffect : MonoBehaviour
     Coroutine flashRoutine;
     // Start is called before the first frame update
 
-    void Start()
+    void Awake()
     {
         spriteRenderer = transform.GetComponent<SpriteRenderer>();
         originalMaterial = spriteRenderer.material;

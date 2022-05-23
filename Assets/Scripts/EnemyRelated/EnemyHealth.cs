@@ -5,6 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(EnemyDrop))]
 public class EnemyHealth : MonoBehaviour
 {
+    [SerializeField] FlashEffect flashScript;
     [Header("Adjustment")]
     [SerializeField] int startingHealth = 3;
     [SerializeField] float cordIncreaseAmount = 3f;
@@ -31,7 +32,7 @@ public class EnemyHealth : MonoBehaviour
     {
         if (currentHealth <= 0)
             return;
-        StartCoroutine(GetRedWhenHit());
+        flashScript.StartFlash();
         currentHealth -= amount;
         if (currentHealth <= 0)
         {
