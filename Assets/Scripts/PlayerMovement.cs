@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Animator))]
+
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Adjustment")]
@@ -13,17 +15,21 @@ public class PlayerMovement : MonoBehaviour
 
 
     Vector2 movementInputs;
+    Vector2 facingDirection;
 
-
+    Animator animator;
     Rigidbody2D rb;
     PlayerInput input;
 
     public float Speed { get => speed; }
+    public Vector2 FacingDirection { get => facingDirection; }
+    public Vector2 MovementInputs { get => movementInputs; }
 
     private void Awake()
     {
         input = new PlayerInput();
         rb = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
     }
     private void OnEnable()
     {
@@ -36,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Start()
     {
+        facingDirection = Vector2.right;
         input.PlayerBasic.Movement.performed += ctx => movementInputs = ctx.ReadValue<Vector2>();
         PlayerHealth playerHealth = GetComponent<PlayerHealth>();
         playerHealth.SubscribeToPlayerDeathPermanently(() => this.enabled = false);
@@ -54,20 +61,54 @@ public class PlayerMovement : MonoBehaviour
     }
     void HandleRotation()
     {
+        //method 1
         //Vector3 lookDirection = new Vector3(movementInputs.x, movementInputs.y).normalized;
 
         //if (lookDirection.magnitude <= 0.1f)
         //    return;
         //Quaternion targetDirection = Quaternion.LookRotation(lookDirection, Vector3.forward);
         //transform.rotation = targetDirection;
-        if (movementInputs.magnitude <=0.1f)
+
+        //method 2
+
+        //if (movementInputs.magnitude <=0.1f)
+        //{
+        //    return;
+
+        //}
+        //var angle = Mathf.Atan2(movementInputs.y, movementInputs.x) * Mathf.Rad2Deg;
+
+        //transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
+
+        //method 3
+
+        //if (movementInputs.x != 0 )
+        //{
+        //    Mathf.Round(movementInputs.x);
+        //    Vector3 newScale = transform.localScale;
+        //    newScale.x *= -1;
+        //    transform.localScale = newScale;
+
+        //}
+
+        animator.SetFloat("Horizontal", movementInputs.x);
+        animator.SetFloat("Vertical", movementInputs.y);
+        animator.SetFloat("Speed", movementInputs.sqrMagnitude);
+        if (movementInputs.x != 0)
         {
-            return;
+            facingDirection.x = Mathf.Round(movementInputs.x);
+            facingDirection.y = 0;
 
         }
-        var angle = Mathf.Atan2(movementInputs.y, movementInputs.x) * Mathf.Rad2Deg;
+        else if (movementInputs.y != 0)
+        {
+            facingDirection.y = Mathf.Round(movementInputs.y);
+            facingDirection.x = 0;
 
-        transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
+        }
+        animator.SetFloat("FacingRight", facingDirection.x);
+        animator.SetFloat("FacingUp", facingDirection.y);
+
     }
 
 
