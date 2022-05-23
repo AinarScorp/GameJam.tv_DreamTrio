@@ -4,7 +4,12 @@ using UnityEngine;
 using Cinemachine;
 public class VirtualCamera : MonoBehaviour
 {
-    [SerializeField] CinemachineVirtualCamera camera;
+    [SerializeField] CinemachineVirtualCamera virtualCamera;
+    [SerializeField] float zoomInValue;
+    [SerializeField] float zoomOutValue;
+    [SerializeField] float zoomInTime;
+    [SerializeField] float zoomOutTime;
+
     //[SerializeField] float amplitude;
     //[SerializeField] float frequency;
     //[SerializeField] float shakeTime;
@@ -16,7 +21,8 @@ public class VirtualCamera : MonoBehaviour
 
     private void Start()
     {
-        noise = camera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
+        //FindObjectOfType<PlayerHealth>().SubscribeToPlayerDeathPermanently(StartZoomIn);
+        noise = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }
 
     public void StartShake(float amplitude, float frequency, float shakeTime)
@@ -50,6 +56,29 @@ public class VirtualCamera : MonoBehaviour
 
         shakeRoutine = null;
 
-       yield return null;
+        yield return null;
+    }
+    void StartZoomIn()
+    {
+        StartCoroutine(ZoomIn());
+    }
+
+    IEnumerator ZoomIn()
+    {
+        float elapsedTime = 0;
+        float currentOrthoSize = virtualCamera.m_Lens.OrthographicSize;
+
+        while (zoomInTime > elapsedTime)
+        {
+            virtualCamera.m_Lens.OrthographicSize = Mathf.Lerp(currentOrthoSize, zoomInValue, elapsedTime / zoomInTime);
+            elapsedTime += Time.deltaTime;
+
+            yield return null;
+        }
+
+        virtualCamera.m_Lens.OrthographicSize = zoomInValue;
+
+        yield return null;
+
     }
 }
