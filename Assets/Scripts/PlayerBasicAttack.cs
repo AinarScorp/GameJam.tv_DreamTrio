@@ -19,12 +19,15 @@ public class PlayerBasicAttack : MonoBehaviour
     PlayerMovement playerMovement;
 
 
+    Animator animator;
+
     //Vector2 movementInputs;
     //Vector2 facingDirection;
     private void Awake()
     {
         input = new PlayerInput();
         playerMovement = GetComponent<PlayerMovement>();
+        animator = GetComponent<Animator>();
     }
 
     private void OnEnable() => input.Enable();
@@ -33,7 +36,7 @@ public class PlayerBasicAttack : MonoBehaviour
 
     private void Start()
     {
-        spriteRenderer.sprite = null;
+        spriteRenderer.enabled = false;
 
         input.PlayerBasic.MeleeAttack.performed += _ => Attack();
 
@@ -65,15 +68,16 @@ public class PlayerBasicAttack : MonoBehaviour
     {
         attackPoint.localPosition = playerMovement.FacingDirection * 0.5f;
 
-        var angle = Mathf.Atan2(playerMovement.FacingDirection.y, playerMovement.FacingDirection.x) * Mathf.Rad2Deg;
+        //var angle = Mathf.Atan2(playerMovement.FacingDirection.y, playerMovement.FacingDirection.x) * Mathf.Rad2Deg;
 
-        spriteRenderer.transform.localRotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        spriteRenderer.transform.localPosition = playerMovement.FacingDirection * 0.5f;
+        //spriteRenderer.transform.localRotation = Quaternion.AngleAxis(angle, Vector3.forward);
+        //spriteRenderer.transform.localPosition = playerMovement.FacingDirection * 0.5f;
     }
     void Attack()
     {
         RotateAttackBase();
-        spriteRenderer.sprite = slashSprite;
+        //spriteRenderer.sprite = slashSprite;
+        animator.SetTrigger("FirstLightAttack");
 
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, enemyLayer);
         foreach (var enemy in hitEnemies)
@@ -89,7 +93,7 @@ public class PlayerBasicAttack : MonoBehaviour
     IEnumerator ResetSlash()
     {
         yield return new WaitForSeconds(secondsBeforeTurningOffSlash);
-        spriteRenderer.sprite = null;
+        //spriteRenderer.sprite = null;
     }
     private void OnDrawGizmosSelected()
     {
