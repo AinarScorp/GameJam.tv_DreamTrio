@@ -15,7 +15,7 @@ public class VirtualCamera : MonoBehaviour
     [SerializeField] [Range(0.1f, 30f)] float zoomOutTime;
     [SerializeField] [Range(0.1f, 30f)] float centerTime;
     [SerializeField] [Range(0.1f, 30f)] float revivalWait;
-
+    [SerializeField] Transform ghostTransform;
     [SerializeField] AnimationCurve inCurve;
     [SerializeField] AnimationCurve outCurve;
 
@@ -76,11 +76,13 @@ public class VirtualCamera : MonoBehaviour
     }
     void StartZoomIn()
     {
+        virtualCamera.Follow = player.transform;
         StartCoroutine(ZoomIn(zoomInValue));
     }
 
     void StartZoomOut()
     {
+        virtualCamera.Follow = ghostTransform;
         StartCoroutine(ZoomOut(zoomOutValue));
     }
 

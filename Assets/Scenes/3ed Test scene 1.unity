@@ -523,7 +523,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4e6ce4a3022a3647902bb3550d7b0d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageInterval: 5
+  damageInterval: 1
   poisonDamage: 1
 --- !u!1 &318945185
 GameObject:
@@ -563,6 +563,7 @@ MonoBehaviour:
   zoomOutTime: 1.5
   centerTime: 0
   revivalWait: 0.2
+  ghostTransform: {fileID: 1601645812}
   inCurve:
     serializedVersion: 2
     m_Curve:
@@ -896,7 +897,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &370779843
 Transform:
   m_ObjectHideFlags: 0
@@ -973,6 +974,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flashDuration: 0.1
+  flashAmount: 0
   flashMaterial: {fileID: 2100000, guid: f53a006f62b0f1f428cdf671cc0a952a, type: 2}
 --- !u!114 &383497929
 MonoBehaviour:
@@ -1150,7 +1152,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Cord Length: 4'
+  m_text: 'Cord Length: 18'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1299,6 +1301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flashDuration: 0.1
+  flashAmount: 0
   flashMaterial: {fileID: 2100000, guid: f53a006f62b0f1f428cdf671cc0a952a, type: 2}
 --- !u!114 &472186568
 MonoBehaviour:
@@ -1643,6 +1646,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flashDuration: 0.1
+  flashAmount: 0
   flashMaterial: {fileID: 2100000, guid: f53a006f62b0f1f428cdf671cc0a952a, type: 2}
 --- !u!114 &711364446
 MonoBehaviour:
@@ -2224,6 +2228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flashDuration: 0.1
+  flashAmount: 0
   flashMaterial: {fileID: 2100000, guid: f53a006f62b0f1f428cdf671cc0a952a, type: 2}
 --- !u!114 &934764125
 MonoBehaviour:
@@ -3914,7 +3919,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4430289647722248590, guid: 6d80d64abf50fc14c86032c6357b9602, type: 3}
       propertyPath: defaultCordLength
-      value: 4
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 4430289647722248590, guid: 6d80d64abf50fc14c86032c6357b9602, type: 3}
       propertyPath: subtractCordAmount
