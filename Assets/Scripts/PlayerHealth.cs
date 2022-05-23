@@ -30,7 +30,7 @@ public class PlayerHealth : MonoBehaviour
     private void Awake()
     {
         parentForHearts = GameObject.FindGameObjectWithTag("Heart Container").transform;
-
+        
     }
     private void Start()
     {
