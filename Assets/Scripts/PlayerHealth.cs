@@ -19,9 +19,13 @@ public class PlayerHealth : MonoBehaviour
     List<GameObject> heartImages =  new List<GameObject>();
     int collectedHearths;
 
+
+    bool isAlive;
     Action revival;
 
     public int CurrentHealth { get => currentHealth; }
+    public bool IsAlive { get => isAlive; }
+
     private void Awake()
     {
         parentForHearts = GameObject.FindGameObjectWithTag("Heart Container").transform;
@@ -71,12 +75,11 @@ public class PlayerHealth : MonoBehaviour
 
     void Die()
     {
-
+        isAlive = false;
         FindObjectOfType<CordCircle>().EncircleTarget(this.transform);
 
         EnemyMovement[] enemies = FindObjectsOfType<EnemyMovement>();
 
-        enemies.ToList().ForEach(enemy => enemy.TogglePlayerDeath());
         GetComponent<PlayerBasicAttack>().SetEnabled(false);
         GetComponent<PlayerMovement>().TurnIntoGhost();
         //spawn ghost
@@ -103,13 +106,11 @@ public class PlayerHealth : MonoBehaviour
         GetComponent<PlayerMovement>().enabled = true;
         EnemyMovement[] enemies = FindObjectsOfType<EnemyMovement>();
 
-        enemies.ToList().ForEach(enemy => enemy.TogglePlayerDeath());
-
         GetComponent<PlayerBasicAttack>().SetEnabled(true);
 
         revival();
         revival = null;
-
+        isAlive = true;
     }
     public void SubscribeToRevival(Action actionToAdd)
     {

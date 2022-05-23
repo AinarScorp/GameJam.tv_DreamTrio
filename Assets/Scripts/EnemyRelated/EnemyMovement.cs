@@ -8,13 +8,13 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] [Range(0, 100)] float followSpeed = 30f;
     [SerializeField] [Range(0, 20)] float pushForce = 10f;
 
-    bool playerIsDead;
+    
     Rigidbody2D rb;
-    PlayerMovement player;
+    PlayerHealth player;
 
     private void Awake()
     {
-        player = FindObjectOfType<PlayerMovement>();
+        player = FindObjectOfType<PlayerHealth>();
         rb = GetComponent<Rigidbody2D>();
 
     }
@@ -26,7 +26,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (playerIsDead)
+        if (!player.IsAlive)
         {
             rb.velocity = Vector2.zero;
 
@@ -58,10 +58,5 @@ public class EnemyMovement : MonoBehaviour
             }
         }
     }
-    public void TogglePlayerDeath()
-    {
 
-        playerIsDead = !playerIsDead;
-
-    }
 }

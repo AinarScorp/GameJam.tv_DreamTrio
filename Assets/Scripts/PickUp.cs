@@ -24,7 +24,10 @@ public class PickUp : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-
+        if (pickedUp)
+        {
+            return;
+        }
         if (isHearth)
         {
             lineRenderer.positionCount = 2;
