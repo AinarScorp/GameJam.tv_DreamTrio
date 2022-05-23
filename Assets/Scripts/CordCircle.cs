@@ -62,7 +62,7 @@ public class CordCircle : MonoBehaviour
     public void IncreaseCordLength(float amount)
     {
         cordLength += amount;
-        uI_Manager.DisplayNewCordLength(cordLength);
+        uI_Manager?.DisplayNewCordLength(cordLength);
         if (cordLength > maxCordLength)
         {
             cordLength = maxCordLength;

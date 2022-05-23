@@ -8,9 +8,14 @@ public class PlayerBasicAttack : MonoBehaviour
     [SerializeField] Transform attackPoint;
     [SerializeField] float attackRadius = 2f;
     [SerializeField] LayerMask enemyLayer;
+    [SerializeField] float attackPointDistance = 0.5f;
 
     [Header("Slash Setttings")]
     [SerializeField] Sprite slashSprite;
+
+    [Header("Advanced battle system")]
+    [SerializeField] float timeBeforeContact = 0.1f;
+
 
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] float secondsBeforeTurningOffSlash = 0.1f;
@@ -66,7 +71,7 @@ public class PlayerBasicAttack : MonoBehaviour
 
     void RotateAttackBase()
     {
-        attackPoint.localPosition = playerMovement.FacingDirection * 0.5f;
+        attackPoint.localPosition = playerMovement.FacingDirection * attackPointDistance;
 
         //var angle = Mathf.Atan2(playerMovement.FacingDirection.y, playerMovement.FacingDirection.x) * Mathf.Rad2Deg;
 
@@ -75,10 +80,15 @@ public class PlayerBasicAttack : MonoBehaviour
     }
     void Attack()
     {
-        RotateAttackBase();
-        //spriteRenderer.sprite = slashSprite;
-        animator.SetTrigger("FirstLightAttack");
+        StartCoroutine(StartAttack());
+    }
 
+    IEnumerator StartAttack()
+    {
+        animator.SetTrigger("FirstLightAttack");
+        yield return new WaitForSeconds(timeBeforeContact);
+        Debug.Log("attack now");
+        RotateAttackBase();
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(attackPoint.position, attackRadius, enemyLayer);
         foreach (var enemy in hitEnemies)
         {
@@ -93,7 +103,6 @@ public class PlayerBasicAttack : MonoBehaviour
     IEnumerator ResetSlash()
     {
         yield return new WaitForSeconds(secondsBeforeTurningOffSlash);
-        //spriteRenderer.sprite = null;
     }
     private void OnDrawGizmosSelected()
     {
