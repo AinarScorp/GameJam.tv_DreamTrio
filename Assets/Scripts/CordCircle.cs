@@ -15,9 +15,12 @@ public class CordCircle : MonoBehaviour
     [SerializeField] [Range(0, 10)] float scaleSpeed; //not used right now
     [SerializeField] [Range(0, 20f)] float subtractCordAmount = 0f;
 
+
+
     [SerializeField][Range(0, 20)] float defaultCordLength = 1f;
 
     [SerializeField][Range(0, 20)] float sizeToShrinkTo = 1f;
+    [SerializeField] [Range(0, 500)] float maxCordLength = 1f;
 
     [SerializeField] float cordLength = 1f;
     bool autoApplySize;
@@ -66,6 +69,10 @@ public class CordCircle : MonoBehaviour
     {
         cordLength += amount;
         uI_Manager.DisplayNewCordLength(cordLength);
+        if (cordLength > maxCordLength)
+        {
+            cordLength = maxCordLength;
+        }
 
     }
 

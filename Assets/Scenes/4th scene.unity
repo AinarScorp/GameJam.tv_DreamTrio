@@ -2143,6 +2143,10 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 4430289647722248590, guid: 6d80d64abf50fc14c86032c6357b9602, type: 3}
+      propertyPath: maxCordLength
+      value: 18
+      objectReference: {fileID: 0}
+    - target: {fileID: 4430289647722248590, guid: 6d80d64abf50fc14c86032c6357b9602, type: 3}
       propertyPath: sizeToShrinkTo
       value: 2.79
       objectReference: {fileID: 0}
