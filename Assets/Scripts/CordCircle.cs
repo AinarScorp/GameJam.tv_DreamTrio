@@ -10,8 +10,8 @@ public class CordCircle : MonoBehaviour
     [Range(0, 50)]
     float newRadius;
 
-    [SerializeField]
-    Transform target;
+    [Tooltip("Target to encircle")]
+    [SerializeField] Transform target;
     [SerializeField] [Range(0, 10)] float scaleSpeed; //not used right now
     [SerializeField] [Range(0, 20f)] float subtractCordAmount = 0f;
 
@@ -36,32 +36,26 @@ public class CordCircle : MonoBehaviour
         cordLength = defaultCordLength;
         uI_Manager.DisplayNewCordLength(cordLength);
         SwitchCordCircle(false);
+        FindObjectOfType<PlayerHealth>().SubscribeToPlayerDeathPermanently(EncircleTarget);
     }
     public bool AutoApplySize { get => autoApplySize; }
     public float NewRadius { get => newRadius; }
 
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        Debug.Log(collision.gameObject.name + " have entered");
-    }
     public void ToggleAutoApplySize() => autoApplySize = !autoApplySize;
     public void ApplyNewSize()
     {
         transform.localScale = new Vector3(newRadius, newRadius);
 
     }
-    public void EncircleTarget(Transform newTarget = null)
+    public void EncircleTarget()
     {
         SwitchCordCircle(true);
 
         newRadius = cordLength;
         cordLength = defaultCordLength;
         ApplyNewSize();
-        if (newTarget != null)
-        {
-            target = newTarget;
-        }
+
         transform.position = target.position;
         StartCircleShrinking();
     }

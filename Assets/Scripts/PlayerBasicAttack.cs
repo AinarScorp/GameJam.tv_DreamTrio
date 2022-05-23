@@ -30,7 +30,9 @@ public class PlayerBasicAttack : MonoBehaviour
         spriteRenderer.sprite = null;
 
         input.PlayerBasic.MeleeAttack.performed += _ => Attack();
-
+        PlayerHealth playerHealth = GetComponent<PlayerHealth>();
+        playerHealth.SubscribeToPlayerDeathPermanently(() => this.enabled = false);
+        playerHealth.SubscribeToRevival(() => this.enabled = true);
     }
 
     void Attack()
@@ -62,6 +64,4 @@ public class PlayerBasicAttack : MonoBehaviour
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
     }
-
-    public void SetEnabled(bool enable) => this.enabled = enable;
 }

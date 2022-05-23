@@ -272,6 +272,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy1 (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 3567792791662185844, guid: 1ca2b405827f1784da57104475632184, type: 3}
+      propertyPath: numberOfDrops
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ca2b405827f1784da57104475632184, type: 3}
 --- !u!4 &235692668 stripped
@@ -525,7 +529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4e6ce4a3022a3647902bb3550d7b0d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damageInterval: 4.2
+  damageInterval: 120
   poisonDamage: 1
 --- !u!1 &318945185
 GameObject:
@@ -666,6 +670,26 @@ PrefabInstance:
     - target: {fileID: 3567792791662185837, guid: 1ca2b405827f1784da57104475632184, type: 3}
       propertyPath: m_Name
       value: Enemy1 (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3567792791662185844, guid: 1ca2b405827f1784da57104475632184, type: 3}
+      propertyPath: numberOfDrops
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3567792791662185844, guid: 1ca2b405827f1784da57104475632184, type: 3}
+      propertyPath: objectsToDrop.Array.data[0].dropObject
+      value: 
+      objectReference: {fileID: 3128766248087849206, guid: ed697fc20ec2c60478302abc5ed459d5, type: 3}
+    - target: {fileID: 3567792791662185844, guid: 1ca2b405827f1784da57104475632184, type: 3}
+      propertyPath: objectsToDrop.Array.data[1].dropObject
+      value: 
+      objectReference: {fileID: 3099043458560596989, guid: c421701e49ad0d443a5b0ec322d111b2, type: 3}
+    - target: {fileID: 3567792791662185844, guid: 1ca2b405827f1784da57104475632184, type: 3}
+      propertyPath: objectsToDrop.Array.data[0].dropChancePercent
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3567792791662185844, guid: 1ca2b405827f1784da57104475632184, type: 3}
+      propertyPath: objectsToDrop.Array.data[1].dropChancePercent
+      value: 49.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ca2b405827f1784da57104475632184, type: 3}
@@ -1114,6 +1138,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy1
       objectReference: {fileID: 0}
+    - target: {fileID: 3567792791662185844, guid: 1ca2b405827f1784da57104475632184, type: 3}
+      propertyPath: numberOfDrops
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3567792791662185844, guid: 1ca2b405827f1784da57104475632184, type: 3}
+      propertyPath: objectsToDrop.Array.data[0].dropObject
+      value: 
+      objectReference: {fileID: 3128766248087849206, guid: ed697fc20ec2c60478302abc5ed459d5, type: 3}
+    - target: {fileID: 3567792791662185844, guid: 1ca2b405827f1784da57104475632184, type: 3}
+      propertyPath: objectsToDrop.Array.data[1].dropObject
+      value: 
+      objectReference: {fileID: 3099043458560596989, guid: c421701e49ad0d443a5b0ec322d111b2, type: 3}
+    - target: {fileID: 3567792791662185844, guid: 1ca2b405827f1784da57104475632184, type: 3}
+      propertyPath: objectsToDrop.Array.data[0].dropChancePercent
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3567792791662185844, guid: 1ca2b405827f1784da57104475632184, type: 3}
+      propertyPath: objectsToDrop.Array.data[1].dropChancePercent
+      value: 49.2
+      objectReference: {fileID: 0}
     - target: {fileID: 3567792791662185847, guid: 1ca2b405827f1784da57104475632184, type: 3}
       propertyPath: flashScript
       value: 
@@ -1538,6 +1582,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy1 (6)
       objectReference: {fileID: 0}
+    - target: {fileID: 3567792791662185844, guid: 1ca2b405827f1784da57104475632184, type: 3}
+      propertyPath: numberOfDrops
+      value: 10
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ca2b405827f1784da57104475632184, type: 3}
 --- !u!4 &1413541683 stripped
@@ -1599,6 +1647,26 @@ PrefabInstance:
     - target: {fileID: 3567792791662185837, guid: 1ca2b405827f1784da57104475632184, type: 3}
       propertyPath: m_Name
       value: Enemy1 (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 3567792791662185844, guid: 1ca2b405827f1784da57104475632184, type: 3}
+      propertyPath: numberOfDrops
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 3567792791662185844, guid: 1ca2b405827f1784da57104475632184, type: 3}
+      propertyPath: objectsToDrop.Array.data[0].dropObject
+      value: 
+      objectReference: {fileID: 3128766248087849206, guid: ed697fc20ec2c60478302abc5ed459d5, type: 3}
+    - target: {fileID: 3567792791662185844, guid: 1ca2b405827f1784da57104475632184, type: 3}
+      propertyPath: objectsToDrop.Array.data[1].dropObject
+      value: 
+      objectReference: {fileID: 3099043458560596989, guid: c421701e49ad0d443a5b0ec322d111b2, type: 3}
+    - target: {fileID: 3567792791662185844, guid: 1ca2b405827f1784da57104475632184, type: 3}
+      propertyPath: objectsToDrop.Array.data[0].dropChancePercent
+      value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 3567792791662185844, guid: 1ca2b405827f1784da57104475632184, type: 3}
+      propertyPath: objectsToDrop.Array.data[1].dropChancePercent
+      value: 49.2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ca2b405827f1784da57104475632184, type: 3}

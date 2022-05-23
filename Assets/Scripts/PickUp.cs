@@ -10,12 +10,13 @@ public class PickUp : MonoBehaviour
     bool pickedUp;
     LineRenderer lineRenderer;
     PlayerHealth playerHealth;
+    
 
     private void Awake()
     {
         lineRenderer = GetComponentInChildren<LineRenderer>();
         playerHealth = FindObjectOfType<PlayerHealth>();
-
+        
     }
     private void Start()
     {
@@ -50,8 +51,10 @@ public class PickUp : MonoBehaviour
         }
         else
         {
+            playerHealth.UnSubscribeFromRevival(ReactToRevival);
             this.gameObject.SetActive(false);
         }
+
     }
 
     IEnumerator DragItemsToCorpse()
@@ -65,6 +68,7 @@ public class PickUp : MonoBehaviour
             transform.position = Vector3.Lerp(startPos, endPos, percent);
             yield return new WaitForEndOfFrame();
         }
+        playerHealth.UnSubscribeFromRevival(ReactToRevival);
         this.gameObject.SetActive(false);
 
     }

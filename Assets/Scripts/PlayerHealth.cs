@@ -79,16 +79,11 @@ public class PlayerHealth : MonoBehaviour
     void Die()
     {
         isAlive = false;
-        FindObjectOfType<CordCircle>().EncircleTarget(this.transform);
 
         EnemyMovement[] enemies = FindObjectsOfType<EnemyMovement>();
 
-        GetComponent<PlayerBasicAttack>().SetEnabled(false);
-        GetComponent<PlayerMovement>().TurnIntoGhost();
         PlayerDeath();
-        //spawn ghost
-        //encircle
-        //adjust the circle with the radius stuff
+
     }
 
     void InstaKill()
@@ -107,21 +102,10 @@ public class PlayerHealth : MonoBehaviour
             Debug.LogWarning("you lost");
         }
         AddHeartImages();
-        GetComponent<PlayerMovement>().enabled = true;
-        EnemyMovement[] enemies = FindObjectsOfType<EnemyMovement>();
-
-        GetComponent<PlayerBasicAttack>().SetEnabled(true);
-
-        RevivePlayer();
-        RevivePlayer = null;
+        RevivePlayer?.Invoke();
         isAlive = true;
     }
-    public void SubscribeToRevival(Action actionToAdd)
-    {
-        RevivePlayer += actionToAdd;
-    }
-    public void SubscribeToPlayerDeathPermanently(Action actionToAdd)
-    {
-        PlayerDeath += actionToAdd;
-    }
+    public void SubscribeToRevival(Action actionToAdd) => RevivePlayer += actionToAdd;
+    public void UnSubscribeFromRevival(Action actionToRemove) => RevivePlayer -= actionToRemove;
+    public void SubscribeToPlayerDeathPermanently(Action actionToAdd) => PlayerDeath += actionToAdd;
 }

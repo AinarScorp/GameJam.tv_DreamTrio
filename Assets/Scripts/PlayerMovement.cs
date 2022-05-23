@@ -10,8 +10,6 @@ public class PlayerMovement : MonoBehaviour
 
 
     [Header("Better not touch")]
-    [SerializeField] Rigidbody2D ghostRb;
-    [SerializeField] PlayerGhostMovement ghost;
 
 
     Vector2 movementInputs;
@@ -29,7 +27,6 @@ public class PlayerMovement : MonoBehaviour
     }
     private void OnEnable()
     {
-        ghost.enabled = false;
         input.Enable();
     }
     private void OnDisable()
@@ -40,6 +37,9 @@ public class PlayerMovement : MonoBehaviour
     private void Start()
     {
         input.PlayerBasic.Movement.performed += ctx => movementInputs = ctx.ReadValue<Vector2>();
+        PlayerHealth playerHealth = GetComponent<PlayerHealth>();
+        playerHealth.SubscribeToPlayerDeathPermanently(() => this.enabled = false);
+        playerHealth.SubscribeToRevival(() => this.enabled = true);
     }
 
     private void FixedUpdate()
@@ -70,12 +70,7 @@ public class PlayerMovement : MonoBehaviour
         transform.rotation = Quaternion.AngleAxis(angle - 90, Vector3.forward);
     }
 
-    public void TurnIntoGhost()
-    {
 
-        ghost.transform.position = this.transform.position;
-        ghost.enabled = true;
-        this.enabled = false;
-    }
+
 
 }
