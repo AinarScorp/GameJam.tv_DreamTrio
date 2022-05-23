@@ -5,10 +5,10 @@ using Cinemachine;
 public class VirtualCamera : MonoBehaviour
 {
     [SerializeField] CinemachineVirtualCamera virtualCamera;
-    [SerializeField] float zoomInValue;
-    [SerializeField] float zoomOutValue;
-    [SerializeField] float zoomInTime;
-    [SerializeField] float zoomOutTime;
+    [SerializeField] [Range(0.1f, 30f)] float zoomInValue;
+    [SerializeField] [Range(0.1f, 30f)] float zoomOutValue;
+    [SerializeField] [Range (0.1f, 30f)] float zoomInTime;
+    [SerializeField] [Range(0.1f, 30f)] float zoomOutTime;
 
     //[SerializeField] float amplitude;
     //[SerializeField] float frequency;
@@ -17,11 +17,16 @@ public class VirtualCamera : MonoBehaviour
     CinemachineBasicMultiChannelPerlin noise;
     public static VirtualCamera Instance;
 
-    void Awake() => Instance = this;
+    void Awake()
+    {
+        if (virtualCamera == null)
+            virtualCamera =GetComponent<CinemachineVirtualCamera>();
+        Instance = this;
+    }
 
     private void Start()
     {
-        //FindObjectOfType<PlayerHealth>().SubscribeToPlayerDeathPermanently(StartZoomIn);
+        FindObjectOfType<PlayerHealth>().SubscribeToPlayerDeathPermanently(StartZoomIn);
         noise = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }
 
@@ -67,6 +72,7 @@ public class VirtualCamera : MonoBehaviour
     {
         float elapsedTime = 0;
         float currentOrthoSize = virtualCamera.m_Lens.OrthographicSize;
+        Debug.Log(currentOrthoSize);
 
         while (zoomInTime > elapsedTime)
         {
