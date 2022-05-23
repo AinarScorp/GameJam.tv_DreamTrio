@@ -8,6 +8,8 @@ public class IdleAnimation : StateMachineBehaviour
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
         animator.SetBool("FirstLightAttackPlaying", false);
+        animator.SetBool("CanMove", true);
+
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

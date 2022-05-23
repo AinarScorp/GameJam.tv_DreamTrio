@@ -15,9 +15,6 @@ public class PlayerBasicAttack : MonoBehaviour
     [Header("Slash Setttings")]
     [SerializeField] Sprite slashSprite;
 
-    [Header("Advanced battle system")]
-    [SerializeField] float timeBeforeContact = 0.1f;
-
 
     [SerializeField] SpriteRenderer spriteRenderer;
     [SerializeField] float secondsBeforeTurningOffSlash = 0.1f;
@@ -31,14 +28,10 @@ public class PlayerBasicAttack : MonoBehaviour
 
     Animator animator;
 
-    Coroutine firstLightAttack;
-    Coroutine secondLightAttack;
 
     public bool IsAttacking { get => isAttacking; }
 
 
-    //Vector2 movementInputs;
-    //Vector2 facingDirection;
     private void Awake()
     {
         if (Instance !=null)
@@ -98,6 +91,7 @@ public class PlayerBasicAttack : MonoBehaviour
         if (!IsAttacking)
         {
             isAttacking = true;
+            animator.SetBool("CanMove", false);
             if (!animator.GetBool("FirstLightAttackPlaying"))
             {
                 animator.SetTrigger("Attack");

@@ -13,7 +13,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Better not touch")]
 
-
+    bool canMove;
     Vector2 movementInputs;
     Vector2 facingDirection;
 
@@ -56,7 +56,15 @@ public class PlayerMovement : MonoBehaviour
     }
     void HandleMovement()
     {
+        if (!animator.GetBool("CanMove"))
+        {
+            rb.velocity *= 0;
 
+            return;
+        }
+        animator.SetFloat("Horizontal", movementInputs.x);
+        animator.SetFloat("Vertical", movementInputs.y);
+        animator.SetFloat("Speed", movementInputs.sqrMagnitude);
         rb.velocity = movementInputs * speed * Time.fixedDeltaTime;
     }
     void HandleRotation()
@@ -91,9 +99,6 @@ public class PlayerMovement : MonoBehaviour
 
         //}
 
-        animator.SetFloat("Horizontal", movementInputs.x);
-        animator.SetFloat("Vertical", movementInputs.y);
-        animator.SetFloat("Speed", movementInputs.sqrMagnitude);
         if (movementInputs.x != 0)
         {
             facingDirection.x = Mathf.Round(movementInputs.x);
@@ -111,7 +116,7 @@ public class PlayerMovement : MonoBehaviour
 
     }
 
-
+    public void SetCanMove(bool setTo) => canMove = setTo;
 
 
 }
