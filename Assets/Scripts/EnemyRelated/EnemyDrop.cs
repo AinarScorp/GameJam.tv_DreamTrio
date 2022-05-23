@@ -19,11 +19,10 @@ public class EnemyDrop : MonoBehaviour
                 if (drop.dropChancePercent >= randomRoll)
                 {
                     Instantiate(drop.dropObject, GetDropPosition(), Quaternion.identity);
-                    return;
+                    break;
                 }
                 randomRoll -= drop.dropChancePercent;
             }
-            Debug.Log("drop nothing");
         }
 
     }
