@@ -33,7 +33,9 @@ public class PlayerHealth : MonoBehaviour
     }
     private void Start()
     {
+
         currentHealth = startingHealth;
+        isAlive = true;
         AddHeartImages();
     }
 
