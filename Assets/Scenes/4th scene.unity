@@ -525,6 +525,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4e6ce4a3022a3647902bb3550d7b0d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damageInterval: 4.2
+  poisonDamage: 1
 --- !u!1 &318945185
 GameObject:
   m_ObjectHideFlags: 0
