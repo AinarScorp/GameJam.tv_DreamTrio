@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - Heart Container
+  - Slash Attack
   layers:
   - Default
   - TransparentFX

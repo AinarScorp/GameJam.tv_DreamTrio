@@ -585,6 +585,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1151758071}
     m_Modifications:
+    - target: {fileID: 8120152830278889411, guid: b98a534b8ea1c4e45b4d942bf3709fc5, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: a913d58f460bace4e8deff46701acfcb, type: 3}
+    - target: {fileID: 8120152830727472715, guid: b98a534b8ea1c4e45b4d942bf3709fc5, type: 3}
+      propertyPath: attackRadius
+      value: 0.63
+      objectReference: {fileID: 0}
+    - target: {fileID: 8120152830727472715, guid: b98a534b8ea1c4e45b4d942bf3709fc5, type: 3}
+      propertyPath: drawAllCircles
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8120152830727472715, guid: b98a534b8ea1c4e45b4d942bf3709fc5, type: 3}
+      propertyPath: drawRadiusCircle
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8120152830727472715, guid: b98a534b8ea1c4e45b4d942bf3709fc5, type: 3}
+      propertyPath: drawPositionLines
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8120152830727472715, guid: b98a534b8ea1c4e45b4d942bf3709fc5, type: 3}
+      propertyPath: attackPointDistance
+      value: 0.59
+      objectReference: {fileID: 0}
     - target: {fileID: 8120152830727472726, guid: b98a534b8ea1c4e45b4d942bf3709fc5, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -632,6 +656,10 @@ PrefabInstance:
     - target: {fileID: 8120152830727472727, guid: b98a534b8ea1c4e45b4d942bf3709fc5, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 8120152831148383533, guid: b98a534b8ea1c4e45b4d942bf3709fc5, type: 3}
+      propertyPath: m_TagString
+      value: Slash Attack
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b98a534b8ea1c4e45b4d942bf3709fc5, type: 3}

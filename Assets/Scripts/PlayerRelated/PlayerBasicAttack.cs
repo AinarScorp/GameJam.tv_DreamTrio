@@ -6,26 +6,27 @@ public class PlayerBasicAttack : MonoBehaviour
 {
     public static PlayerBasicAttack Instance { get; private set; }
 
-    [Header("Hit enemies Settings")]
+    //[Header("Touch only if you're know what these are for")]
     [SerializeField] Transform attackPoint;
-    [SerializeField] float attackRadius = 2f;
     [SerializeField] LayerMask enemyLayer;
-    [SerializeField] float attackPointDistance = 0.5f;
-
-    [Header("Slash Setttings")]
-    [SerializeField] Sprite slashSprite;
-
-
     [SerializeField] SpriteRenderer spriteRenderer;
-    [SerializeField] float secondsBeforeTurningOffSlash = 0.1f;
+
+
+    [HideInInspector] [SerializeField] bool drawPositionLines;
+    [HideInInspector] [SerializeField] [Range(0.1f, 2f)] float attackPointDistance = 0.5f;
+
+    [HideInInspector] [SerializeField] bool drawRadiusCircle;
+    [HideInInspector] [SerializeField] bool drawAllCircles;
+
+    [HideInInspector] [SerializeField][Range(0,1.5f)] float attackRadius = 1f;
+
+
+    float secondsBeforeTurningOffSlash = 0.1f; // not used atm
 
     bool isAttacking;
 
     PlayerInput input;
     PlayerMovement playerMovement;
-
-
-
     Animator animator;
 
 
@@ -34,13 +35,17 @@ public class PlayerBasicAttack : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance !=null)
+        if (Instance != null)
             Destroy(this);
 
         Instance = this;
+
         input = new PlayerInput();
         playerMovement = GetComponent<PlayerMovement>();
         animator = GetComponent<Animator>();
+        if (spriteRenderer == null)
+            spriteRenderer = GameObject.FindGameObjectWithTag("Slash Attack").GetComponent<SpriteRenderer>();
+
     }
 
     private void OnEnable() => input.Enable();
@@ -97,7 +102,7 @@ public class PlayerBasicAttack : MonoBehaviour
                 animator.SetTrigger("Attack");
                 animator.SetBool("FirstLightAttackPlaying", true);
             }
-          
+
         }
     }
     public void FinishAttack() => isAttacking = false;
@@ -120,13 +125,23 @@ public class PlayerBasicAttack : MonoBehaviour
     {
         yield return new WaitForSeconds(secondsBeforeTurningOffSlash);
     }
-    private void OnDrawGizmosSelected()
-    {
-        if (attackPoint == null)
-        {
-            return;
-        }
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(attackPoint.position, attackRadius);
-    }
+    //private void OnDrawGizmosSelected()
+    //{
+    //    if (attackPoint == null)
+    //    {
+    //        return;
+    //    }
+    //    Gizmos.color = Color.green;
+    //    Vector3 newPos = new Vector3(transform.position.x + attackPointDistance, transform.position.y);
+
+    //    Gizmos.DrawWireSphere(newPos, attackRadius);
+
+
+    //}
+
+
+    public void SetDrawPositionLines(bool setTo) => drawPositionLines = setTo;
+    public void SetDrawRadiusCircle(bool setTo) => drawRadiusCircle = setTo;
+    public void SetDrawAllCircles(bool setTo) => drawAllCircles = setTo;
+
 }
