@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Linq;
+using System;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -12,22 +13,51 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] int currentHealth;
 
     [Header("Better not touch")]
+    [SerializeField] GameObject heartImage;
 
-
-
+    Transform parentForHearts;
+    List<GameObject> heartImages =  new List<GameObject>();
     int collectedHearths;
-    public int CurrentHealth { get => currentHealth; }
 
+    Action revival;
+
+    public int CurrentHealth { get => currentHealth; }
+    private void Awake()
+    {
+        parentForHearts = GameObject.FindGameObjectWithTag("Heart Container").transform;
+
+    }
     private void Start()
     {
         currentHealth = startingHealth;
+        AddHeartImages();
+    }
+
+    private void AddHeartImages()
+    {
+        for (int i = 0; i < currentHealth; i++)
+        {
+            GameObject newHeartImage = Instantiate(heartImage, parentForHearts);
+            heartImages.Add(newHeartImage);
+        }
+    }
+    private void RemoveHeartImage()
+    {
+        if (heartImages.Count <1)
+            return;
+
+        GameObject firstHeartImage = heartImages.ToList().FirstOrDefault();
+        heartImages.Remove(firstHeartImage);
+        Destroy(firstHeartImage);
+
     }
 
     public void ReceiveDamage(int amount = 1)
     {
         if (currentHealth <= 0)
             return;
-        Debug.Log("ouch it hurts");
+        RemoveHeartImage();
+
 
         currentHealth -= amount;
         if (currentHealth <= 0)
@@ -64,6 +94,12 @@ public class PlayerHealth : MonoBehaviour
     public void Revive()
     {
         currentHealth = collectedHearths;
+        collectedHearths = 0;
+        if (currentHealth <= 0)
+        {
+            Debug.LogWarning("you lost");
+        }
+        AddHeartImages();
         GetComponent<PlayerMovement>().enabled = true;
         EnemyMovement[] enemies = FindObjectsOfType<EnemyMovement>();
 
@@ -71,5 +107,13 @@ public class PlayerHealth : MonoBehaviour
 
         GetComponent<PlayerBasicAttack>().SetEnabled(true);
 
+        revival();
+        revival = null;
+
     }
+    public void SubscribeToRevival(Action actionToAdd)
+    {
+        revival += actionToAdd;
+    }
+
 }

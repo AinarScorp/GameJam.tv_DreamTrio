@@ -13,10 +13,17 @@ public class EnemyHealth : MonoBehaviour
     [Header("Fool around, delete later")]
     [SerializeField] int currentHealth;
 
+    //temporary
+    SpriteRenderer spriteRenderer;
+    Color defaultColor;
 
-
+    private void Awake()
+    {
+        spriteRenderer = GetComponent<SpriteRenderer>();
+    }
     private void Start()
     {
+        defaultColor = spriteRenderer.color;
         currentHealth = startingHealth;
     }
 
@@ -24,6 +31,7 @@ public class EnemyHealth : MonoBehaviour
     {
         if (currentHealth <= 0)
             return;
+        StartCoroutine(GetRedWhenHit());
         currentHealth -= amount;
         if (currentHealth <= 0)
         {
@@ -31,6 +39,14 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
+    //temporary
+    IEnumerator GetRedWhenHit()
+    {
+        spriteRenderer.color = Color.red;
+        yield return new WaitForSeconds(0.1f);
+        spriteRenderer.color = defaultColor;
+
+    }
 
     void Die()
     {

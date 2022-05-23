@@ -10,29 +10,33 @@ public class AdjustCollider : MonoBehaviour
     public float Radius = 1.0f;
     public int NumPoints = 32;
 
-    EdgeCollider2D EdgeCollider;
+    EdgeCollider2D edgeCollider;
     float CurrentRadius = 0.0f;
 
-
+    private void Awake()
+    {
+        if (edgeCollider == null)
+        {
+            edgeCollider = GetComponent<EdgeCollider2D>();
+        }
+    }
     void Start()
     {
         CreateCircle();
     }
     private void OnEnable()
     {
-        if (EdgeCollider != null)
-            EdgeCollider.enabled = true;
+        edgeCollider.enabled = true;
     }
     private void OnDisable()
     {
-        if (EdgeCollider != null)
-            EdgeCollider.enabled = false;
+        edgeCollider.enabled = false;
 
     }
 
     void Update()
     {
-        if (NumPoints != EdgeCollider.pointCount || CurrentRadius != Radius)
+        if (NumPoints != edgeCollider.pointCount || CurrentRadius != Radius)
         {
             CreateCircle();
         }
@@ -41,7 +45,8 @@ public class AdjustCollider : MonoBehaviour
     void CreateCircle()
     {
         Vector2[] edgePoints = new Vector2[NumPoints + 1];
-        EdgeCollider = GetComponent<EdgeCollider2D>();
+        if (edgeCollider == null)
+            edgeCollider = GetComponent<EdgeCollider2D>();
 
         for (int loop = 0; loop <= NumPoints; loop++)
         {
@@ -49,7 +54,7 @@ public class AdjustCollider : MonoBehaviour
             edgePoints[loop] = new Vector2(Mathf.Sin(angle), Mathf.Cos(angle)) * Radius;
         }
 
-        EdgeCollider.points = edgePoints;
+        edgeCollider.points = edgePoints;
         CurrentRadius = Radius;
     }
 }

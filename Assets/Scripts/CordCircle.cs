@@ -10,16 +10,14 @@ public class CordCircle : MonoBehaviour
     [Range(0, 50)]
     float newRadius;
 
-    [HideInInspector]
     [SerializeField]
     Transform target;
-    [SerializeField] [Range(0, 10)] float scaleSpeed;
+    [SerializeField] [Range(0, 10)] float scaleSpeed; //not used right now
     [SerializeField] [Range(0, 20f)] float subtractCordAmount = 0f;
 
-    [HideInInspector]
-    [SerializeField]
-    [Range(0, 20)]
-    float defaultCordLength = 1f;
+    [SerializeField][Range(0, 20)] float defaultCordLength = 1f;
+
+    [SerializeField][Range(0, 20)] float sizeToShrinkTo = 1f;
 
     [SerializeField] float cordLength = 1f;
     bool autoApplySize;
@@ -52,7 +50,6 @@ public class CordCircle : MonoBehaviour
     }
     public void EncircleTarget(Transform newTarget = null)
     {
-        Debug.Log("boo");
         SwitchCordCircle(true);
 
         newRadius = cordLength;
@@ -90,7 +87,7 @@ public class CordCircle : MonoBehaviour
         //    yield return new WaitForEndOfFrame();
         //}
 
-        while (transform.localScale.x > defaultCordLength)
+        while (transform.localScale.x > sizeToShrinkTo)
         {
             Vector3 newScale = transform.localScale - new Vector3(subtractCordAmount, subtractCordAmount) * Time.deltaTime;
             transform.localScale = newScale;
@@ -101,6 +98,7 @@ public class CordCircle : MonoBehaviour
         FindObjectOfType<PlayerHealth>().Revive();
 
         SwitchCordCircle(false);
+        uI_Manager.DisplayNewCordLength(cordLength);
     }
 
     void SwitchCordCircle(bool turnOn)
@@ -108,4 +106,6 @@ public class CordCircle : MonoBehaviour
         GetComponent<AdjustCollider>().enabled = turnOn;
         GetComponent<SpriteRenderer>().enabled = turnOn;
     }
+
+
 }
