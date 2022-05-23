@@ -21,7 +21,8 @@ public class PlayerHealth : MonoBehaviour
 
 
     bool isAlive;
-    Action revival;
+    Action RevivePlayer;
+    Action PlayerDeath;
 
     public int CurrentHealth { get => currentHealth; }
     public bool IsAlive { get => isAlive; }
@@ -84,6 +85,7 @@ public class PlayerHealth : MonoBehaviour
 
         GetComponent<PlayerBasicAttack>().SetEnabled(false);
         GetComponent<PlayerMovement>().TurnIntoGhost();
+        PlayerDeath();
         //spawn ghost
         //encircle
         //adjust the circle with the radius stuff
@@ -110,13 +112,16 @@ public class PlayerHealth : MonoBehaviour
 
         GetComponent<PlayerBasicAttack>().SetEnabled(true);
 
-        revival();
-        revival = null;
+        RevivePlayer();
+        RevivePlayer = null;
         isAlive = true;
     }
     public void SubscribeToRevival(Action actionToAdd)
     {
-        revival += actionToAdd;
+        RevivePlayer += actionToAdd;
     }
-
+    public void SubscribeToPlayerDeathPermanently(Action actionToAdd)
+    {
+        PlayerDeath += actionToAdd;
+    }
 }

@@ -6,20 +6,25 @@ public class EnemyDrop : MonoBehaviour
 {
     [SerializeField] float dropRadius = 10f;
     [SerializeField] ObjectToDrop[] objectsToDrop;
+    [SerializeField] int numberOfDrops = 1;
 
     public void DropStuffUponDeath()
     {
-        float randomRoll = Random.Range(0f, 100f);
-        foreach (var drop in objectsToDrop)
+        for (int i = 0; i < numberOfDrops; i++)
         {
-            if (drop.dropChancePercent >= randomRoll)
+            Debug.Log("try to drop");
+            float randomRoll = Random.Range(0f, 100f);
+            foreach (var drop in objectsToDrop)
             {
-                Instantiate(drop.dropObject, GetDropPosition(), Quaternion.identity);
-                return;
+                if (drop.dropChancePercent >= randomRoll)
+                {
+                    Instantiate(drop.dropObject, GetDropPosition(), Quaternion.identity);
+                    return;
+                }
+                randomRoll -= drop.dropChancePercent;
             }
-            randomRoll -= drop.dropChancePercent;
+            Debug.Log("drop nothing");
         }
-        Debug.Log("drop nothing");
 
     }
 
