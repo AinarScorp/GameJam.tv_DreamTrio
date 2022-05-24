@@ -7,7 +7,6 @@ public class SoundDestroy : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        GetComponent<AudioSource>().pitch = Random.Range(0.9f, 1.5f);
         StartCoroutine(Bye());
     }
 

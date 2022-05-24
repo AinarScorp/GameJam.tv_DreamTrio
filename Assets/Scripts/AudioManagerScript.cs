@@ -1,6 +1,7 @@
 using UnityEngine.Audio;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
 public class AudioManagerScript : MonoBehaviour
 {
@@ -33,7 +34,7 @@ public class AudioManagerScript : MonoBehaviour
         {
             if (sound.GetName() == name)
             {
-                sound.GetSource().Play();
+                sound.GetSource().PlayOneShot(sound.GetClip());
                 break;
             }
         }
@@ -63,6 +64,38 @@ public class AudioManagerScript : MonoBehaviour
                 break;
             }
         }
+    }
+    public IEnumerator FadeIn(string soundName)
+    {
+        AudioSource tempSound = null;
+
+        foreach (Sound sound in sounds)
+        {
+            if (sound.GetName() == soundName)
+            {
+                tempSound = sound.GetSource();
+                break;
+            }
+        }
+
+        float elapsedTime = 0;
+        float currentVolume = 0;
+        float desiredVolume = 1;
+        float fadeTime = 3;
+
+        tempSound.volume = 0;
+
+        while (fadeTime > elapsedTime)
+        {
+            tempSound.volume = Mathf.Lerp(currentVolume, desiredVolume, (elapsedTime / fadeTime));
+            elapsedTime += Time.deltaTime;
+
+            yield return null;
+        }
+
+        tempSound.volume = desiredVolume;
+
+        yield return null;
     }
 
     public void SpeedUp(string soundName)

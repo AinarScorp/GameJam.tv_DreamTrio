@@ -81,7 +81,9 @@ public class PlayerHealth : MonoBehaviour
     void Die()
     {
         isAlive = false;
-
+        AudioManagerScript.Instance.Play("Ghost Appear");
+        AudioManagerScript.Instance.Play("Ghost Atmos");
+        StartCoroutine(AudioManagerScript.Instance.FadeIn("Ghost Atmos"));
         EnemyMovement[] enemies = FindObjectsOfType<EnemyMovement>();
 
         PlayerDeath();
@@ -97,6 +99,7 @@ public class PlayerHealth : MonoBehaviour
     public void AddCollectedHearth(int amount = 1) => collectedHearths += amount;
     public void Revive()
     {
+        AudioManagerScript.Instance.StopPlayingSound("Ghost Atmos");
         currentHealth = collectedHearths;
         collectedHearths = 0;
         if (currentHealth <= 0)
