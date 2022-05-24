@@ -6,9 +6,16 @@ public class VirtualCamera : MonoBehaviour
 {
     [SerializeField] CinemachineVirtualCamera virtualCamera;
     [SerializeField] Transform player;
+
+    //Screenshake Values for light attack
     [SerializeField] float lightAttackAmplitude;
     [SerializeField] float lightAttackFrequency;
     [SerializeField] float lightAttackShakeTime;
+
+    //Screenshake Values for player hit
+    [SerializeField] float hitAmplitude;
+    [SerializeField] float hitFrequency;
+    [SerializeField] float hitShakeTime;
 
     float startingCameraValue;
 
@@ -49,6 +56,11 @@ public class VirtualCamera : MonoBehaviour
         }
 
         shakeRoutine = StartCoroutine(Shake(amplitude, frequency, shakeTime));
+    }
+
+    public void PlayerHitShake()
+    {
+        StartShake(hitAmplitude, hitFrequency, hitShakeTime);
     }
 
     public void LightAttackShake()

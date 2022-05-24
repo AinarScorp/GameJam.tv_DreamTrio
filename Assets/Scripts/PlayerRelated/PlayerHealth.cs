@@ -6,6 +6,8 @@ using System;
 
 public class PlayerHealth : MonoBehaviour
 {
+    [SerializeField] FlashEffect flashScript;
+
     [Header("Adjustment")]
     [SerializeField] int startingHealth = 5;
 
@@ -62,6 +64,8 @@ public class PlayerHealth : MonoBehaviour
     public void ReceiveDamage(int amount = 1)
     {
         AudioManagerScript.Instance.Play("Player Damage");
+        VirtualCamera.Instance.PlayerHitShake();
+        flashScript.StartFlash();
 
         if (currentHealth <= 0)
             return;
@@ -101,6 +105,7 @@ public class PlayerHealth : MonoBehaviour
     {
         AudioManagerScript.Instance.Play("Revive");
         StartCoroutine(AudioManagerScript.Instance.FadeOut("Ghost Atmos"));
+
         currentHealth = collectedHearths;
         collectedHearths = 0;
         if (currentHealth <= 0)
