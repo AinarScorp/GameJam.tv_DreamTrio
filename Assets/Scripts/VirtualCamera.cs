@@ -6,12 +6,15 @@ public class VirtualCamera : MonoBehaviour
 {
     [SerializeField] CinemachineVirtualCamera virtualCamera;
     [SerializeField] Transform player;
+    [SerializeField] float lightAttackAmplitude;
+    [SerializeField] float lightAttackFrequency;
+    [SerializeField] float lightAttackShakeTime;
 
     float startingCameraValue;
 
     [SerializeField] [Range(0.1f, 30f)] float zoomInValue;
     [SerializeField] [Range(0.1f, 30f)] float zoomOutValue;
-    [SerializeField] [Range (0.1f, 30f)] float zoomInTime;
+    [SerializeField] [Range(0.1f, 30f)] float zoomInTime;
     [SerializeField] [Range(0.1f, 30f)] float zoomOutTime;
     [SerializeField] [Range(0.1f, 30f)] float centerTime;
     [SerializeField] [Range(0.1f, 30f)] float revivalWait;
@@ -19,9 +22,6 @@ public class VirtualCamera : MonoBehaviour
     [SerializeField] AnimationCurve inCurve;
     [SerializeField] AnimationCurve outCurve;
 
-    //[SerializeField] float amplitude;
-    //[SerializeField] float frequency;
-    //[SerializeField] float shakeTime;
     Coroutine shakeRoutine;
     CinemachineBasicMultiChannelPerlin noise;
     public static VirtualCamera Instance;
@@ -29,7 +29,7 @@ public class VirtualCamera : MonoBehaviour
     void Awake()
     {
         if (virtualCamera == null)
-            virtualCamera =GetComponent<CinemachineVirtualCamera>();
+            virtualCamera = GetComponent<CinemachineVirtualCamera>();
         Instance = this;
     }
 
@@ -41,7 +41,7 @@ public class VirtualCamera : MonoBehaviour
         noise = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }
 
-    public void StartShake(float amplitude, float frequency, float shakeTime)
+    void StartShake(float amplitude, float frequency, float shakeTime)
     {
         if (shakeRoutine != null)
         {
@@ -49,6 +49,11 @@ public class VirtualCamera : MonoBehaviour
         }
 
         shakeRoutine = StartCoroutine(Shake(amplitude, frequency, shakeTime));
+    }
+
+    public void LightAttackShake()
+    {
+        StartShake(lightAttackAmplitude, lightAttackFrequency, lightAttackShakeTime);
     }
 
     IEnumerator Shake(float amplitude, float frequency, float shakeTime)
@@ -89,7 +94,7 @@ public class VirtualCamera : MonoBehaviour
     IEnumerator ZoomIn(float endValue)
     {
         float elapsedTime = 0;
-        float currentOrthoSize = virtualCamera.m_Lens.OrthographicSize;;
+        float currentOrthoSize = virtualCamera.m_Lens.OrthographicSize; ;
 
         while (zoomInTime > elapsedTime)
         {

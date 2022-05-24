@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(EnemyDrop))]
 public class EnemyHealth : MonoBehaviour
 {
+    [SerializeField] GameObject deathSound;
+    [SerializeField] GameObject hitSound;
     [SerializeField] FlashEffect flashScript;
     [Header("Adjustment")]
     [SerializeField] int startingHealth = 3;
@@ -30,9 +32,18 @@ public class EnemyHealth : MonoBehaviour
 
     public void ReceiveDamage(int amount = 1)
     {
+        Instantiate(hitSound);
+        GetComponent<ParticleSystem>().Play();
+        VirtualCamera.Instance.LightAttackShake();
+        //AudioManagerScript.Instance.PlayRandomPitch("Hit");
+
         if (currentHealth <= 0)
+        {
             return;
+        }
+
         flashScript.StartFlash();
+
         currentHealth -= amount;
         if (currentHealth <= 0)
         {
@@ -51,6 +62,7 @@ public class EnemyHealth : MonoBehaviour
 
     void Die()
     {
+        Instantiate(deathSound);
         GetComponent<EnemyDrop>().DropStuffUponDeath();
         FindObjectOfType<CordCircle>()?.IncreaseCordLength(cordIncreaseAmount);
         this.gameObject.SetActive(false);

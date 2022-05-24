@@ -61,6 +61,8 @@ public class PlayerHealth : MonoBehaviour
 
     public void ReceiveDamage(int amount = 1)
     {
+        AudioManagerScript.Instance.Play("Player Damage");
+
         if (currentHealth <= 0)
             return;
         RemoveHeartImage();

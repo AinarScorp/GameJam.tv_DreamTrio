@@ -39,6 +39,20 @@ public class AudioManagerScript : MonoBehaviour
         }
     }
 
+    public void PlayRandomPitch(string name)
+    {
+        foreach (Sound sound in sounds)
+        {
+            if (sound.GetName() == name)
+            {
+                sound.GetSource().pitch = Random.Range(0.9f, 1.5f);
+                break;
+            }
+        }
+
+        Play(name);
+    }
+
     public void StopPlayingSound(string soundName)
     {
         foreach (Sound sound in sounds)

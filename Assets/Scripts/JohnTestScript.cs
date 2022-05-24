@@ -32,7 +32,6 @@ public class JohnTestScript : MonoBehaviour
 
     private void CameraMethod()
     {
-        VirtualCamera.Instance.StartShake(5, 2.2f, 0.2f);
     }
 
     private void Flash()
