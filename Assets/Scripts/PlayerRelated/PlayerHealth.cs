@@ -7,6 +7,7 @@ using System;
 public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] FlashEffect flashScript;
+    [SerializeField] ParticleSystem hitParticle;
 
     [Header("Adjustment")]
     [SerializeField] int startingHealth = 5;
@@ -63,6 +64,7 @@ public class PlayerHealth : MonoBehaviour
 
     public void ReceiveDamage(int amount = 1)
     {
+        hitParticle.Play();
         AudioManagerScript.Instance.Play("Player Damage");
         VirtualCamera.Instance.PlayerHitShake();
         flashScript.StartFlash();

@@ -6,6 +6,8 @@ using UnityEngine;
 public class EnemyHealth : MonoBehaviour
 {
     [SerializeField] FlashEffect flashScript;
+    [SerializeField] ParticleSystem hitParticle;
+
     [Header("Adjustment")]
     [SerializeField] int startingHealth = 3;
     [SerializeField] float cordIncreaseAmount = 3f;
@@ -31,7 +33,7 @@ public class EnemyHealth : MonoBehaviour
     public void ReceiveDamage(int amount = 1)
     {
         AudioManagerScript.Instance.PlayRandomPitch("Hit");
-        GetComponent<ParticleSystem>().Play();
+        hitParticle.Play();
         VirtualCamera.Instance.LightAttackShake();
 
         if (currentHealth <= 0)
