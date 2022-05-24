@@ -99,7 +99,8 @@ public class PlayerHealth : MonoBehaviour
     public void AddCollectedHearth(int amount = 1) => collectedHearths += amount;
     public void Revive()
     {
-        AudioManagerScript.Instance.StopPlayingSound("Ghost Atmos");
+        AudioManagerScript.Instance.Play("Revive");
+        StartCoroutine(AudioManagerScript.Instance.FadeOut("Ghost Atmos"));
         currentHealth = collectedHearths;
         collectedHearths = 0;
         if (currentHealth <= 0)

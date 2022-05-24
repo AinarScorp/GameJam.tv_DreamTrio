@@ -98,6 +98,40 @@ public class AudioManagerScript : MonoBehaviour
         yield return null;
     }
 
+    public IEnumerator FadeOut(string soundName)
+    {
+        AudioSource tempSound = null;
+
+        foreach (Sound sound in sounds)
+        {
+            if (sound.GetName() == soundName)
+            {
+                tempSound = sound.GetSource();
+                break;
+            }
+        }
+
+        float elapsedTime = 0;
+        float desiredVolume = 0;
+        float fadeTime = 1;
+
+        float currentVolume = tempSound.volume;
+
+        while (fadeTime > elapsedTime)
+        {
+            tempSound.volume = Mathf.Lerp(currentVolume, desiredVolume, (elapsedTime / fadeTime));
+            elapsedTime += Time.deltaTime;
+
+            yield return null;
+        }
+
+        tempSound.volume = desiredVolume;
+
+        StopPlayingSound(soundName);
+
+        yield return null;
+    }
+
     public void SpeedUp(string soundName)
     {
         foreach (Sound sound in sounds)
