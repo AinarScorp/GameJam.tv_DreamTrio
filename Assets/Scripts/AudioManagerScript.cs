@@ -7,6 +7,9 @@ public class AudioManagerScript : MonoBehaviour
 {
     [SerializeField] Sound[] sounds;
     List<AudioSource> audioSources = new List<AudioSource>();
+    [SerializeField] float fadeInTime;
+    [SerializeField] float fadeOutTime;
+    [SerializeField] float desiredVolume;
 
     public static AudioManagerScript Instance;
     private void Awake()
@@ -80,14 +83,12 @@ public class AudioManagerScript : MonoBehaviour
 
         float elapsedTime = 0;
         float currentVolume = 0;
-        float desiredVolume = 1;
-        float fadeTime = 3;
 
         tempSound.volume = 0;
 
-        while (fadeTime > elapsedTime)
+        while (fadeInTime > elapsedTime)
         {
-            tempSound.volume = Mathf.Lerp(currentVolume, desiredVolume, (elapsedTime / fadeTime));
+            tempSound.volume = Mathf.Lerp(currentVolume, desiredVolume, (elapsedTime / fadeInTime));
             elapsedTime += Time.deltaTime;
 
             yield return null;
@@ -113,13 +114,12 @@ public class AudioManagerScript : MonoBehaviour
 
         float elapsedTime = 0;
         float desiredVolume = 0;
-        float fadeTime = 1;
 
         float currentVolume = tempSound.volume;
 
-        while (fadeTime > elapsedTime)
+        while (fadeOutTime > elapsedTime)
         {
-            tempSound.volume = Mathf.Lerp(currentVolume, desiredVolume, (elapsedTime / fadeTime));
+            tempSound.volume = Mathf.Lerp(currentVolume, desiredVolume, (elapsedTime / fadeOutTime));
             elapsedTime += Time.deltaTime;
 
             yield return null;

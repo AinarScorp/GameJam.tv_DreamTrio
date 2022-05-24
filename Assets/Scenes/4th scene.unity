@@ -1536,17 +1536,17 @@ MonoBehaviour:
     loop: 0
   - name: Hit
     clip: {fileID: 8300000, guid: a8282e2eefa6341409f362d12c897114, type: 3}
-    volume: 1
+    volume: 0.6
     pitch: 1.3
     loop: 0
   - name: Enemy Death
     clip: {fileID: 8300000, guid: 48e2dd8c993377e44a4c03ed71da05a8, type: 3}
-    volume: 1
+    volume: 0.5
     pitch: 1.3
     loop: 0
   - name: Player Damage
     clip: {fileID: 8300000, guid: 83b11a1b59dd5294eb81e0c1b6759102, type: 3}
-    volume: 1
+    volume: 0.5
     pitch: 1
     loop: 0
   - name: Player Died
@@ -1565,8 +1565,8 @@ MonoBehaviour:
     pitch: 1
     loop: 0
   - name: Ghost Atmos
-    clip: {fileID: 8300000, guid: 5c7c7d9318a910243af1cb740d9ddeb9, type: 3}
-    volume: 1
+    clip: {fileID: 8300000, guid: 949849ef8d84675478710cc1392ab027, type: 3}
+    volume: 0.1
     pitch: 1
     loop: 0
   - name: Revive
@@ -1574,6 +1574,9 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+  fadeInTime: 3
+  fadeOutTime: 2
+  desiredVolume: 0.1
 --- !u!4 &1599189614
 Transform:
   m_ObjectHideFlags: 0
