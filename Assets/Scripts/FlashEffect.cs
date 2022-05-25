@@ -15,6 +15,8 @@ public class FlashEffect : MonoBehaviour
 
     SpriteRenderer spriteRenderer;
     Coroutine flashRoutine;
+
+    
     // Start is called before the first frame update
 
     void Awake()
@@ -26,15 +28,15 @@ public class FlashEffect : MonoBehaviour
     // Update is called once per frame
 
 
-    public void StartFlash()
-    {
-        if (flashRoutine != null)
-        {
-            StopCoroutine(flashRoutine);
-        }
+    //public void StartFlash()
+    //{
+    //    if (flashRoutine != null)
+    //    {
+    //        StopCoroutine(flashRoutine);
+    //    }
 
-        StartCoroutine(Flash());
-    }
+    //    StartCoroutine(Flash());
+    //}
 
     public void StartPoisonFlash()
     {
@@ -46,6 +48,40 @@ public class FlashEffect : MonoBehaviour
         StartCoroutine(PoisonFlash());
     }
 
+    public void StartFlash(bool isPoison = false)
+    {
+        if (flashRoutine != null)
+        {
+            StopCoroutine(flashRoutine);
+        }
+        if (!isPoison)
+        {
+            StartCoroutine(StartFlash(flashMaterial, flashDuration, flashAmount));
+        }
+        else
+        {
+            StartCoroutine(StartFlash(poisonFlashMaterial, poisonFlashDuration, poisonFlashAmount));
+        }
+    }
+    IEnumerator StartFlash( Material flashMaterial, float timeDuration, float flashAmount)
+    {
+        float tempValue = 0;
+
+        while (tempValue != flashAmount)
+        {
+            spriteRenderer.material = flashMaterial;
+
+            yield return new WaitForSeconds(timeDuration);
+
+            spriteRenderer.material = originalMaterial;
+
+            yield return new WaitForSeconds(timeDuration);
+
+            tempValue++;
+        }
+
+        flashRoutine = null;
+    }
     IEnumerator Flash()
     {
         float tempValue = 0;
@@ -85,4 +121,6 @@ public class FlashEffect : MonoBehaviour
 
         flashRoutine = null;
     }
+
+
 }

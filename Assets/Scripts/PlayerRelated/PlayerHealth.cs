@@ -62,12 +62,14 @@ public class PlayerHealth : MonoBehaviour
 
     }
 
-    public void ReceiveDamage(int amount = 1)
+    public void ReceiveDamage(int amount = 1, bool fromPoison = false)
     {
         hitParticle.Play();
         AudioManagerScript.Instance.Play("Player Damage");
         VirtualCamera.Instance.PlayerHitShake();
-        flashScript.StartFlash();
+
+        flashScript.StartFlash(fromPoison);
+
 
         if (currentHealth <= 0)
             return;

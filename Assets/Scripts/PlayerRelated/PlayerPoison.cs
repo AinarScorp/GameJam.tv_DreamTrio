@@ -32,8 +32,7 @@ public class PlayerPoison : MonoBehaviour
             {
                 poisonParticle.Play();
                 AudioManagerScript.Instance.Play("Poison Damage");
-                flashScript.StartPoisonFlash();
-                player.ReceiveDamage(poisonDamage);
+                player.ReceiveDamage(poisonDamage, true);
             }
 
 
