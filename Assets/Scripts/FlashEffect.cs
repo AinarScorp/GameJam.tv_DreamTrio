@@ -5,8 +5,12 @@ using UnityEngine;
 public class FlashEffect : MonoBehaviour
 {
     [SerializeField] float flashDuration;
+    [SerializeField] float poisonFlashDuration;
     [SerializeField] [Range (1, 10)] int flashAmount;
+    [SerializeField] [Range(1, 10)] int poisonFlashAmount;
+
     [SerializeField] Material flashMaterial;
+    [SerializeField] Material poisonFlashMaterial;
     Material originalMaterial;
 
     SpriteRenderer spriteRenderer;
@@ -30,7 +34,16 @@ public class FlashEffect : MonoBehaviour
         }
 
         StartCoroutine(Flash());
+    }
 
+    public void StartPoisonFlash()
+    {
+        if (flashRoutine != null)
+        {
+            StopCoroutine(flashRoutine);
+        }
+
+        StartCoroutine(PoisonFlash());
     }
 
     IEnumerator Flash()
@@ -46,6 +59,26 @@ public class FlashEffect : MonoBehaviour
             spriteRenderer.material = originalMaterial;
 
             yield return new WaitForSeconds(flashDuration);
+
+            tempValue++;
+        }
+
+        flashRoutine = null;
+    }
+
+    IEnumerator PoisonFlash()
+    {
+        float tempValue = 0;
+
+        while (tempValue != poisonFlashAmount)
+        {
+            spriteRenderer.material = poisonFlashMaterial;
+
+            yield return new WaitForSeconds(poisonFlashDuration);
+
+            spriteRenderer.material = originalMaterial;
+
+            yield return new WaitForSeconds(poisonFlashDuration);
 
             tempValue++;
         }
