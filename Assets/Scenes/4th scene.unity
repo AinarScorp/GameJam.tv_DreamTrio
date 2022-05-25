@@ -563,7 +563,7 @@ MonoBehaviour:
   hitFrequency: 3
   hitShakeTime: 0.3
   zoomInValue: 2.5
-  zoomOutValue: 10
+  zoomOutValue: 8
   zoomInTime: 0.4
   zoomOutTime: 1.5
   centerTime: 0
@@ -639,14 +639,14 @@ MonoBehaviour:
   m_Follow: {fileID: 1352351515}
   m_Lens:
     FieldOfView: 40
-    OrthographicSize: 7
+    OrthographicSize: 5
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0
     ModeOverride: 1
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.4616519, y: 1}
+    m_SensorSize: {x: 1.3835616, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -663,7 +663,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 318945185}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.00000023841858, z: -10}
+  m_LocalPosition: {x: 0, y: 0.00000011920929, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1325,7 +1325,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 7
+  orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1349,7 +1349,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1347069302}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.00000023841858, z: -10}
+  m_LocalPosition: {x: 0, y: 0.00000011920929, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1920,6 +1920,18 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 59246203358115554, guid: ac8bc78191a6b2b4f9f77abd212be212, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 59246203358115554, guid: ac8bc78191a6b2b4f9f77abd212be212, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 59246203358115554, guid: ac8bc78191a6b2b4f9f77abd212be212, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 59246203358115554, guid: ac8bc78191a6b2b4f9f77abd212be212, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.81
       objectReference: {fileID: 0}
@@ -1958,6 +1970,22 @@ PrefabInstance:
     - target: {fileID: 59246203358115554, guid: ac8bc78191a6b2b4f9f77abd212be212, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 59246203358115557, guid: ac8bc78191a6b2b4f9f77abd212be212, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: ff85b15854355b34c9600b31de75c8e4, type: 3}
+    - target: {fileID: 59246203358115557, guid: ac8bc78191a6b2b4f9f77abd212be212, type: 3}
+      propertyPath: m_Color.b
+      value: 0.9622642
+      objectReference: {fileID: 0}
+    - target: {fileID: 59246203358115557, guid: ac8bc78191a6b2b4f9f77abd212be212, type: 3}
+      propertyPath: m_Color.g
+      value: 0.9622642
+      objectReference: {fileID: 0}
+    - target: {fileID: 59246203358115557, guid: ac8bc78191a6b2b4f9f77abd212be212, type: 3}
+      propertyPath: m_Color.r
+      value: 0.9622642
       objectReference: {fileID: 0}
     - target: {fileID: 59246203358115559, guid: ac8bc78191a6b2b4f9f77abd212be212, type: 3}
       propertyPath: m_Name
@@ -2292,6 +2320,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1352351515}
     m_Modifications:
+    - target: {fileID: 230119954705730264, guid: f533d58b117e295469adc6d80f60fc95, type: 3}
+      propertyPath: InitialModule.startSize.scalar
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 230119954705730264, guid: f533d58b117e295469adc6d80f60fc95, type: 3}
+      propertyPath: InitialModule.startSpeed.scalar
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 507151619741519917, guid: f533d58b117e295469adc6d80f60fc95, type: 3}
       propertyPath: m_Name
       value: PlayerHitParticles
@@ -2421,6 +2457,10 @@ PrefabInstance:
       propertyPath: startingHealth
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 8120152831148383535, guid: b98a534b8ea1c4e45b4d942bf3709fc5, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -216112589, guid: f0214b9e748f44a4ca9085cd783897c4, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b98a534b8ea1c4e45b4d942bf3709fc5, type: 3}
 --- !u!198 &7122629062815275307 stripped
