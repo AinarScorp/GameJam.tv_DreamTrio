@@ -197,6 +197,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 139
+  pushForce: 10
 --- !u!114 &8120152830727472715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -233,7 +234,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flashScript: {fileID: 1611045334}
   hitParticle: {fileID: 49116024495324798}
-  poisonParticle: {fileID: 0}
+  poisonParticle: {fileID: 2868196160418106521}
   startingHealth: 4
   currentHealth: 0
   heartImage: {fileID: 910927117292983901, guid: b5155bdabf196994dbc13f056ff69dbb, type: 3}
@@ -586,5 +587,10 @@ PrefabInstance:
 --- !u!4 &2448376545879613849 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4867466342982433314, guid: 4faf02721455080408256055a73cce65, type: 3}
+  m_PrefabInstance: {fileID: 7095095373285186491}
+  m_PrefabAsset: {fileID: 0}
+--- !u!198 &2868196160418106521 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5024669804249880354, guid: 4faf02721455080408256055a73cce65, type: 3}
   m_PrefabInstance: {fileID: 7095095373285186491}
   m_PrefabAsset: {fileID: 0}
