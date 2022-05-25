@@ -8,6 +8,8 @@ public class PlayerHealth : MonoBehaviour
 {
     [SerializeField] FlashEffect flashScript;
     [SerializeField] ParticleSystem hitParticle;
+    [SerializeField] ParticleSystem poisonParticle;
+
 
     [Header("Adjustment")]
     [SerializeField] int startingHealth = 5;
@@ -64,10 +66,13 @@ public class PlayerHealth : MonoBehaviour
 
     public void ReceiveDamage(int amount = 1, bool fromPoison = false)
     {
-        hitParticle.Play();
-        AudioManagerScript.Instance.Play("Player Damage");
-        VirtualCamera.Instance.PlayerHitShake();
+        if (!fromPoison)
+        {
+            AudioManagerScript.Instance.Play("Player Damage");
+            VirtualCamera.Instance.PlayerHitShake();
+        }
 
+        PlayParticle(fromPoison);
         flashScript.StartFlash(fromPoison);
 
 
@@ -84,7 +89,16 @@ public class PlayerHealth : MonoBehaviour
 
     }
 
+    void PlayParticle(bool isPoison)
+    {
+        if (isPoison)
+        {
+            poisonParticle.Play();
+            return;
+        }
+        hitParticle.Play();
 
+    }
 
     void Die()
     {

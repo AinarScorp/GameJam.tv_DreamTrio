@@ -6,7 +6,6 @@ using UnityEngine;
 public class PlayerPoison : MonoBehaviour
 {
     [SerializeField] FlashEffect flashScript;
-    [SerializeField] ParticleSystem poisonParticle;
     [SerializeField] [Range(0.1f, 120f)] float damageInterval = 1f;
 
     [SerializeField] int poisonDamage = 1;
@@ -30,7 +29,6 @@ public class PlayerPoison : MonoBehaviour
 
             if (player.IsAlive)
             {
-                poisonParticle.Play();
                 AudioManagerScript.Instance.Play("Poison Damage");
                 player.ReceiveDamage(poisonDamage, true);
             }
