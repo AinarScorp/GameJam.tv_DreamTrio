@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerHealth))]
 public class PlayerPoison : MonoBehaviour
 {
-    [SerializeField] [Range(1,120f)] float damageInterval = 2f;
+    [SerializeField] [Range(0.01f,100f)] float damageInterval = 1f;
     [SerializeField] int poisonDamage = 1;
 
     PlayerHealth player;
