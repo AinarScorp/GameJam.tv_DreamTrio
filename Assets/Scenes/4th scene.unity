@@ -567,6 +567,9 @@ MonoBehaviour:
   hitAmplitude: 10
   hitFrequency: 3
   hitShakeTime: 0.3
+  poisonAmplitude: 3
+  poisonFrequency: 2
+  poisonShakeTime: 0.2
   zoomInValue: 2.5
   zoomOutValue: 8
   zoomInTime: 0.4
@@ -1492,21 +1495,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1352351524
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 925538529}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6d5eec2a5990144db1b6188423d6b51, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  flashDuration: 0.3
-  flashAmount: 1
-  flashMaterial: {fileID: 2100000, guid: 0c0ecb050b277ce48abe0e4da2ccb741, type: 2}
 --- !u!1001 &1375337364
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1797,8 +1785,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flashDuration: 0.1
+  poisonFlashDuration: 0.2
   flashAmount: 3
+  poisonFlashAmount: 2
   flashMaterial: {fileID: 2100000, guid: 63a8ffde23822e949bdb72630f02d237, type: 2}
+  poisonFlashMaterial: {fileID: 2100000, guid: 0c0ecb050b277ce48abe0e4da2ccb741, type: 2}
 --- !u!198 &1624231073 stripped
 ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 5024669804249880354, guid: 4faf02721455080408256055a73cce65, type: 3}
@@ -2620,7 +2611,7 @@ PrefabInstance:
     - target: {fileID: 8120152830727472716, guid: b98a534b8ea1c4e45b4d942bf3709fc5, type: 3}
       propertyPath: flashScript
       value: 
-      objectReference: {fileID: 1352351524}
+      objectReference: {fileID: 1611045334}
     - target: {fileID: 8120152830727472716, guid: b98a534b8ea1c4e45b4d942bf3709fc5, type: 3}
       propertyPath: damageInterval
       value: 7

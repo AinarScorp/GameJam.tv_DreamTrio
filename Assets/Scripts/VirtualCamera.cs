@@ -75,7 +75,7 @@ public class VirtualCamera : MonoBehaviour
 
     public void PoisonShake()
     {
-
+        StartShake(poisonAmplitude, poisonFrequency, poisonShakeTime);
     }
 
     IEnumerator Shake(float amplitude, float frequency, float shakeTime)
