@@ -5,13 +5,14 @@ using System.Collections;
 
 public class AudioManagerScript : MonoBehaviour
 {
+    public static AudioManagerScript Instance;
+
     [SerializeField] Sound[] sounds;
     List<AudioSource> audioSources = new List<AudioSource>();
     [SerializeField] float fadeInTime;
     [SerializeField] float fadeOutTime;
     [SerializeField] float desiredVolume;
 
-    public static AudioManagerScript Instance;
     private void Awake()
     {
         foreach (Sound s in sounds)

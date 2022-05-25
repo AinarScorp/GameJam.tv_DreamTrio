@@ -63,8 +63,14 @@ public class VirtualCamera : MonoBehaviour
         shakeRoutine = StartCoroutine(Shake(amplitude, frequency, shakeTime));
     }
 
-    public void PlayerHitShake()
+    public void PlayerDamageShake(bool fromPoison)
     {
+        if (fromPoison)
+        {
+            StartShake(poisonAmplitude, poisonFrequency, poisonShakeTime);
+            return;
+        }
+
         StartShake(hitAmplitude, hitFrequency, hitShakeTime);
     }
 
@@ -73,10 +79,6 @@ public class VirtualCamera : MonoBehaviour
         StartShake(lightAttackAmplitude, lightAttackFrequency, lightAttackShakeTime);
     }
 
-    public void PoisonShake()
-    {
-        StartShake(poisonAmplitude, poisonFrequency, poisonShakeTime);
-    }
 
     IEnumerator Shake(float amplitude, float frequency, float shakeTime)
     {

@@ -21,7 +21,7 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] GameObject heartImage;
 
     Transform parentForHearts;
-    List<GameObject> heartImages =  new List<GameObject>();
+    List<GameObject> heartImages = new List<GameObject>();
     int collectedHearths;
 
 
@@ -35,7 +35,7 @@ public class PlayerHealth : MonoBehaviour
     private void Awake()
     {
         parentForHearts = GameObject.FindGameObjectWithTag("Heart Container").transform;
-        
+
     }
     private void Start()
     {
@@ -55,7 +55,7 @@ public class PlayerHealth : MonoBehaviour
     }
     private void RemoveHeartImage()
     {
-        if (heartImages.Count <1)
+        if (heartImages.Count < 1)
             return;
 
         GameObject firstHeartImage = heartImages.ToList().FirstOrDefault();
@@ -67,11 +67,11 @@ public class PlayerHealth : MonoBehaviour
     public void ReceiveDamage(int amount = 1, bool fromPoison = false)
     {
         if (!fromPoison)
-        {
             AudioManagerScript.Instance.Play("Player Damage");
-            VirtualCamera.Instance.PlayerHitShake();
-        }
 
+
+
+        VirtualCamera.Instance.PlayerDamageShake(fromPoison);
         PlayParticle(fromPoison);
         flashScript.StartFlash(fromPoison);
 
@@ -97,7 +97,6 @@ public class PlayerHealth : MonoBehaviour
             return;
         }
         hitParticle.Play();
-
     }
 
     void Die()
