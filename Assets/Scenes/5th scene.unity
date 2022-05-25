@@ -493,6 +493,9 @@ MonoBehaviour:
   hitAmplitude: 10
   hitFrequency: 3
   hitShakeTime: 0.3
+  poisonAmplitude: 0
+  poisonFrequency: 0
+  poisonShakeTime: 0
   zoomInValue: 2.5
   zoomOutValue: 8
   zoomInTime: 0.4
@@ -577,7 +580,7 @@ MonoBehaviour:
     ModeOverride: 1
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.8069793, y: 1}
+    m_SensorSize: {x: 1.7623762, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -644,6 +647,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &370908888 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1935866704945242613, guid: f4aa456a073d8d84da15201edbd94b11, type: 3}
+  m_PrefabInstance: {fileID: 1935866704611623590}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &384121038
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1302,6 +1310,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1599189614}
   - component: {fileID: 1599189613}
+  - component: {fileID: 1599189615}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -1357,14 +1366,14 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
-  - name: Ghost Atmos
-    clip: {fileID: 8300000, guid: 949849ef8d84675478710cc1392ab027, type: 3}
-    volume: 0.1
-    pitch: 1
-    loop: 0
   - name: Revive
     clip: {fileID: 8300000, guid: bd23c1a0fd3c77c4283c156c4570bba2, type: 3}
     volume: 1
+    pitch: 1
+    loop: 0
+  - name: Ghost Atmos
+    clip: {fileID: 8300000, guid: 949849ef8d84675478710cc1392ab027, type: 3}
+    volume: 0.1
     pitch: 1
     loop: 0
   fadeInTime: 3
@@ -1385,6 +1394,102 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1599189615
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1599189612}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!114 &1601645814 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 59246203358115552, guid: ac8bc78191a6b2b4f9f77abd212be212, type: 3}
@@ -1419,8 +1524,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flashDuration: 0.1
+  poisonFlashDuration: 0
   flashAmount: 3
+  poisonFlashAmount: 0
   flashMaterial: {fileID: 2100000, guid: 63a8ffde23822e949bdb72630f02d237, type: 2}
+  poisonFlashMaterial: {fileID: 0}
 --- !u!4 &1702505992 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3567792791662185834, guid: 1ca2b405827f1784da57104475632184, type: 3}
@@ -1793,6 +1901,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 309755060141131048, guid: 1a9bc005fcd59db46a9dbd370225f50f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 309755060459248321, guid: 1a9bc005fcd59db46a9dbd370225f50f, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1898,6 +2010,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1613309789255535411, guid: a0b3864fb6f389049bf89265961bc197, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1613309789255535413, guid: a0b3864fb6f389049bf89265961bc197, type: 3}
       propertyPath: m_RootOrder
       value: 9
@@ -1998,6 +2114,10 @@ PrefabInstance:
     - target: {fileID: 1935866704945242615, guid: f4aa456a073d8d84da15201edbd94b11, type: 3}
       propertyPath: m_Name
       value: WaveManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 1935866704945242615, guid: f4aa456a073d8d84da15201edbd94b11, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f4aa456a073d8d84da15201edbd94b11, type: 3}
@@ -2235,6 +2355,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1284673596}
     m_Modifications:
+    - target: {fileID: 2448376545879613849, guid: b98a534b8ea1c4e45b4d942bf3709fc5, type: 3}
+      propertyPath: m_RootOrder
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6571209235614389611, guid: b98a534b8ea1c4e45b4d942bf3709fc5, type: 3}
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 7095095373693727361, guid: b98a534b8ea1c4e45b4d942bf3709fc5, type: 3}
       propertyPath: startingHealth
       value: 1
@@ -2327,11 +2455,11 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 370908888}
     m_Modifications:
     - target: {fileID: 8322454042035662661, guid: dd09e7b93823d8246985749d0dcd59fd, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8322454042035662661, guid: dd09e7b93823d8246985749d0dcd59fd, type: 3}
       propertyPath: m_LocalPosition.x

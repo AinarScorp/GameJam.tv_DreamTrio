@@ -20,22 +20,23 @@ public class PlayerHealth : MonoBehaviour
     [Header("Better not touch")]
     [SerializeField] GameObject heartImage;
 
-    Transform parentForHearts;
-    List<GameObject> heartImages = new List<GameObject>();
     int collectedHearths;
 
+
+    List<GameObject> heartImages = new List<GameObject>();
+
+    Transform parentForHearts;
 
     bool isAlive;
     Action RevivePlayer;
     Action PlayerDeath;
 
-    public int CurrentHealth { get => currentHealth; }
     public bool IsAlive { get => isAlive; }
+    public int CurrentHealth { get => currentHealth; }
 
     private void Awake()
     {
         parentForHearts = GameObject.FindGameObjectWithTag("Heart Container").transform;
-
     }
     private void Start()
     {
@@ -79,7 +80,6 @@ public class PlayerHealth : MonoBehaviour
         if (currentHealth <= 0)
             return;
         RemoveHeartImage();
-
 
         currentHealth -= amount;
         if (currentHealth <= 0)
