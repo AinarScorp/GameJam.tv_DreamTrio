@@ -7,7 +7,7 @@ public class PlayerPoison : MonoBehaviour
 {
     [SerializeField] FlashEffect flashScript;
     [SerializeField] ParticleSystem poisonParticle;
-    [SerializeField] [Range(1, 120f)] float damageInterval = 2f;
+    [SerializeField] [Range(0.1f, 120f)] float damageInterval = 1f;
 
     [SerializeField] int poisonDamage = 1;
 
