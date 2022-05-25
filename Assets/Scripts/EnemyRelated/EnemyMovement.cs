@@ -12,7 +12,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void Awake()
     {
-
+        player = FindObjectOfType<PlayerHealth>();
         if (rb == null)
             rb = GetComponent<Rigidbody2D>();
     }
@@ -40,14 +40,14 @@ public class EnemyMovement : MonoBehaviour
     {
         if (collision.gameObject == player.gameObject)
         {
-            PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
-            playerHealth.ReceiveDamage();
+            //PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
+            player.ReceiveDamage();
 
             //Rigidbody2D playerRigidBody = player.GetComponent<Rigidbody2D>();
 
             //player.enabled = false;
             //playerRigidBody.AddForce(direction * pushForce * Time.deltaTime, ForceMode2D.Force);
-            if (playerHealth.CurrentHealth > 0)
+            if (player.CurrentHealth > 0)
             {
                 Vector3 direction = (player.transform.position - transform.position).normalized;
                 player.GetComponent<PlayerMovement>().PushPlayer(direction);
