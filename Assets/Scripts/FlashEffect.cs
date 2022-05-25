@@ -13,7 +13,7 @@ public class FlashEffect : MonoBehaviour
     [SerializeField] Material poisonFlashMaterial;
     Material originalMaterial;
 
-    SpriteRenderer spriteRenderer;
+    [SerializeField] SpriteRenderer spriteRenderer;
     Coroutine flashRoutine;
 
     
@@ -21,7 +21,10 @@ public class FlashEffect : MonoBehaviour
 
     void Awake()
     {
-        spriteRenderer = transform.GetComponent<SpriteRenderer>();
+        if (spriteRenderer == null)
+        {
+            spriteRenderer = transform.GetComponent<SpriteRenderer>();
+        }
         originalMaterial = spriteRenderer.material;
     }
 
