@@ -236,8 +236,10 @@ MonoBehaviour:
   hitParticle: {fileID: 49116024495324798}
   poisonParticle: {fileID: 2868196160418106521}
   startingHealth: 4
+  invulnerabilityTime: 1
   currentHealth: 0
   heartImage: {fileID: 910927117292983901, guid: b5155bdabf196994dbc13f056ff69dbb, type: 3}
+  playerCollider: {fileID: 8120152830727472714}
 --- !u!114 &8120152830727472716
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -13,12 +13,14 @@ public class PlayerHealth : MonoBehaviour
 
     [Header("Adjustment")]
     [SerializeField] int startingHealth = 5;
+    [SerializeField] float invulnerabilityTime = 1f;
 
     [Header("Fool around, delete later")]
     [SerializeField] int currentHealth;
 
     [Header("Better not touch")]
     [SerializeField] GameObject heartImage;
+    [SerializeField] Collider2D playerCollider;
 
     int collectedHearths;
 
@@ -77,15 +79,20 @@ public class PlayerHealth : MonoBehaviour
         flashScript.StartFlash(fromPoison);
 
 
-        if (currentHealth <= 0)
+        if (currentHealth <= 0) //not needed later
             return;
+
         RemoveHeartImage();
 
         currentHealth -= amount;
+
         if (currentHealth <= 0)
         {
+
             Die();
+            return;
         }
+        StartCoroutine(SetInvinsibility());
 
     }
 
@@ -98,6 +105,14 @@ public class PlayerHealth : MonoBehaviour
         }
         hitParticle.Play();
     }
+    IEnumerator SetInvinsibility()
+    {
+        playerCollider.enabled = false;
+        yield return new WaitForSeconds(invulnerabilityTime);
+        playerCollider.enabled = true;
+
+
+    }
 
     void Die()
     {
@@ -105,19 +120,10 @@ public class PlayerHealth : MonoBehaviour
         AudioManagerScript.Instance.Play("Ghost Appear");
         AudioManagerScript.Instance.Play("Ghost Atmos");
         StartCoroutine(AudioManagerScript.Instance.FadeIn("Ghost Atmos"));
-        EnemyMovement[] enemies = FindObjectsOfType<EnemyMovement>();
 
         PlayerDeath();
 
     }
-
-    void InstaKill()
-    {
-        ReceiveDamage(currentHealth);
-    }
-
-
-    public void AddCollectedHearth(int amount = 1) => collectedHearths += amount;
     public void Revive()
     {
         AudioManagerScript.Instance.Play("Revive");
@@ -133,6 +139,14 @@ public class PlayerHealth : MonoBehaviour
         RevivePlayer?.Invoke();
         isAlive = true;
     }
+
+    void InstaKill()
+    {
+        ReceiveDamage(currentHealth);
+    }
+
+
+    public void AddCollectedHearth(int amount = 1) => collectedHearths += amount;
     public void SubscribeToRevival(Action actionToAdd) => RevivePlayer += actionToAdd;
     public void UnSubscribeFromRevival(Action actionToRemove) => RevivePlayer -= actionToRemove;
     public void SubscribeToDeath(Action actionToAdd) => PlayerDeath += actionToAdd;
