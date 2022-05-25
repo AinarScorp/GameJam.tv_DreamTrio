@@ -46,9 +46,10 @@ public class PlayerMovement : MonoBehaviour
     {
         facingDirection = Vector2.right;
         input.PlayerBasic.Movement.performed += ctx => movementInputs = ctx.ReadValue<Vector2>();
-        PlayerHealth playerHealth = GetComponent<PlayerHealth>();
-        playerHealth.SubscribeToDeath(() => this.enabled = false);
-        playerHealth.SubscribeToRevival(() => this.enabled = true);
+        PlayerManager playerManager = FindObjectOfType<PlayerManager>();
+        playerManager.SubscribeToImmidiateActions(() => this.enabled = false, true);
+        playerManager.SubscribeToActivateControls(() => this.enabled = true, false);
+
     }
 
     private void FixedUpdate()

@@ -6,7 +6,6 @@ public class PlayerBasicAttack : MonoBehaviour
 {
     public static PlayerBasicAttack Instance { get; private set; }
 
-    //[Header("Touch only if you're know what these are for")]
     [SerializeField] Transform attackPoint;
     [SerializeField] LayerMask enemyLayer;
     [SerializeField] SpriteRenderer spriteRenderer;
@@ -18,10 +17,9 @@ public class PlayerBasicAttack : MonoBehaviour
     [HideInInspector] [SerializeField] bool drawRadiusCircle;
     [HideInInspector] [SerializeField] bool drawAllCircles;
 
-    [HideInInspector] [SerializeField][Range(0,1.5f)] float attackRadius = 1f;
+    [HideInInspector] [SerializeField] [Range(0, 1.5f)] float attackRadius = 1f;
 
 
-    float secondsBeforeTurningOffSlash = 0.1f; // not used atm
 
     bool isAttacking;
 
@@ -58,38 +56,19 @@ public class PlayerBasicAttack : MonoBehaviour
 
         input.PlayerBasic.MeleeAttack.performed += _ => Attack();
 
+        PlayerManager playerManager = FindObjectOfType<PlayerManager>();
+        playerManager.SubscribeToImmidiateActions(() => this.enabled = false, true);
+        playerManager.SubscribeToActivateControls(() => this.enabled = true, false);
 
-        PlayerHealth playerHealth = GetComponent<PlayerHealth>();
-        playerHealth.SubscribeToDeath(() => this.enabled = false);
-        playerHealth.SubscribeToRevival(() => this.enabled = true);
     }
 
 
-    //void RecogniseFacingDirection()
-    //{
 
-    //    if (movementInputs.x != 0)
-    //    {
-    //        facingDirection.x = Mathf.Round(movementInputs.x);
-    //        facingDirection.y = 0;
-
-    //    }
-    //    else if (movementInputs.y != 0)
-    //    {
-    //        facingDirection.y = Mathf.Round(movementInputs.y);
-    //        facingDirection.x = 0;
-
-    //    }
-    //}
 
     void RotateAttackBase()
     {
         attackPoint.localPosition = playerMovement.FacingDirection * attackPointDistance;
 
-        //var angle = Mathf.Atan2(playerMovement.FacingDirection.y, playerMovement.FacingDirection.x) * Mathf.Rad2Deg;
-
-        //spriteRenderer.transform.localRotation = Quaternion.AngleAxis(angle, Vector3.forward);
-        //spriteRenderer.transform.localPosition = playerMovement.FacingDirection * 0.5f;
     }
     void Attack()
     {
@@ -121,27 +100,39 @@ public class PlayerBasicAttack : MonoBehaviour
         }
     }
 
-    IEnumerator ResetSlash()
-    {
-        yield return new WaitForSeconds(secondsBeforeTurningOffSlash);
-    }
-    //private void OnDrawGizmosSelected()
-    //{
-    //    if (attackPoint == null)
-    //    {
-    //        return;
-    //    }
-    //    Gizmos.color = Color.green;
-    //    Vector3 newPos = new Vector3(transform.position.x + attackPointDistance, transform.position.y);
-
-    //    Gizmos.DrawWireSphere(newPos, attackRadius);
 
 
-    //}
 
-
+    #region editor
     public void SetDrawPositionLines(bool setTo) => drawPositionLines = setTo;
     public void SetDrawRadiusCircle(bool setTo) => drawRadiusCircle = setTo;
     public void SetDrawAllCircles(bool setTo) => drawAllCircles = setTo;
+    #endregion
 
+    #region comments /useless stuff
+
+
+    //void RecogniseFacingDirection()
+    //{
+
+    //    if (movementInputs.x != 0)
+    //    {
+    //        facingDirection.x = Mathf.Round(movementInputs.x);
+    //        facingDirection.y = 0;
+
+    //    }
+    //    else if (movementInputs.y != 0)
+    //    {
+    //        facingDirection.y = Mathf.Round(movementInputs.y);
+    //        facingDirection.x = 0;
+
+    //    }
+    //}
+
+    //             was part of void RotateAttackBase()
+    //var angle = Mathf.Atan2(playerMovement.FacingDirection.y, playerMovement.FacingDirection.x) * Mathf.Rad2Deg;
+
+    //spriteRenderer.transform.localRotation = Quaternion.AngleAxis(angle, Vector3.forward);
+    //spriteRenderer.transform.localPosition = playerMovement.FacingDirection * 0.5f;
+    #endregion
 }

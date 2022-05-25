@@ -6,10 +6,6 @@ using System;
 
 public class PlayerHealth : MonoBehaviour
 {
-    [SerializeField] FlashEffect flashScript;
-    [SerializeField] ParticleSystem hitParticle;
-    [SerializeField] ParticleSystem poisonParticle;
-
 
     [Header("Adjustment")]
     [SerializeField] int startingHealth = 5;
@@ -20,24 +16,30 @@ public class PlayerHealth : MonoBehaviour
 
     [Header("Better not touch")]
     [SerializeField] GameObject heartImage;
-    [SerializeField] Collider2D playerCollider;
+    [SerializeField] FlashEffect flashScript;
+    [SerializeField] ParticleSystem hitParticle;
+    [SerializeField] ParticleSystem poisonParticle;
+
+
 
     int collectedHearths;
-
+    bool isInvincible;
+    bool isAlive =true;
 
     List<GameObject> heartImages = new List<GameObject>();
 
-    Transform parentForHearts;
 
-    bool isAlive;
-    Action RevivePlayer;
-    Action PlayerDeath;
+    Transform parentForHearts;
+    PlayerManager playerManager;
+
 
     public bool IsAlive { get => isAlive; }
     public int CurrentHealth { get => currentHealth; }
 
+
     private void Awake()
     {
+        playerManager = FindObjectOfType<PlayerManager>();
         parentForHearts = GameObject.FindGameObjectWithTag("Heart Container").transform;
     }
     private void Start()
@@ -46,6 +48,10 @@ public class PlayerHealth : MonoBehaviour
         currentHealth = startingHealth;
         isAlive = true;
         AddHeartImages();
+
+        playerManager.SubscribeToImmidiateActions(ToggleIsAlive, true);
+        playerManager.SubscribeToActivateControls(AddHeartImages, false);
+        playerManager.SubscribeToActivateControls(ToggleIsAlive, false);
     }
 
     private void AddHeartImages()
@@ -69,6 +75,9 @@ public class PlayerHealth : MonoBehaviour
 
     public void ReceiveDamage(int amount = 1, bool fromPoison = false)
     {
+        if (isInvincible && !fromPoison)
+            return;
+
         if (!fromPoison)
             AudioManagerScript.Instance.Play("Player Damage");
 
@@ -88,14 +97,12 @@ public class PlayerHealth : MonoBehaviour
 
         if (currentHealth <= 0)
         {
-
-            Die();
+            playerManager.StartTurningIntoGhost();
             return;
         }
         StartCoroutine(SetInvinsibility());
 
     }
-
     void PlayParticle(bool isPoison)
     {
         if (isPoison)
@@ -105,51 +112,86 @@ public class PlayerHealth : MonoBehaviour
         }
         hitParticle.Play();
     }
+
     IEnumerator SetInvinsibility()
     {
-        playerCollider.enabled = false;
+        isInvincible = true;
         yield return new WaitForSeconds(invulnerabilityTime);
-        playerCollider.enabled = true;
-
-
+        isInvincible = false;
     }
-
-    void Die()
-    {
-        isAlive = false;
-        AudioManagerScript.Instance.Play("Ghost Appear");
-        AudioManagerScript.Instance.Play("Ghost Atmos");
-        StartCoroutine(AudioManagerScript.Instance.FadeIn("Ghost Atmos"));
-
-        PlayerDeath();
-
-    }
+    
     public void Revive()
     {
-        AudioManagerScript.Instance.Play("Revive");
-        StartCoroutine(AudioManagerScript.Instance.FadeOut("Ghost Atmos"));
-
         currentHealth = collectedHearths;
         collectedHearths = 0;
         if (currentHealth <= 0)
         {
             Debug.LogWarning("you lost");
+            return;
         }
-        AddHeartImages();
-        RevivePlayer?.Invoke();
-        isAlive = true;
+        playerManager.StartTurningIntoLiving();
+
+
     }
 
+
+    void ToggleIsAlive() => isAlive = !isAlive;
+
+    public void AddCollectedHearth(int amount = 1) => collectedHearths += amount;
+
+    #region comments /useless stuff
+    /*
+     * animation death - player falling
+     * 
+     * circle find player center
+     *      circle expanidning 
+     *      
+     *               while circle expanding
+     *   AudioManagerScript.Instance.Play("Ghost Atmos"); play
+     *  StartCoroutine(AudioManagerScript.Instance.FadeIn("Ghost Atmos")); play
+     *          camera zooms out
+     *          //make hearts different  - ask John - hearticles
+     *          
+     *          enemies should fuck off
+     *          
+     *      after full circle expansion 
+     * ghost appears 
+     *  play ghost appear sound
+     * 
+     * player ghost gets controls
+     * 
+     * start shrinking
+    */
+
+
+    //IEnumerator WaitBeforeGhostTime()
+    //{
+    //    //animator.SetTrigger("HasDied");
+    //    //animationIsPlaying = true;
+
+    //    //while (animationIsPlaying)
+    //    //{
+    //    //    yield return new WaitForSeconds(0.2f);
+    //    //}
+
+    //    //AudioManagerScript.Instance.Play("Ghost Atmos");
+    //    //StartCoroutine(AudioManagerScript.Instance.FadeIn("Ghost Atmos"));
+
+
+    //    //yield return FindObjectOfType<CordCircle>().EncircleTarget();
+    //}
+
+    //IEnumerator Die()
+    //{
+    //    yield return WaitBeforeGhostTime();
+
+
+    //    PlayerDeath();
+
+    //}
     void InstaKill()
     {
         ReceiveDamage(currentHealth);
     }
-
-
-    public void AddCollectedHearth(int amount = 1) => collectedHearths += amount;
-    public void SubscribeToRevival(Action actionToAdd) => RevivePlayer += actionToAdd;
-    public void UnSubscribeFromRevival(Action actionToRemove) => RevivePlayer -= actionToRemove;
-    public void SubscribeToDeath(Action actionToAdd) => PlayerDeath += actionToAdd;
-    public void UnSubscribeFromDeath(Action actionToRemove) => PlayerDeath -= actionToRemove;
-
+    #endregion
 }

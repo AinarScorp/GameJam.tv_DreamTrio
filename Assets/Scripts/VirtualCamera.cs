@@ -47,8 +47,10 @@ public class VirtualCamera : MonoBehaviour
 
     private void Start()
     {
-        FindObjectOfType<PlayerHealth>().SubscribeToDeath(StartZoomOut);
-        FindObjectOfType<PlayerHealth>().SubscribeToRevival(StartZoomIn);
+        PlayerManager playerManager = FindObjectOfType<PlayerManager>();
+        playerManager.SubscribeToActivateControls(StartZoomOut, true);
+        playerManager.SubscribeToImmidiateActions(StartZoomIn, false);
+
         startingCameraValue = virtualCamera.m_Lens.OrthographicSize;
         noise = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }

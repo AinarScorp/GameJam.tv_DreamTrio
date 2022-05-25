@@ -15,21 +15,6 @@ public class Wave
     [Header("Various time between Chunks")]
     [Tooltip("leave empty if same time is checked")]
     public float[] timeDifferent;
-
-
-    int currentChunk = 0;
-    public Chunk GetNextChunk()
-    {
-        Chunk nextChunk = chunks[currentChunk];
-        currentChunk++;
-        return nextChunk;
-    }
-
-
-    //IEnumerator StartWave()
-    //{
-    //    yield return new WaitForSeconds
-    //}
 }
 
 [System.Serializable]

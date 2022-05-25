@@ -5012,7 +5012,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followSpeed: 40
-  pushForce: 1.8
+  rb: {fileID: 3567792791662185846}
 --- !u!114 &3567792791662185847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5044,8 +5044,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dropRadius: 1.5
   objectsToDrop:
-  - dropObject: {fileID: 3099043458560596989, guid: c421701e49ad0d443a5b0ec322d111b2, type: 3}
-    dropChancePercent: 49.2
   - dropObject: {fileID: 3128766248087849206, guid: ed697fc20ec2c60478302abc5ed459d5, type: 3}
     dropChancePercent: 100
   numberOfDrops: 1
@@ -5062,8 +5060,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flashDuration: 0.1
+  poisonFlashDuration: 0
   flashAmount: 1
+  poisonFlashAmount: 0
   flashMaterial: {fileID: 2100000, guid: f53a006f62b0f1f428cdf671cc0a952a, type: 2}
+  poisonFlashMaterial: {fileID: 0}
 --- !u!1 &3567792791977266460
 GameObject:
   m_ObjectHideFlags: 0

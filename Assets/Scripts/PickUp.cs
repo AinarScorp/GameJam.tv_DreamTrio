@@ -7,24 +7,36 @@ public class PickUp : MonoBehaviour
 {
     [SerializeField] bool isHearth;
     [SerializeField] float dragSpeed = 5f;
-    //[SerializeField] Transform particles;
+    [SerializeField] Transform particles;
     [SerializeField] LineRenderer lineRenderer;
+
     bool pickedUp;
+
     PlayerHealth playerHealth;
-    
+    PlayerManager playerManager;
 
     private void Awake()
     {
-        //lineRenderer = GetComponentInChildren<LineRenderer>();
         playerHealth = FindObjectOfType<PlayerHealth>();
-        
+        playerManager = FindObjectOfType<PlayerManager>();
     }
     private void Start()
     {
-        //GetComponent<Collider2D>().isTrigger = true;
-        playerHealth.SubscribeToRevival(ReactToRevival);
-        playerHealth.SubscribeToDeath(TurnOnParticles);
+        HandleSubsctiptions(true);
     }
+    void HandleSubsctiptions(bool subscribe)
+    {
+        if (subscribe)
+        {
+            playerManager.SubscribeToImmidiateActions(ReactToRevival, false);
+            playerManager.SubscribeToActivateControls(TurnOnParticles, true);
+            return;
+        }
+        playerManager.UnsubscribeFromImmidiateActions(ReactToRevival, false);
+        playerManager.UnsubscribeFromActivateControls(TurnOnParticles, true);
+
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (pickedUp)
@@ -37,31 +49,28 @@ public class PickUp : MonoBehaviour
             lineRenderer.positionCount = 2;
 
 
-            PlayerHealth playerHealth = FindObjectOfType<PlayerHealth>();
             playerHealth.AddCollectedHearth();
             lineRenderer.SetPosition(0, this.transform.position);
             lineRenderer.SetPosition(1, playerHealth.transform.position);
-            pickedUp = true;
+            particles.gameObject.SetActive(false);
+
             //this.gameObject.SetActive(false);
         }
+        pickedUp = true;
+
     }
-    void TurnOnParticles()
-    {
-        //particles.gameObject.SetActive(true);
-        //playerHealth.UnSubscribeFromDeath(TurnOnParticles);
-    }
+
+    void TurnOnParticles() => particles.gameObject.SetActive(true);
+
     void ReactToRevival()
     {
         if (pickedUp)
-        {
             StartCoroutine(DragItemsToCorpse());
-        }
         else
         {
-            playerHealth.UnSubscribeFromRevival(ReactToRevival);
+            HandleSubsctiptions(false);
             this.gameObject.SetActive(false);
         }
-
     }
 
     IEnumerator DragItemsToCorpse()
@@ -74,11 +83,10 @@ public class PickUp : MonoBehaviour
             percent += Time.deltaTime * dragSpeed;
             transform.position = Vector3.Lerp(startPos, endPos, percent);
             lineRenderer.SetPosition(0, this.transform.position);
-            lineRenderer.SetPosition(1, playerHealth.transform.position);
             yield return new WaitForEndOfFrame();
         }
 
-        playerHealth.UnSubscribeFromRevival(ReactToRevival);
+        HandleSubsctiptions(false);
         this.gameObject.SetActive(false);
 
     }

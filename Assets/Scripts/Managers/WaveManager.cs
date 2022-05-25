@@ -55,6 +55,7 @@ public class WaveManager : MonoBehaviour
         if (currentWave >= numberOfWaves)
         {
             Debug.Log("went through all waves");
+            Debug.LogWarning("you have won");
             return;
         }
         enemySpawners.ToList().ForEach(spawner => StartCoroutine(spawner.StartSpawningEnemies(currentWave)));

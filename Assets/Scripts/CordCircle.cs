@@ -23,8 +23,12 @@ public class CordCircle : MonoBehaviour
     [SerializeField] [Range(0, 500)] float maxCordLength = 1f;
 
     [SerializeField] float cordLength = 1f;
-    bool autoApplySize;
 
+    [SerializeField] [Range(0f, 20f)] float secondsBeforeShrink = 1f;
+
+    bool autoApplySize;
+    AdjustCollider adjustCollider;
+    SpriteRenderer spriteRenderer;
 
     UI_Manager uI_Manager;
     private void Awake()
@@ -32,34 +36,40 @@ public class CordCircle : MonoBehaviour
         if (target == null)
             target = FindObjectOfType<PlayerBasicAttack>().transform;
         uI_Manager = FindObjectOfType<UI_Manager>();
+        adjustCollider = GetComponent<AdjustCollider>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
     }
     private void Start()
     {
         cordLength = defaultCordLength;
         uI_Manager?.DisplayNewCordLength(cordLength);
         SwitchCordCircle(false);
-        FindObjectOfType<PlayerHealth>().SubscribeToDeath(EncircleTarget);
+        FindObjectOfType<PlayerManager>().SubscribeToActivateControls(StartCircleShrinking, true);
     }
     public bool AutoApplySize { get => autoApplySize; }
-    public float NewRadius { get => newRadius; }
 
 
     public void ToggleAutoApplySize() => autoApplySize = !autoApplySize;
+
+
     public void ApplyNewSize()
     {
-        transform.localScale = new Vector3(newRadius, newRadius);
+        ApplyNewSize(newRadius);
+    }
+    public void ApplyNewSize(float value)
+    {
+        transform.localScale = new Vector3(value, value);
 
     }
-    public void EncircleTarget()
+    public IEnumerator EncircleTarget()
     {
-        SwitchCordCircle(true);
-
-        newRadius = cordLength;
-        cordLength = defaultCordLength;
-        ApplyNewSize();
-
         transform.position = target.position;
-        StartCircleShrinking();
+
+        SwitchCordCircle(true);
+        yield return ExpandCircle();
+
+        newRadius = cordLength; //probably not needed
+        cordLength = defaultCordLength;
     }
     public void IncreaseCordLength(float amount)
     {
@@ -71,7 +81,21 @@ public class CordCircle : MonoBehaviour
         }
 
     }
+    IEnumerator ExpandCircle()
+    {
+        ApplyNewSize(sizeToShrinkTo);
+        Vector3 startScale = transform.localScale;
+        Vector3 endScale = new Vector3(cordLength, cordLength);
+        float percent = 0f;
 
+        while (percent < 1f)
+        {
+            percent += Time.deltaTime * scaleSpeed;
+            transform.localScale = Vector3.Lerp(startScale, endScale, percent);
+            yield return new WaitForEndOfFrame();
+        }
+
+    }
     public void StartCircleShrinking()
     {
         StartCoroutine(StartShrinking());
@@ -89,7 +113,7 @@ public class CordCircle : MonoBehaviour
         //    transform.localScale = Vector3.Lerp(startScale, endScale, percent);
         //    yield return new WaitForEndOfFrame();
         //}
-
+        yield return new WaitForSeconds(secondsBeforeShrink);
         while (transform.localScale.x > sizeToShrinkTo)
         {
             Vector3 newScale = transform.localScale - new Vector3(subtractCordAmount, subtractCordAmount) * Time.deltaTime;
@@ -106,8 +130,8 @@ public class CordCircle : MonoBehaviour
 
     void SwitchCordCircle(bool turnOn)
     {
-        GetComponent<AdjustCollider>().enabled = turnOn;
-        GetComponent<SpriteRenderer>().enabled = turnOn;
+        adjustCollider.enabled = turnOn;
+        spriteRenderer.enabled = turnOn;
     }
 
 

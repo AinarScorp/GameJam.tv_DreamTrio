@@ -25,13 +25,14 @@ public class PlayerPoison : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(damageInterval);
+            if (!player.IsAlive)
+                yield return new WaitForSeconds(30f);
 
-            if (player.IsAlive)
-            {
-                AudioManagerScript.Instance.Play("Poison Damage");
-                player.ReceiveDamage(poisonDamage, true);
-            }
+
+            yield return new WaitForSeconds(damageInterval);
+            AudioManagerScript.Instance.Play("Poison Damage");
+            player.ReceiveDamage(poisonDamage, true);
+
 
 
         }

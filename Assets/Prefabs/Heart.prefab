@@ -4979,6 +4979,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isHearth: 1
   dragSpeed: 5
+  particles: {fileID: 1143774465114215109}
   lineRenderer: {fileID: 3384844004670942648}
 --- !u!1 &4130221558079358261
 GameObject:

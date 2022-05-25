@@ -5,9 +5,9 @@ using System.Linq;
 
 public class EnemySpawnerNew : MonoBehaviour
 {
-    [SerializeField] Wave[] waves;
     [SerializeField] bool spanwVertically = false;
     [SerializeField] float spawnLineLength = 2f;
+    [SerializeField] Wave[] waves;
 
     WaveManager waveManager;
 
@@ -81,14 +81,10 @@ public class EnemySpawnerNew : MonoBehaviour
     {
         Gizmos.color = Color.cyan;
         if (spanwVertically)
-        {
             Gizmos.DrawLine(transform.position, new Vector3(transform.position.x, transform.position.y + spawnLineLength));
 
-        }
         else
-        {
             Gizmos.DrawLine(transform.position, new Vector3(transform.position.x+ spawnLineLength, transform.position.y ));
 
-        }
     }
 }

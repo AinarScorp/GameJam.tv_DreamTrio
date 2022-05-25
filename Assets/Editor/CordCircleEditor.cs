@@ -15,7 +15,8 @@ public class CordCircleEditor : Editor
     SerializedProperty propSubtractCordAmount;
     SerializedProperty propCordLength;
     SerializedProperty propMaxCordLength;
-
+    SerializedProperty propScaleSpeed;
+    SerializedProperty propSecondsBeforeShrink;
 
 
     //cordLength
@@ -32,6 +33,8 @@ public class CordCircleEditor : Editor
         propSubtractCordAmount = so.FindProperty("subtractCordAmount");
         propCordLength = so.FindProperty("cordLength");
         propMaxCordLength = so.FindProperty("maxCordLength");
+        propScaleSpeed = so.FindProperty("scaleSpeed");
+        propSecondsBeforeShrink = so.FindProperty("secondsBeforeShrink");
     }
 
     private void OnSceneGUI()
@@ -91,17 +94,17 @@ public class CordCircleEditor : Editor
 
         so.Update();
         EditorGUILayout.PropertyField(propTargetFollow);
-        so.ApplyModifiedProperties();
-        if (Application.isPlaying)
-        {
-            if (GUILayout.Button("Start Shrinking", GUILayout.Width(200), GUILayout.Height(25)))
-            {
-                cordCircle.EncircleTarget();
-            }
+        //so.ApplyModifiedProperties();
+        //if (Application.isPlaying)
+        //{
+        //    if (GUILayout.Button("Start Shrinking", GUILayout.Width(200), GUILayout.Height(25)))
+        //    {
+        //        cordCircle.EncircleTarget();
+        //    }
 
-        }
+        //}
 
-        so.Update();
+        //so.Update();
 
         GUILayout.Space(10);
         EditorGUILayout.PropertyField(propMaxCordLength, new GUIContent("Maximum Cord Length", "Yellow line"));
@@ -115,6 +118,10 @@ public class CordCircleEditor : Editor
 
         EditorGUILayout.PropertyField(propSubtractCordAmount);
         EditorGUILayout.PropertyField(propCordLength);
+
+        EditorGUILayout.PropertyField(propScaleSpeed);
+        EditorGUILayout.PropertyField(propSecondsBeforeShrink);
+
 
         so.ApplyModifiedProperties();
 

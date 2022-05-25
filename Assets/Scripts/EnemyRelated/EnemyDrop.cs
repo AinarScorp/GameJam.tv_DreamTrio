@@ -5,8 +5,8 @@ using UnityEngine;
 public class EnemyDrop : MonoBehaviour
 {
     [SerializeField] float dropRadius = 10f;
-    [SerializeField] ObjectToDrop[] objectsToDrop;
     [SerializeField] int numberOfDrops = 1;
+    [SerializeField] ObjectToDrop[] objectsToDrop;
 
     public void DropStuffUponDeath()
     {
@@ -17,7 +17,7 @@ public class EnemyDrop : MonoBehaviour
             {
                 if (drop.dropChancePercent >= randomRoll)
                 {
-                    Instantiate(drop.dropObject, GetDropPosition(), Quaternion.identity);
+                    Instantiate(drop.DropObject, GetDropPosition(), Quaternion.identity);
                     break;
                 }
                 randomRoll -= drop.dropChancePercent;
