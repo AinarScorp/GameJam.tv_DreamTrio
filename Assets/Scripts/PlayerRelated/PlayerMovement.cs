@@ -9,6 +9,8 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Adjustment")]
     [SerializeField] [Range(0, 500)] float speed = 10f;
+    [SerializeField] [Range(0, 20)] float pushForce = 10f;
+
 
 
     [Header("Better not touch")]
@@ -118,5 +120,10 @@ public class PlayerMovement : MonoBehaviour
 
     public void SetCanMove(bool setTo) => canMove = setTo;
 
+    public void PushPlayer(Vector3 pushDirection)
+    {
+        Vector3 newPlayerPos = transform.position + pushDirection * pushForce;
 
+        transform.position = newPlayerPos;
+    }
 }

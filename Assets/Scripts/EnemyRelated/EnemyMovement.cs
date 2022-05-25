@@ -6,17 +6,15 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] [Range(0, 100)] float followSpeed = 30f;
-    [SerializeField] [Range(0, 20)] float pushForce = 10f;
-
     
-    Rigidbody2D rb;
+    [SerializeField] Rigidbody2D rb;
     PlayerHealth player;
 
     private void Awake()
     {
-        player = FindObjectOfType<PlayerHealth>();
-        rb = GetComponent<Rigidbody2D>();
 
+        if (rb == null)
+            rb = GetComponent<Rigidbody2D>();
     }
     private void Start()
     {
@@ -52,9 +50,7 @@ public class EnemyMovement : MonoBehaviour
             if (playerHealth.CurrentHealth > 0)
             {
                 Vector3 direction = (player.transform.position - transform.position).normalized;
-                Vector3 newPlayerPos = player.transform.position + direction * pushForce;
-                player.transform.position = newPlayerPos;
-
+                player.GetComponent<PlayerMovement>().PushPlayer(direction);
             }
         }
     }

@@ -24,8 +24,6 @@ public class AudioManagerScript : MonoBehaviour
             s.GetSource().volume = s.GetVolume();
             s.GetSource().pitch = s.GetPitch();
 
-            s.GetSource().name = s.GetName();
-
             audioSources.Add(s.GetSource());
         }
 
