@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8120152830278889408}
   - component: {fileID: 8120152830278889411}
   - component: {fileID: 1611045334}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -121,7 +121,7 @@ GameObject:
   - component: {fileID: 8120152830727472724}
   - component: {fileID: 1352351523}
   - component: {fileID: 6930497133241609333}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -233,14 +233,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 617aad62618abe14a97f5edb40343f86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flashScript: {fileID: 1611045334}
-  hitParticle: {fileID: 49116024495324798}
-  poisonParticle: {fileID: 2868196160418106521}
   startingHealth: 4
   invulnerabilityTime: 1
   currentHealth: 0
   heartImage: {fileID: 910927117292983901, guid: b5155bdabf196994dbc13f056ff69dbb, type: 3}
-  playerCollider: {fileID: 8120152830727472714}
+  flashScript: {fileID: 1611045334}
+  hitParticle: {fileID: 49116024495324798}
+  poisonParticle: {fileID: 2868196160418106521}
 --- !u!114 &8120152830727472716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,7 +350,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8120152831148383532}
   - component: {fileID: 8120152831148383535}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Slash Attack
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -434,7 +433,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8120152831406673263}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: attack base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -474,6 +473,10 @@ PrefabInstance:
     - target: {fileID: 507151619741519917, guid: f533d58b117e295469adc6d80f60fc95, type: 3}
       propertyPath: m_Name
       value: PlayerHitParticles
+      objectReference: {fileID: 0}
+    - target: {fileID: 507151619741519917, guid: f533d58b117e295469adc6d80f60fc95, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6390165701581840845, guid: f533d58b117e295469adc6d80f60fc95, type: 3}
       propertyPath: m_RootOrder
@@ -541,6 +544,10 @@ PrefabInstance:
     - target: {fileID: 710077656524637723, guid: 4faf02721455080408256055a73cce65, type: 3}
       propertyPath: m_Name
       value: Poison Particle
+      objectReference: {fileID: 0}
+    - target: {fileID: 710077656524637723, guid: 4faf02721455080408256055a73cce65, type: 3}
+      propertyPath: m_Layer
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 967789016157790046, guid: 4faf02721455080408256055a73cce65, type: 3}
       propertyPath: m_RenderAlignment

@@ -6,7 +6,7 @@ using UnityEngine;
 public class EnemyMovement : MonoBehaviour
 {
     [SerializeField] [Range(0, 100)] float followSpeed = 30f;
-    
+
     [SerializeField] Rigidbody2D rb;
     PlayerHealth player;
 
@@ -31,27 +31,25 @@ public class EnemyMovement : MonoBehaviour
             return;
         }
 
-        Vector3 direction = ( player.transform.position - transform.position).normalized;
+        Vector3 direction = (player.transform.position - transform.position).normalized;
         rb.velocity = direction * followSpeed * Time.fixedDeltaTime;
     }
 
-
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (!player.IsAlive || player.IsInvincible)
+            return;
         if (collision.gameObject == player.gameObject)
         {
-            //PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
             player.ReceiveDamage();
-
-            //Rigidbody2D playerRigidBody = player.GetComponent<Rigidbody2D>();
-
-            //player.enabled = false;
-            //playerRigidBody.AddForce(direction * pushForce * Time.deltaTime, ForceMode2D.Force);
             if (player.CurrentHealth > 0)
             {
+
                 Vector3 direction = (player.transform.position - transform.position).normalized;
                 player.GetComponent<PlayerMovement>().PushPlayer(direction);
             }
+
+
         }
     }
 

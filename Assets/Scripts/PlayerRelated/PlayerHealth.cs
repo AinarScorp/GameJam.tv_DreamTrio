@@ -35,7 +35,7 @@ public class PlayerHealth : MonoBehaviour
 
     public bool IsAlive { get => isAlive; }
     public int CurrentHealth { get => currentHealth; }
-
+    public bool IsInvincible { get => isInvincible;  }
 
     private void Awake()
     {
