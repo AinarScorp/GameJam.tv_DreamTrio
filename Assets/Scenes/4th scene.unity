@@ -222,6 +222,11 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &93053249 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 59246203358115559, guid: ac8bc78191a6b2b4f9f77abd212be212, type: 3}
+  m_PrefabInstance: {fileID: 59246204642679318}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &123186414
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -646,7 +651,7 @@ MonoBehaviour:
     ModeOverride: 1
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.3835616, y: 1}
+    m_SensorSize: {x: 1.8828006, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -1597,7 +1602,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 59246203358115552, guid: ac8bc78191a6b2b4f9f77abd212be212, type: 3}
   m_PrefabInstance: {fileID: 59246204642679318}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 93053249}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a3ce625b48c63b348a89c287e361e9a4, type: 3}
@@ -1608,6 +1613,26 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 59246203358115554, guid: ac8bc78191a6b2b4f9f77abd212be212, type: 3}
   m_PrefabInstance: {fileID: 59246204642679318}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1601645819
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 93053249}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 2efbec82f8604b64697e3bef0d638620, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1611045331 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 8120152830278889409, guid: b98a534b8ea1c4e45b4d942bf3709fc5, type: 3}
