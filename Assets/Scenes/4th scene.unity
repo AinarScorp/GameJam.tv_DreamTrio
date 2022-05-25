@@ -222,11 +222,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
---- !u!1 &93053249 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 59246203358115559, guid: ac8bc78191a6b2b4f9f77abd212be212, type: 3}
-  m_PrefabInstance: {fileID: 59246204642679318}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &123186414
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -571,7 +566,7 @@ MonoBehaviour:
   poisonFrequency: 2
   poisonShakeTime: 0.2
   zoomInValue: 2.5
-  zoomOutValue: 8
+  zoomOutValue: 6
   zoomInTime: 0.4
   zoomOutTime: 1.5
   centerTime: 0
@@ -694,7 +689,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &370779843
 Transform:
   m_ObjectHideFlags: 0
@@ -1168,6 +1163,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy1
       objectReference: {fileID: 0}
+    - target: {fileID: 3567792791662185844, guid: 1ca2b405827f1784da57104475632184, type: 3}
+      propertyPath: objectsToDrop.Array.data[0].dropChancePercent
+      value: 35
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ca2b405827f1784da57104475632184, type: 3}
 --- !u!4 &1077493793 stripped
@@ -1631,16 +1630,21 @@ MonoBehaviour:
     loop: 0
   - name: Revive
     clip: {fileID: 8300000, guid: f38562d51f7341046b60acefbce529ac, type: 3}
-    volume: 0.4
-    pitch: 1.3
+    volume: 0.3
+    pitch: 2
     loop: 0
   - name: Poison Damage
     clip: {fileID: 8300000, guid: fa50a76977158954cb2ebee93411381d, type: 3}
     volume: 0.5
     pitch: 1
     loop: 0
-  - name: Poison Damage
+  - name: Pick up
     clip: {fileID: 8300000, guid: b0063e2cac4db07448b472e4092653c4, type: 3}
+    volume: 1.3
+    pitch: 1
+    loop: 0
+  - name: Collected
+    clip: {fileID: 8300000, guid: 07ad2cf7bf9bee047a50ef19c45995d4, type: 3}
     volume: 1
     pitch: 1
     loop: 0
@@ -1667,7 +1671,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 59246203358115552, guid: ac8bc78191a6b2b4f9f77abd212be212, type: 3}
   m_PrefabInstance: {fileID: 59246204642679318}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 93053249}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a3ce625b48c63b348a89c287e361e9a4, type: 3}
@@ -1677,31 +1681,6 @@ MonoBehaviour:
 Transform:
   m_CorrespondingSourceObject: {fileID: 59246203358115554, guid: ac8bc78191a6b2b4f9f77abd212be212, type: 3}
   m_PrefabInstance: {fileID: 59246204642679318}
-  m_PrefabAsset: {fileID: 0}
---- !u!95 &1601645819
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 93053249}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 2efbec82f8604b64697e3bef0d638620, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!198 &1624231073 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 2868196160418106521, guid: b98a534b8ea1c4e45b4d942bf3709fc5, type: 3}
-  m_PrefabInstance: {fileID: 7095095373804922709}
   m_PrefabAsset: {fileID: 0}
 --- !u!4 &1702505992 stripped
 Transform:
@@ -2000,18 +1979,6 @@ PrefabInstance:
       value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 59246203358115554, guid: ac8bc78191a6b2b4f9f77abd212be212, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 59246203358115554, guid: ac8bc78191a6b2b4f9f77abd212be212, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 59246203358115554, guid: ac8bc78191a6b2b4f9f77abd212be212, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 59246203358115554, guid: ac8bc78191a6b2b4f9f77abd212be212, type: 3}
       propertyPath: m_LocalPosition.x
       value: 8.81
       objectReference: {fileID: 0}
@@ -2050,22 +2017,6 @@ PrefabInstance:
     - target: {fileID: 59246203358115554, guid: ac8bc78191a6b2b4f9f77abd212be212, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 59246203358115557, guid: ac8bc78191a6b2b4f9f77abd212be212, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 21300000, guid: ff85b15854355b34c9600b31de75c8e4, type: 3}
-    - target: {fileID: 59246203358115557, guid: ac8bc78191a6b2b4f9f77abd212be212, type: 3}
-      propertyPath: m_Color.b
-      value: 0.9622642
-      objectReference: {fileID: 0}
-    - target: {fileID: 59246203358115557, guid: ac8bc78191a6b2b4f9f77abd212be212, type: 3}
-      propertyPath: m_Color.g
-      value: 0.9622642
-      objectReference: {fileID: 0}
-    - target: {fileID: 59246203358115557, guid: ac8bc78191a6b2b4f9f77abd212be212, type: 3}
-      propertyPath: m_Color.r
-      value: 0.9622642
       objectReference: {fileID: 0}
     - target: {fileID: 59246203358115559, guid: ac8bc78191a6b2b4f9f77abd212be212, type: 3}
       propertyPath: m_Name
@@ -2400,10 +2351,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 8120152830727472717, guid: b98a534b8ea1c4e45b4d942bf3709fc5, type: 3}
-      propertyPath: poisonParticle
-      value: 
-      objectReference: {fileID: 1624231073}
+    - target: {fileID: 8120152830727472713, guid: b98a534b8ea1c4e45b4d942bf3709fc5, type: 3}
+      propertyPath: pushForce
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8120152830727472726, guid: b98a534b8ea1c4e45b4d942bf3709fc5, type: 3}
       propertyPath: m_RootOrder
       value: 14

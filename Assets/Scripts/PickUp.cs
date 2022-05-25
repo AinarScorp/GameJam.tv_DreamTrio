@@ -73,8 +73,11 @@ public class PickUp : MonoBehaviour
         {
             percent += Time.deltaTime * dragSpeed;
             transform.position = Vector3.Lerp(startPos, endPos, percent);
+            lineRenderer.SetPosition(0, this.transform.position);
+            lineRenderer.SetPosition(1, playerHealth.transform.position);
             yield return new WaitForEndOfFrame();
         }
+
         playerHealth.UnSubscribeFromRevival(ReactToRevival);
         this.gameObject.SetActive(false);
 
