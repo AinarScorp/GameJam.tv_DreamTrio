@@ -60,7 +60,7 @@ public class PlayerBasicAttack : MonoBehaviour
 
 
         PlayerHealth playerHealth = GetComponent<PlayerHealth>();
-        playerHealth.SubscribeToPlayerDeathPermanently(() => this.enabled = false);
+        playerHealth.SubscribeToDeath(() => this.enabled = false);
         playerHealth.SubscribeToRevival(() => this.enabled = true);
     }
 

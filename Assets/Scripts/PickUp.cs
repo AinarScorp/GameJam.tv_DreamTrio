@@ -7,21 +7,23 @@ public class PickUp : MonoBehaviour
 {
     [SerializeField] bool isHearth;
     [SerializeField] float dragSpeed = 5f;
+    [SerializeField] Transform particles;
+    [SerializeField] LineRenderer lineRenderer;
     bool pickedUp;
-    LineRenderer lineRenderer;
     PlayerHealth playerHealth;
     
 
     private void Awake()
     {
-        lineRenderer = GetComponentInChildren<LineRenderer>();
+        //lineRenderer = GetComponentInChildren<LineRenderer>();
         playerHealth = FindObjectOfType<PlayerHealth>();
         
     }
     private void Start()
     {
-        GetComponent<Collider2D>().isTrigger = true;
+        //GetComponent<Collider2D>().isTrigger = true;
         playerHealth.SubscribeToRevival(ReactToRevival);
+        playerHealth.SubscribeToDeath(TurnOnParticles);
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -42,7 +44,11 @@ public class PickUp : MonoBehaviour
             //this.gameObject.SetActive(false);
         }
     }
-
+    void TurnOnParticles()
+    {
+        particles.gameObject.SetActive(true);
+        playerHealth.UnSubscribeFromDeath(TurnOnParticles);
+    }
     void ReactToRevival()
     {
         if (pickedUp)

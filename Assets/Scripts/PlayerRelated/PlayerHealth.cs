@@ -120,5 +120,7 @@ public class PlayerHealth : MonoBehaviour
     }
     public void SubscribeToRevival(Action actionToAdd) => RevivePlayer += actionToAdd;
     public void UnSubscribeFromRevival(Action actionToRemove) => RevivePlayer -= actionToRemove;
-    public void SubscribeToPlayerDeathPermanently(Action actionToAdd) => PlayerDeath += actionToAdd;
+    public void SubscribeToDeath(Action actionToAdd) => PlayerDeath += actionToAdd;
+    public void UnSubscribeFromDeath(Action actionToRemove) => PlayerDeath -= actionToRemove;
+
 }
