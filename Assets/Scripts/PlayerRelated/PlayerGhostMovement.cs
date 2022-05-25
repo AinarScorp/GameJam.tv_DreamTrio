@@ -4,18 +4,22 @@ using UnityEngine;
 
 public class PlayerGhostMovement : MonoBehaviour
 {
+
     float speed = 10f;
 
     Vector2 movementInputs;
 
 
+    [SerializeField] Animator animator;
     Rigidbody2D rb;
     PlayerInput input;
+
     private void Awake()
     {
         input = new PlayerInput();
         rb = GetComponent<Rigidbody2D>();
-
+        if (animator == null)
+            animator = GetComponent<Animator>();
     }
     private void OnEnable()
     {
@@ -39,7 +43,8 @@ public class PlayerGhostMovement : MonoBehaviour
     }
     void HandleMovement()
     {
-
+        animator.SetFloat("Horizontal", movementInputs.x);
+        animator.SetFloat("Vertical", movementInputs.y);
         rb.velocity = movementInputs * speed * Time.fixedDeltaTime;
     }
 }
