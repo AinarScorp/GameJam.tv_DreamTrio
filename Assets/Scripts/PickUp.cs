@@ -7,7 +7,7 @@ public class PickUp : MonoBehaviour
 {
     [SerializeField] bool isHearth;
     [SerializeField] float dragSpeed = 5f;
-    [SerializeField] Transform particles;
+    //[SerializeField] Transform particles;
     [SerializeField] LineRenderer lineRenderer;
     bool pickedUp;
     PlayerHealth playerHealth;
@@ -33,6 +33,7 @@ public class PickUp : MonoBehaviour
         }
         if (isHearth)
         {
+            AudioManagerScript.Instance.PlayRandomPitch("Pick up");
             lineRenderer.positionCount = 2;
 
 
@@ -46,8 +47,8 @@ public class PickUp : MonoBehaviour
     }
     void TurnOnParticles()
     {
-        particles.gameObject.SetActive(true);
-        playerHealth.UnSubscribeFromDeath(TurnOnParticles);
+        //particles.gameObject.SetActive(true);
+        //playerHealth.UnSubscribeFromDeath(TurnOnParticles);
     }
     void ReactToRevival()
     {

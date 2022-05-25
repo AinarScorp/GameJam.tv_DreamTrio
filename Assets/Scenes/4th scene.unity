@@ -1639,6 +1639,11 @@ MonoBehaviour:
     volume: 0.5
     pitch: 1
     loop: 0
+  - name: Poison Damage
+    clip: {fileID: 8300000, guid: b0063e2cac4db07448b472e4092653c4, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
   fadeInTime: 3
   fadeOutTime: 2
   desiredVolume: 0.1
