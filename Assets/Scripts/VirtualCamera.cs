@@ -42,7 +42,7 @@ public class VirtualCamera : MonoBehaviour
 
     private void Start()
     {
-        FindObjectOfType<PlayerHealth>().SubscribeToPlayerDeathPermanently(StartZoomOut);
+        FindObjectOfType<PlayerHealth>().SubscribeToDeath(StartZoomOut);
         FindObjectOfType<PlayerHealth>().SubscribeToRevival(StartZoomIn);
         startingCameraValue = virtualCamera.m_Lens.OrthographicSize;
         noise = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();

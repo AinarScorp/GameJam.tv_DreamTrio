@@ -15,7 +15,7 @@ public class PlayerManager : MonoBehaviour
     }
     void Start()
     {
-        playerHealth.SubscribeToPlayerDeathPermanently(TurnIntoGhost);
+        playerHealth.SubscribeToDeath(TurnIntoGhost);
         playerHealth.SubscribeToRevival(TurnIntoAliveForm);
 
     }

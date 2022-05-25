@@ -38,7 +38,7 @@ public class CordCircle : MonoBehaviour
         cordLength = defaultCordLength;
         uI_Manager?.DisplayNewCordLength(cordLength);
         SwitchCordCircle(false);
-        FindObjectOfType<PlayerHealth>().SubscribeToPlayerDeathPermanently(EncircleTarget);
+        FindObjectOfType<PlayerHealth>().SubscribeToDeath(EncircleTarget);
     }
     public bool AutoApplySize { get => autoApplySize; }
     public float NewRadius { get => newRadius; }
