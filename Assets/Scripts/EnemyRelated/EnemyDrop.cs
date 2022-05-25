@@ -12,7 +12,6 @@ public class EnemyDrop : MonoBehaviour
     {
         for (int i = 0; i < numberOfDrops; i++)
         {
-            Debug.Log("try to drop");
             float randomRoll = Random.Range(0f, 100f);
             foreach (var drop in objectsToDrop)
             {

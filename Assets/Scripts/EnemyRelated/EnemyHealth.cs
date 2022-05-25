@@ -64,6 +64,7 @@ public class EnemyHealth : MonoBehaviour
         AudioManagerScript.Instance.Play("Enemy Death");
         GetComponent<EnemyDrop>().DropStuffUponDeath();
         FindObjectOfType<CordCircle>()?.IncreaseCordLength(cordIncreaseAmount);
+        FindObjectOfType<WaveManager>().RemoveFromActiveEnemies(this);
         this.gameObject.SetActive(false);
 
 
