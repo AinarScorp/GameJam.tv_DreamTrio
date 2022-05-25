@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class UI_Manager : MonoBehaviour
+public class InterfaceManager : MonoBehaviour
 {
     [SerializeField] CordCircle cordCircle;
     [SerializeField] TextMeshProUGUI cordLengthText;

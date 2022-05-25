@@ -13,7 +13,6 @@ public class CordCircleEditor : Editor
     SerializedProperty propDefaultCordLength;
     SerializedProperty propSizeToShrinkTo;
     SerializedProperty propSubtractCordAmount;
-    SerializedProperty propCordLength;
     SerializedProperty propMaxCordLength;
     SerializedProperty propScaleSpeed;
     SerializedProperty propSecondsBeforeShrink;
@@ -31,7 +30,6 @@ public class CordCircleEditor : Editor
         propDefaultCordLength = so.FindProperty("defaultCordLength");
         propSizeToShrinkTo = so.FindProperty("sizeToShrinkTo");
         propSubtractCordAmount = so.FindProperty("subtractCordAmount");
-        propCordLength = so.FindProperty("cordLength");
         propMaxCordLength = so.FindProperty("maxCordLength");
         propScaleSpeed = so.FindProperty("scaleSpeed");
         propSecondsBeforeShrink = so.FindProperty("secondsBeforeShrink");
@@ -117,7 +115,6 @@ public class CordCircleEditor : Editor
         GUILayout.Space(10);
 
         EditorGUILayout.PropertyField(propSubtractCordAmount);
-        EditorGUILayout.PropertyField(propCordLength);
 
         EditorGUILayout.PropertyField(propScaleSpeed);
         EditorGUILayout.PropertyField(propSecondsBeforeShrink);

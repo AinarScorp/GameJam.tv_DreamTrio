@@ -5,45 +5,40 @@ using UnityEngine;
 [ExecuteAlways]
 public class CordCircle : MonoBehaviour
 {
-    [HideInInspector]
-    [SerializeField]
-    [Range(0, 50)]
-    float newRadius;
-
-    [Tooltip("Target to encircle")]
-    [SerializeField] Transform target;
-    [SerializeField] [Range(0, 10)] float scaleSpeed; //not used right now
+    [SerializeField] [Range(0, 50)] float newRadius;
+    [SerializeField] [Range(0, 10)] float scaleSpeed; 
     [SerializeField] [Range(0, 20f)] float subtractCordAmount = 0f;
-
-
-
-    [SerializeField][Range(0, 20)] float defaultCordLength = 1f;
-
-    [SerializeField][Range(0, 20)] float sizeToShrinkTo = 1f;
+    [SerializeField] [Range(0, 20)] float defaultCordLength = 1f;
+    [SerializeField] [Range(0, 20)] float sizeToShrinkTo = 1f;
     [SerializeField] [Range(0, 500)] float maxCordLength = 1f;
-
-    [SerializeField] float cordLength = 1f;
-
     [SerializeField] [Range(0f, 20f)] float secondsBeforeShrink = 1f;
 
+    float cordLength = 1f;
     bool autoApplySize;
+
+    [SerializeField] Transform target;
+
     AdjustCollider adjustCollider;
     SpriteRenderer spriteRenderer;
+    InterfaceManager inerfaceManager;
+    PlayerHealth playerHealth;
 
-    UI_Manager uI_Manager;
+
+
     private void Awake()
     {
         if (target == null)
             target = FindObjectOfType<PlayerBasicAttack>().transform;
-        uI_Manager = FindObjectOfType<UI_Manager>();
+        inerfaceManager = FindObjectOfType<InterfaceManager>();
         adjustCollider = GetComponent<AdjustCollider>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
     private void Start()
     {
         cordLength = defaultCordLength;
-        uI_Manager?.DisplayNewCordLength(cordLength);
         SwitchCordCircle(false);
+        inerfaceManager?.DisplayNewCordLength(cordLength);
+
         FindObjectOfType<PlayerManager>().SubscribeToActivateControls(StartCircleShrinking, true);
     }
     public bool AutoApplySize { get => autoApplySize; }
@@ -74,7 +69,7 @@ public class CordCircle : MonoBehaviour
     public void IncreaseCordLength(float amount)
     {
         cordLength += amount;
-        uI_Manager?.DisplayNewCordLength(cordLength);
+        inerfaceManager?.DisplayNewCordLength(cordLength);
         if (cordLength > maxCordLength)
         {
             cordLength = maxCordLength;
@@ -122,10 +117,13 @@ public class CordCircle : MonoBehaviour
 
         }
 
-        FindObjectOfType<PlayerHealth>().Revive();
+        if (playerHealth == null)
+            playerHealth = FindObjectOfType<PlayerHealth>();
+
+        playerHealth.Revive();
 
         SwitchCordCircle(false);
-        uI_Manager?.DisplayNewCordLength(cordLength);
+        inerfaceManager?.DisplayNewCordLength(cordLength);
     }
 
     void SwitchCordCircle(bool turnOn)
