@@ -1179,11 +1179,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ca2b405827f1784da57104475632184, type: 3}
---- !u!4 &1284673596 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1613309789255535413, guid: a0b3864fb6f389049bf89265961bc197, type: 3}
-  m_PrefabInstance: {fileID: 1613309790403828489}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1347069302
 GameObject:
   m_ObjectHideFlags: 0
@@ -1931,11 +1926,11 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1284673596}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 59246203358115554, guid: ac8bc78191a6b2b4f9f77abd212be212, type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 59246203358115554, guid: ac8bc78191a6b2b4f9f77abd212be212, type: 3}
       propertyPath: m_LocalScale.x
@@ -2336,7 +2331,7 @@ PrefabInstance:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1284673596}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 8120152830727472717, guid: b98a534b8ea1c4e45b4d942bf3709fc5, type: 3}
       propertyPath: poisonParticle
@@ -2344,7 +2339,7 @@ PrefabInstance:
       objectReference: {fileID: 1624231073}
     - target: {fileID: 8120152830727472726, guid: b98a534b8ea1c4e45b4d942bf3709fc5, type: 3}
       propertyPath: m_RootOrder
-      value: 0
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 8120152830727472726, guid: b98a534b8ea1c4e45b4d942bf3709fc5, type: 3}
       propertyPath: m_LocalPosition.x
