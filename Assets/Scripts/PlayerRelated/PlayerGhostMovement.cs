@@ -43,6 +43,9 @@ public class PlayerGhostMovement : MonoBehaviour
     }
     void HandleMovement()
     {
+        if (movementInputs.sqrMagnitude <0)
+            rb.velocity *= 0;
+
         animator.SetFloat("Horizontal", movementInputs.x);
         animator.SetFloat("Vertical", movementInputs.y);
         rb.velocity = movementInputs * speed * Time.fixedDeltaTime;

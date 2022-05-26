@@ -59,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
     }
     void HandleMovement()
     {
-        if (!animator.GetBool("CanMove"))
+        if (!animator.GetBool("CanMove") || movementInputs.sqrMagnitude <0)
         {
             rb.velocity *= 0;
 
