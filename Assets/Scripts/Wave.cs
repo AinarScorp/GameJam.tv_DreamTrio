@@ -7,14 +7,14 @@ public class Wave
 {
     public Chunk[] chunks;
     [Tooltip("if checked, chunks have the same period between spawns")]
-    public bool sameTime = true;
+    [HideInInspector]public bool sameTime = true;
 
     [Header("Contsant time between Chunks")]
     public float timeConstant;
 
-    [Header("Various time between Chunks")]
+    [Header("Various time between Chunks __ NOT WORKING")]
     [Tooltip("leave empty if same time is checked")]
-    public float[] timeDifferent;
+    [HideInInspector] public float[] timeDifferent;
 }
 
 [System.Serializable]

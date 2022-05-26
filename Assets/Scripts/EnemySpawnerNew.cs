@@ -21,6 +21,9 @@ public class EnemySpawnerNew : MonoBehaviour
     public IEnumerator StartSpawningEnemies(int currentWaveNumber)
     {
         Wave currentWave = waves[currentWaveNumber];
+        currentWave.chunks.ToList().ForEach(chunk => waveManager.AddAmountOfEnemies(chunk.AllEnemies().Count));
+
+
         if (currentWave.sameTime)
         {
             foreach (Chunk chunk in currentWave.chunks)
@@ -34,7 +37,6 @@ public class EnemySpawnerNew : MonoBehaviour
                     {
                         //float xPos = Random.Range(transform.position.x, lineToSpawn.x);
                         EnemyHealth enemyHealth = Instantiate(enemy, GetSpawnPosition(), Quaternion.identity, transform);
-                        waveManager.AddActiveEnemies(enemyHealth);
                     });
                 }
                 else
@@ -47,7 +49,6 @@ public class EnemySpawnerNew : MonoBehaviour
                         //float xPos = Random.Range(transform.position.x, lineToSpawn.x);
 
                         EnemyHealth enemyHealth = Instantiate(chunk.OneEnemy(), GetSpawnPosition(), Quaternion.identity, transform);
-                        waveManager.AddActiveEnemies(enemyHealth);
                         yield return new WaitForSeconds(chunk.spawnInteval);
                     }
 

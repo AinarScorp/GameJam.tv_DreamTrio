@@ -48,7 +48,11 @@ public class PlayerBasicAttack : MonoBehaviour
 
     private void OnEnable() => input.Enable();
 
-    private void OnDisable() => input.Disable();
+    private void OnDisable()
+    {
+        FinishAttack();
+        input.Disable();
+    }
 
     private void Start()
     {

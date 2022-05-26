@@ -5,17 +5,18 @@ using UnityEngine;
 [RequireComponent(typeof(EnemyDrop))]
 public class EnemyHealth : MonoBehaviour
 {
-    [SerializeField] FlashEffect flashScript;
-    [SerializeField] ParticleSystem hitParticle;
 
     [Header("Adjustment")]
     [SerializeField] int startingHealth = 3;
     [SerializeField] float cordIncreaseAmount = 3f;
 
+    [SerializeField] FlashEffect flashScript;
+    [SerializeField] ParticleSystem hitParticle;
+    [SerializeField] Animator animator;
+    [SerializeField] EnemyDrop enemyDrop;
+    [SerializeField] EnemyMovement enemyMovement;
 
-    [Header("Fool around, delete later")]
-    [SerializeField] int currentHealth;
-
+    int currentHealth;
 
     private void Start()
     {
@@ -38,23 +39,26 @@ public class EnemyHealth : MonoBehaviour
         currentHealth -= amount;
         if (currentHealth <= 0)
         {
-            Die();
+            StartCoroutine( Die());
         }
     }
 
 
-    void Die()
+    IEnumerator Die()
     {
+        enemyMovement.enabled = false;
+        animator.SetTrigger("Death");
         AudioManagerScript.Instance.Play("Enemy Death");
-        GetComponent<EnemyDrop>().DropStuffUponDeath();
+        enemyDrop.DropStuffUponDeath();
         FindObjectOfType<CordCircle>()?.IncreaseCordLength(cordIncreaseAmount);
-        FindObjectOfType<WaveManager>()?.RemoveFromActiveEnemies(this);
+        FindObjectOfType<WaveManager>()?.RemoveFromWaveCount();
+        while (animator.GetBool("IsDying"))
+        {
+            yield return null;
+        }
         this.gameObject.SetActive(false);
 
 
     }
-
-
-
 
 }
