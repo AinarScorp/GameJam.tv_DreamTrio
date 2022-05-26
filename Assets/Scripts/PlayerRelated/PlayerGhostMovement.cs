@@ -35,6 +35,7 @@ public class PlayerGhostMovement : MonoBehaviour
     private void Start()
     {
         input.PlayerBasic.Movement.performed += ctx => movementInputs = ctx.ReadValue<Vector2>();
+        input.PlayerBasic.Movement.canceled += _ => movementInputs *= 0;
         gameObject.SetActive(false);
     }
     private void FixedUpdate()
@@ -43,6 +44,9 @@ public class PlayerGhostMovement : MonoBehaviour
     }
     void HandleMovement()
     {
+        if (movementInputs.sqrMagnitude <0)
+            rb.velocity *= 0;
+
         animator.SetFloat("Horizontal", movementInputs.x);
         animator.SetFloat("Vertical", movementInputs.y);
         rb.velocity = movementInputs * speed * Time.fixedDeltaTime;
