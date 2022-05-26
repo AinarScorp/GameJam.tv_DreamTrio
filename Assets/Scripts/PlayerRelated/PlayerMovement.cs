@@ -46,6 +46,8 @@ public class PlayerMovement : MonoBehaviour
     {
         facingDirection = Vector2.right;
         input.PlayerBasic.Movement.performed += ctx => movementInputs = ctx.ReadValue<Vector2>();
+        input.PlayerBasic.Movement.canceled += _ => movementInputs *= 0;
+
         PlayerManager playerManager = FindObjectOfType<PlayerManager>();
         playerManager.SubscribeToImmidiateActions(() => this.enabled = false, true);
         playerManager.SubscribeToActivateControls(() => this.enabled = true, false);

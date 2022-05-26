@@ -35,6 +35,7 @@ public class PlayerGhostMovement : MonoBehaviour
     private void Start()
     {
         input.PlayerBasic.Movement.performed += ctx => movementInputs = ctx.ReadValue<Vector2>();
+        input.PlayerBasic.Movement.canceled += _ => movementInputs *= 0;
         gameObject.SetActive(false);
     }
     private void FixedUpdate()
