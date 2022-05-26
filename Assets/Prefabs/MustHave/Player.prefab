@@ -218,7 +218,7 @@ MonoBehaviour:
   invulnerabilityTime: 1
   currentHealth: 0
   heartImage: {fileID: 910927117292983901, guid: b5155bdabf196994dbc13f056ff69dbb, type: 3}
-  flashScript: {fileID: 0}
+  flashScript: {fileID: 2428019265046939057}
   hitParticle: {fileID: 49116024495324798}
   poisonParticle: {fileID: 2868196160418106521}
 --- !u!114 &8120152830727472716
@@ -233,7 +233,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4e6ce4a3022a3647902bb3550d7b0d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flashScript: {fileID: 0}
+  flashScript: {fileID: 2428019265046939057}
   damageInterval: 7
   poisonDamage: 1
 --- !u!95 &8120152830727472724
