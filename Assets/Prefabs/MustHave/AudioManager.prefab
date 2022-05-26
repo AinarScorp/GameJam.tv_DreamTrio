@@ -1,0 +1,110 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &816335198475239643
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 816335198475239641}
+  - component: {fileID: 816335198475239642}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &816335198475239641
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816335198475239643}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.0582185, y: 0.28738418, z: 4.400383}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &816335198475239642
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 816335198475239643}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 364efb6b2ba941a4a99f6c470bf95449, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: b
+    clip: {fileID: 8300000, guid: 83b11a1b59dd5294eb81e0c1b6759102, type: 3}
+    volume: 0
+    pitch: 0
+    loop: 0
+  - name: Hit
+    clip: {fileID: 8300000, guid: a8282e2eefa6341409f362d12c897114, type: 3}
+    volume: 0.6
+    pitch: 1.3
+    loop: 0
+  - name: Enemy Death
+    clip: {fileID: 8300000, guid: 48e2dd8c993377e44a4c03ed71da05a8, type: 3}
+    volume: 0.5
+    pitch: 1.3
+    loop: 0
+  - name: Player Damage
+    clip: {fileID: 8300000, guid: 83b11a1b59dd5294eb81e0c1b6759102, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+  - name: Player Died
+    clip: {fileID: 8300000, guid: 83b11a1b59dd5294eb81e0c1b6759102, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: Dead Dead
+    clip: {fileID: 8300000, guid: 83b11a1b59dd5294eb81e0c1b6759102, type: 3}
+    volume: 1
+    pitch: 1.3
+    loop: 0
+  - name: Ghost Appear
+    clip: {fileID: 8300000, guid: 42b51c2e537eb354c82b80e463bbc5de, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: Ghost Atmos
+    clip: {fileID: 8300000, guid: 949849ef8d84675478710cc1392ab027, type: 3}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+  - name: Revive
+    clip: {fileID: 8300000, guid: f38562d51f7341046b60acefbce529ac, type: 3}
+    volume: 0.3
+    pitch: 2
+    loop: 0
+  - name: Poison Damage
+    clip: {fileID: 8300000, guid: fa50a76977158954cb2ebee93411381d, type: 3}
+    volume: 0.5
+    pitch: 1
+    loop: 0
+  - name: Pick up
+    clip: {fileID: 8300000, guid: b0063e2cac4db07448b472e4092653c4, type: 3}
+    volume: 1.3
+    pitch: 1
+    loop: 0
+  - name: Collected
+    clip: {fileID: 8300000, guid: 07ad2cf7bf9bee047a50ef19c45995d4, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  fadeInTime: 3
+  fadeOutTime: 2
+  desiredVolume: 0.1
