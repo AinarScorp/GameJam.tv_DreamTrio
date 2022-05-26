@@ -7,11 +7,11 @@ public class CordCircle : MonoBehaviour
 {
     [SerializeField] [Range(0, 50)] float newRadius;
     [SerializeField] [Range(0, 10)] float scaleSpeed; 
-    [SerializeField] [Range(0, 20f)] float subtractCordAmount = 0f;
-    [SerializeField] [Range(0, 20)] float defaultCordLength = 1f;
-    [SerializeField] [Range(0, 20)] float sizeToShrinkTo = 1f;
-    [SerializeField] [Range(0, 500)] float maxCordLength = 1f;
-    [SerializeField] [Range(0f, 20f)] float secondsBeforeShrink = 1f;
+    [SerializeField] [Range(0, 10f)] float subtractCordAmount = 0f;
+    [SerializeField] [Range(0, 10)] float defaultCordLength = 1f;
+    [SerializeField] [Range(0, 10)] float sizeToShrinkTo = 1f;
+    [SerializeField] [Range(0, 10)] float maxCordLength = 1f;
+    [SerializeField] [Range(0f, 10f)] float secondsBeforeShrink = 1f;
 
     float cordLength = 1f;
     bool autoApplySize;
