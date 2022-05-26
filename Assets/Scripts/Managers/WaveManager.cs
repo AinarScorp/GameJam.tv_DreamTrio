@@ -7,7 +7,8 @@ public class WaveManager : MonoBehaviour
 {
     [SerializeField] bool testStartWave;
     EnemySpawnerNew[] enemySpawners;
-    [SerializeField] int numberOfEnemiesInTheWave;
+    
+    int numberOfEnemiesInTheWave;
 
     int currentWave = 0;
     int numberOfWaves;
