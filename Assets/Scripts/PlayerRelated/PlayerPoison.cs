@@ -33,8 +33,8 @@ public class PlayerPoison : MonoBehaviour
             }
 
 
-            yield return new WaitForSeconds(damageInterval);
             player.ReceiveDamage(poisonDamage, true);
+            yield return new WaitForSeconds(damageInterval);
 
 
 
