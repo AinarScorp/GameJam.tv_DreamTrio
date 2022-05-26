@@ -16,7 +16,6 @@ public class EnemyDieAnimation : StateMachineBehaviour
 
         if (stateInfo.normalizedTime >1)
         {
-            Debug.Log("normalized");
             animator.SetBool("IsDying", false);
 
         }
