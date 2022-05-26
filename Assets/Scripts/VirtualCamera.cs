@@ -5,7 +5,7 @@ using Cinemachine;
 public class VirtualCamera : MonoBehaviour
 {
     [SerializeField] CinemachineVirtualCamera virtualCamera;
-    [SerializeField] Transform player;
+    Transform player;
 
     [Header("Shake Values for Ligth Attack")]
     [SerializeField] float lightAttackAmplitude;
@@ -40,8 +40,11 @@ public class VirtualCamera : MonoBehaviour
 
     void Awake()
     {
+
         if (virtualCamera == null)
             virtualCamera = GetComponent<CinemachineVirtualCamera>();
+        virtualCamera.Follow = FindObjectOfType<PlayerHealth>().transform;
+        player = virtualCamera.Follow;
         Instance = this;
     }
 
