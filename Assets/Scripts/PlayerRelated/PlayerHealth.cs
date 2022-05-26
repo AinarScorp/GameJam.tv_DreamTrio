@@ -75,11 +75,17 @@ public class PlayerHealth : MonoBehaviour
 
     public void ReceiveDamage(int amount = 1, bool fromPoison = false)
     {
-        if (isInvincible && !fromPoison)
+        if (isInvincible)
             return;
 
-        if (!fromPoison)
+        if (fromPoison)
+        {
+            AudioManagerScript.Instance.Play("Poison Damage");
+        }
+        else
+        {
             AudioManagerScript.Instance.Play("Player Damage");
+        }
 
 
 

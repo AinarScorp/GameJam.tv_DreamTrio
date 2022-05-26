@@ -34,7 +34,6 @@ public class PlayerPoison : MonoBehaviour
 
 
             yield return new WaitForSeconds(damageInterval);
-            AudioManagerScript.Instance.Play("Poison Damage");
             player.ReceiveDamage(poisonDamage, true);
 
 
