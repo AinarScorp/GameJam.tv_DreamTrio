@@ -10,4 +10,4 @@ public enum EnemyState
     
 }
 //Melee - Wander, Chase, Retreat
-//Ranged = Chase, Shoot, Retreat
+//Ranged = Wander, Approaching, Shoot, Retreat

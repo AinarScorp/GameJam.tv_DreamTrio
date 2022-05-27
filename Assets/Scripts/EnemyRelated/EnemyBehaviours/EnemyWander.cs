@@ -6,11 +6,15 @@ public class EnemyWander : MonoBehaviour
 {
     #region adjustments
     [Header("Adjustments")]
+
     [SerializeField] bool drawGizmos = true;
+    [SerializeField] EnemyState nextStateIfClose;
+    [SerializeField] EnemyState nextStateIfFar;
     [SerializeField] float playerTooFar = 10f;
     [SerializeField] float playerTooClose = 2f;
     [SerializeField] float wanderSpeed = 30f;
     [SerializeField] float wanderDistance = 2f;
+
     #endregion
 
     [Header("Caching")]
@@ -73,13 +77,13 @@ public class EnemyWander : MonoBehaviour
         float distanceFromPlayer = Vector3.Distance(transform.position, behaviour.Player.transform.position);
         if (distanceFromPlayer < playerTooClose)
         {
-            behaviour.SetNewEnemyState(EnemyState.Chasing);
+            behaviour.SetNewEnemyState(nextStateIfClose);
             return;
         }
         if (distanceFromPlayer > playerTooFar)
         {
 
-            behaviour.SetNewEnemyState(EnemyState.Chasing);
+            behaviour.SetNewEnemyState(nextStateIfFar);
             return;
         }
     }

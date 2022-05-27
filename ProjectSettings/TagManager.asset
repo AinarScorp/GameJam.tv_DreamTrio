@@ -43,3 +43,12 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: PickUps
+    uniqueID: 3362500291
+    locked: 0
+  - name: Enemy
+    uniqueID: 4117084799
+    locked: 0
+  - name: Player
+    uniqueID: 2102908679
+    locked: 0

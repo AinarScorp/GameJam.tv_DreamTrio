@@ -12,7 +12,8 @@ public class EnemyBorder : MonoBehaviour
     {
         if (1 << collision.gameObject.layer == enemyLayer)
         {
-            EnemyBehaviour enemyBehaviour = GetComponent<EnemyBehaviour>();
+            EnemyBehaviour enemyBehaviour = collision.gameObject.GetComponent<EnemyBehaviour>();
+
             if (enemyBehaviour !=null)
             {
                 enemyBehaviour.SetNewEnemyState(enemyBehaviour.BorderState);

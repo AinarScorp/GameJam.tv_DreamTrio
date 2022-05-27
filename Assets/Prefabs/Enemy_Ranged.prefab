@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3c3f4e3db77463b49998f384f34b6fc7, type: 3}
-  m_Color: {r: 0.66124177, g: 0.1527234, b: 0.9811321, a: 1}
+  m_Color: {r: 0.98039216, g: 0.766379, b: 0.1529412, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4966,15 +4966,16 @@ GameObject:
   - component: {fileID: 3567792791662185832}
   - component: {fileID: 3567792791662185846}
   - component: {fileID: 8829177143817812110}
-  - component: {fileID: 2810280474919460104}
+  - component: {fileID: 7915601979525261323}
   - component: {fileID: 2021189184508033330}
   - component: {fileID: 7569210359141354071}
-  - component: {fileID: 3567792791662185833}
+  - component: {fileID: 7372317290778965362}
+  - component: {fileID: 3157933531418568081}
   - component: {fileID: 3567792791662185847}
   - component: {fileID: 3567792791662185844}
   - component: {fileID: -4887696799744834867}
   m_Layer: 9
-  m_Name: Enemy_Melee
+  m_Name: Enemy_Ranged
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5054,7 +5055,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &2810280474919460104
+--- !u!114 &7915601979525261323
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5063,7 +5064,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3567792791662185837}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b3bc89787835f6344a112c475fe426d6, type: 3}
+  m_Script: {fileID: 11500000, guid: 101b7ca5acd45dd458445fc8e941f7a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   pushForce: 0.5
@@ -5073,10 +5074,11 @@ MonoBehaviour:
   animator: {fileID: 8829177143817812110}
   rb: {fileID: 3567792791662185846}
   startingState: 0
-  borderState: 1
-  retreatChance: 15
+  borderState: 3
+  retreatChance: 10
   colider: {fileID: 3567792791662185832}
-  enemyChase: {fileID: 3567792791662185833}
+  enemyShooting: {fileID: 7372317290778965362}
+  enemyApproach: {fileID: 3157933531418568081}
   enemyRetreat: {fileID: 2021189184508033330}
   enemyWander: {fileID: 7569210359141354071}
 --- !u!114 &2021189184508033330
@@ -5093,7 +5095,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   retreatSpeed: 60
   retreatDuration: 4
-  behaviour: {fileID: 2810280474919460104}
+  behaviour: {fileID: 7915601979525261323}
   rb: {fileID: 3567792791662185846}
 --- !u!114 &7569210359141354071
 MonoBehaviour:
@@ -5107,17 +5109,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 59157ccda89e8a7499ded23eba14861e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  drawGizmos: 0
-  nextStateIfClose: 1
-  nextStateIfFar: 1
-  playerTooFar: 9
+  drawGizmos: 1
+  nextStateIfClose: 2
+  nextStateIfFar: 3
+  playerTooFar: 7
   playerTooClose: 4
   wanderSpeed: 40
-  wanderDistance: 3
-  behaviour: {fileID: 2810280474919460104}
+  wanderDistance: 1.5
+  behaviour: {fileID: 7915601979525261323}
   enemyHealth: {fileID: 3567792791662185847}
   rb: {fileID: 3567792791662185846}
---- !u!114 &3567792791662185833
+--- !u!114 &7372317290778965362
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5126,15 +5128,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 3567792791662185837}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e4e34425b115bbd4d862d13a9e23bd31, type: 3}
+  m_Script: {fileID: 11500000, guid: 54d368709660a7142b34efe9defe68ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  followSpeed: 80
-  minChaseDuration: 1
-  maxChaseDuration: 15
-  hitAndRunChance: 10
+--- !u!114 &3157933531418568081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3567792791662185837}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ee9b14f69d2dee4f99995aa92d5214d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drawGizmos: 1
+  approachSpeed: 80
+  approachDistance: 5
   rb: {fileID: 3567792791662185846}
-  behaviour: {fileID: 2810280474919460104}
+  behaviour: {fileID: 7915601979525261323}
 --- !u!114 &3567792791662185847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5153,7 +5166,7 @@ MonoBehaviour:
   hitParticle: {fileID: 2580692780968347289}
   animator: {fileID: 8829177143817812110}
   enemyDrop: {fileID: 3567792791662185844}
-  behaviour: {fileID: 2810280474919460104}
+  behaviour: {fileID: 7915601979525261323}
 --- !u!114 &3567792791662185844
 MonoBehaviour:
   m_ObjectHideFlags: 0
