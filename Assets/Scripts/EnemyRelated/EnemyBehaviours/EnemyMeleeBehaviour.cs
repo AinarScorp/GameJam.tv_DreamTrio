@@ -8,7 +8,7 @@ using UnityEngine;
 public class EnemyMeleeBehaviour : EnemyBehaviour
 {
     [Header("Adjustments")]
-
+    [SerializeField] float pushForce = 1f;
     [SerializeField] [Range(0, 100)] float retreatChance = 10f;
     [Header("Melee Caching")]
 
@@ -25,15 +25,22 @@ public class EnemyMeleeBehaviour : EnemyBehaviour
     }
 
 
-
     public override void SetNewEnemyState(EnemyState newState)
     {
         base.SetNewEnemyState(newState);
         AdjustToNewState();
 
     }
+    void GetPushed()
+    {
+        Vector3 pushDirection = (transform.position - Player.transform.position).normalized;
+        Vector3 newPlayerPos = transform.position + pushDirection * pushForce;
+
+        transform.position = newPlayerPos;
+    }
     public override void ReactToBeingHit(EnemyState stateToReactWith)
     {
+        GetPushed();
         if (CurrentState == EnemyState.Chasing)
         {
             float randomRoll = Random.Range(0f, 100f);

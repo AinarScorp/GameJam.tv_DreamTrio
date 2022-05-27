@@ -8,7 +8,7 @@ public class EnemyChasing : MonoBehaviour
 
     [Header("Adjustments")]
 
-    [SerializeField] [Range(0, 100)] float followSpeed = 30f;
+    [SerializeField] [Range(0, 200)] float followSpeed = 30f;
     [SerializeField] [Range(0, 100)] float minChaseDuration = 30f;
 
     [SerializeField] [Range(0, 100)] float maxChaseDuration = 60f;

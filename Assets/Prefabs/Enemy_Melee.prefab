@@ -5068,8 +5068,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 8829177143817812110}
   rb: {fileID: 3567792791662185846}
-  startingState: 1
-  retreatChance: 10
+  startingState: 0
+  pushForce: 0.5
+  retreatChance: 20
   enemyChase: {fileID: 3567792791662185833}
   enemyRetreat: {fileID: 2021189184508033330}
   enemyWander: {fileID: 7569210359141354071}
@@ -5085,7 +5086,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f831a5bc7a67c34cb1c448bd460f84f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  retreatSpeed: 30
+  retreatSpeed: 60
   retreatDuration: 4
   behaviour: {fileID: 2810280474919460104}
   rb: {fileID: 3567792791662185846}
@@ -5102,9 +5103,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drawGizmos: 1
-  playerTooFar: 8
-  playerTooClose: 2
-  wanderSpeed: 20.41
+  playerTooFar: 9
+  playerTooClose: 4
+  wanderSpeed: 40
   wanderDistance: 2.95
   behaviour: {fileID: 2810280474919460104}
   enemyHealth: {fileID: 3567792791662185847}
@@ -5121,8 +5122,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4e34425b115bbd4d862d13a9e23bd31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  followSpeed: 40
-  minChaseDuration: 10
+  followSpeed: 80
+  minChaseDuration: 2
   maxChaseDuration: 20
   rb: {fileID: 3567792791662185846}
   behaviour: {fileID: 2810280474919460104}
