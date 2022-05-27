@@ -122,7 +122,6 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public void SetCanMove(bool setTo) => canMove = setTo;
-    [SerializeField] GameObject wall;
     public void PushPlayer(Vector3 pushDirection)
     {
         Vector3 newPlayerPos = transform.position + pushDirection * pushForce;

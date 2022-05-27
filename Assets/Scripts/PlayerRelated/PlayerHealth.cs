@@ -11,8 +11,6 @@ public class PlayerHealth : MonoBehaviour
     [SerializeField] int startingHealth = 5;
     [SerializeField] float invulnerabilityTime = 1f;
 
-    [Header("Fool around, delete later")]
-    [SerializeField] int currentHealth;
 
     [Header("Better not touch")]
     [SerializeField] GameObject heartImage;
@@ -22,6 +20,7 @@ public class PlayerHealth : MonoBehaviour
 
 
 
+    int currentHealth;
     int collectedHearths;
     bool isInvincible;
     bool isAlive =true;

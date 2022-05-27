@@ -6,20 +6,22 @@ using UnityEngine;
 public class CordCircle : MonoBehaviour
 {
     [SerializeField] [Range(0, 50)] float newRadius;
-    [SerializeField] [Range(0, 10)] float scaleSpeed; 
+    [SerializeField] [Range(0, 10)] float scaleSpeed;
     [SerializeField] [Range(0, 10f)] float subtractCordAmount = 0f;
     [SerializeField] [Range(0, 10)] float defaultCordLength = 1f;
     [SerializeField] [Range(0, 10)] float sizeToShrinkTo = 1f;
-    [SerializeField] [Range(0, 10)] float maxCordLength = 1f;
+    [SerializeField] [Range(0, 20)] float maxCordLength = 1f;
     [SerializeField] [Range(0f, 10f)] float secondsBeforeShrink = 1f;
 
     float cordLength = 1f;
     bool autoApplySize;
 
     [SerializeField] Transform target;
+    [SerializeField] SpriteRenderer cirlceRenderer;
 
     AdjustCollider adjustCollider;
     SpriteRenderer spriteRenderer;
+
     InterfaceManager inerfaceManager;
     PlayerHealth playerHealth;
 
@@ -27,8 +29,7 @@ public class CordCircle : MonoBehaviour
 
     private void Awake()
     {
-        if (target == null)
-            target = FindObjectOfType<PlayerBasicAttack>().transform;
+        target = FindObjectOfType<PlayerHealth>().transform;
         inerfaceManager = FindObjectOfType<InterfaceManager>();
         adjustCollider = GetComponent<AdjustCollider>();
         spriteRenderer = GetComponent<SpriteRenderer>();
@@ -69,11 +70,9 @@ public class CordCircle : MonoBehaviour
     public void IncreaseCordLength(float amount)
     {
         cordLength += amount;
-        inerfaceManager?.DisplayNewCordLength(cordLength);
         if (cordLength > maxCordLength)
-        {
             cordLength = maxCordLength;
-        }
+        inerfaceManager?.DisplayNewCordLength(cordLength);
 
     }
     IEnumerator ExpandCircle()
@@ -128,6 +127,7 @@ public class CordCircle : MonoBehaviour
 
     void SwitchCordCircle(bool turnOn)
     {
+        cirlceRenderer.enabled = turnOn;
         adjustCollider.enabled = turnOn;
         spriteRenderer.enabled = turnOn;
     }

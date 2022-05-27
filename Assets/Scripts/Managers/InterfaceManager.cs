@@ -17,6 +17,6 @@ public class InterfaceManager : MonoBehaviour
 
     public void DisplayNewCordLength(float newAmount)
     {
-        cordLengthText.text = $"Cord Length: {newAmount}";
+        cordLengthText.text = $"Cord Length: {Mathf.Round(newAmount *10)*0.1f}";
     }
 }

@@ -9,7 +9,8 @@ public class CordCircleEditor : Editor
     SerializedObject so;
 
     SerializedProperty propNewSize;
-    SerializedProperty propTargetFollow;
+    SerializedProperty propCircleRenderer;
+
     SerializedProperty propDefaultCordLength;
     SerializedProperty propSizeToShrinkTo;
     SerializedProperty propSubtractCordAmount;
@@ -26,13 +27,13 @@ public class CordCircleEditor : Editor
         so = serializedObject;
 
         propNewSize = so.FindProperty("newRadius");
-        propTargetFollow = so.FindProperty("target");
         propDefaultCordLength = so.FindProperty("defaultCordLength");
         propSizeToShrinkTo = so.FindProperty("sizeToShrinkTo");
         propSubtractCordAmount = so.FindProperty("subtractCordAmount");
         propMaxCordLength = so.FindProperty("maxCordLength");
         propScaleSpeed = so.FindProperty("scaleSpeed");
         propSecondsBeforeShrink = so.FindProperty("secondsBeforeShrink");
+        propCircleRenderer = so.FindProperty("cirlceRenderer");
     }
 
     private void OnSceneGUI()
@@ -91,7 +92,7 @@ public class CordCircleEditor : Editor
         GUILayout.Space(40);
 
         so.Update();
-        EditorGUILayout.PropertyField(propTargetFollow);
+        EditorGUILayout.PropertyField(propCircleRenderer);
         //so.ApplyModifiedProperties();
         //if (Application.isPlaying)
         //{

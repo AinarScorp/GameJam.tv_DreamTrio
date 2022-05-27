@@ -10,7 +10,7 @@ public class WaveManager : MonoBehaviour
     
     int numberOfEnemiesInTheWave;
 
-    int currentWave = 0;
+    [SerializeField] int currentWave = 0;
     int numberOfWaves;
     private void Awake()
     {
@@ -55,7 +55,6 @@ public class WaveManager : MonoBehaviour
             return;
         if (currentWave >= numberOfWaves)
         {
-            Debug.Log("went through all waves");
             Debug.LogWarning("you have won");
             return;
         }

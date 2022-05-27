@@ -245,14 +245,14 @@ MonoBehaviour:
   m_Follow: {fileID: 0}
   m_Lens:
     FieldOfView: 40
-    OrthographicSize: 5
+    OrthographicSize: 4
     NearClipPlane: 0.1
     FarClipPlane: 5000
     Dutch: 0
     ModeOverride: 1
     LensShift: {x: 0, y: 0}
     GateFit: 2
-    m_SensorSize: {x: 1.7777778, y: 1}
+    m_SensorSize: {x: 1.7778609, y: 1}
   m_Transitions:
     m_BlendHint: 0
     m_InheritPosition: 0
@@ -274,7 +274,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   virtualCamera: {fileID: 8461912932901419165}
-  player: {fileID: 0}
   lightAttackAmplitude: 5
   lightAttackFrequency: 2.2
   lightAttackShakeTime: 0.1
@@ -285,7 +284,7 @@ MonoBehaviour:
   poisonFrequency: 2
   poisonShakeTime: 0.2
   zoomInValue: 2.5
-  zoomOutValue: 8
+  zoomOutValue: 7
   zoomInTime: 0.4
   zoomOutTime: 1.5
   centerTime: 0
@@ -401,7 +400,7 @@ Camera:
   far clip plane: 5000
   field of view: 40
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

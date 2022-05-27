@@ -71,7 +71,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2102908679
-  m_SortingLayer: 3
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a913d58f460bace4e8deff46701acfcb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -178,12 +178,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1a22b7529aaeee47876076a46647e8b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 139
+  speed: 140
   pushForce: 1.8
   defaultMask:
     serializedVersion: 2
-    m_Bits: 0
-  wall: {fileID: 0}
+    m_Bits: 1
 --- !u!114 &8120152830727472715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,8 +218,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 4
-  invulnerabilityTime: 1.6
-  currentHealth: 0
+  invulnerabilityTime: 1.2
   heartImage: {fileID: 910927117292983901, guid: b5155bdabf196994dbc13f056ff69dbb, type: 3}
   flashScript: {fileID: 2428019265046939057}
   hitParticle: {fileID: 49116024495324798}
