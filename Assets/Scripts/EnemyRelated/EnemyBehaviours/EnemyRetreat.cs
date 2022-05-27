@@ -20,16 +20,17 @@ public class EnemyRetreat : MonoBehaviour
 
 
     Coroutine retreat;
+
     private void OnEnable()
     {
         retreat = StartCoroutine(StartRetreting());
     }
     private void OnDisable()
     {
+
         if (retreat != null)
             StopCoroutine(retreat);
 
-        FinishRetrating();
     }
 
     IEnumerator StartRetreting()

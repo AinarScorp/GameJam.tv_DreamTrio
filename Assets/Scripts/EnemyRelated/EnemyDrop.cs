@@ -29,7 +29,8 @@ public class EnemyDrop : MonoBehaviour
 
     Vector3 GetDropPosition()
     {
-        return transform.position + GetRandomDirection() * dropRadius;
+        float dropMultiplier = Random.Range(0, dropRadius);
+        return transform.position + GetRandomDirection() * dropMultiplier;
     }
 
     Vector3 GetRandomDirection()
@@ -45,7 +46,8 @@ public class EnemyDrop : MonoBehaviour
         {
             return;
         }
-        Gizmos.color = Color.green;
+
+        Gizmos.color = new Color(232 * 0.255f, 0, 254 * 0.255f, 1);
 
         Gizmos.DrawWireSphere(this.transform.position, dropRadius);
     }

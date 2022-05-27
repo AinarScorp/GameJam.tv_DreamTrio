@@ -8,11 +8,14 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField] Rigidbody2D rb;
     [SerializeField] EnemyState startingState;
+    [SerializeField] EnemyState borderState;
+
 
     EnemyState currentState;
     PlayerHealth player;
     public EnemyState CurrentState { get => currentState; }
     public PlayerHealth Player { get => player; }
+    public EnemyState BorderState { get => borderState;  }
 
     public virtual void Awake()
     {

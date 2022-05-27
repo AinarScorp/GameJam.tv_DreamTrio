@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Adjustment")]
     [SerializeField] [Range(0, 500)] float speed = 10f;
     [SerializeField] [Range(0, 20)] float pushForce = 10f;
-
+    [SerializeField] LayerMask defaultMask;
 
 
     [Header("Better not touch")]
@@ -122,11 +122,16 @@ public class PlayerMovement : MonoBehaviour
     }
 
     public void SetCanMove(bool setTo) => canMove = setTo;
-
+    [SerializeField] GameObject wall;
     public void PushPlayer(Vector3 pushDirection)
     {
         Vector3 newPlayerPos = transform.position + pushDirection * pushForce;
 
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, pushDirection, pushForce, defaultMask);
+        if (hit.collider !=null)
+        {
+            return;
+        }
         transform.position = newPlayerPos;
     }
 }

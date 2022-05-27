@@ -51,6 +51,10 @@ public class EnemyWander : MonoBehaviour
     {
         while (true)
         {
+            if (this.enabled == false)
+            {
+                yield break;
+            }
             CheckStopWander();
             yield return new WaitForSeconds(0.1f);
         }
@@ -74,6 +78,7 @@ public class EnemyWander : MonoBehaviour
         }
         if (distanceFromPlayer > playerTooFar)
         {
+
             behaviour.SetNewEnemyState(EnemyState.Chasing);
             return;
         }

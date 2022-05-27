@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 139
-  pushForce: 3
+  pushForce: 1.8
 --- !u!114 &8120152830727472715
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -201,7 +201,7 @@ MonoBehaviour:
   attackPointDistance: 0.5
   drawRadiusCircle: 0
   drawAllCircles: 0
-  attackRadius: 0.79
+  attackRadius: 0.5
 --- !u!114 &8120152830727472717
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -215,7 +215,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 4
-  invulnerabilityTime: 1
+  invulnerabilityTime: 1.6
   currentHealth: 0
   heartImage: {fileID: 910927117292983901, guid: b5155bdabf196994dbc13f056ff69dbb, type: 3}
   flashScript: {fileID: 2428019265046939057}
@@ -268,7 +268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5459685e76b1f6489c1f77ef1cce6b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  animator: {fileID: 0}
+  animator: {fileID: 8120152830727472724}
 --- !u!114 &2428019265046939057
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -281,9 +281,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6d5eec2a5990144db1b6188423d6b51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  flashDuration: 0.1
+  flashDuration: 0.2
   poisonFlashDuration: 0.2
-  flashAmount: 3
+  flashAmount: 4
   poisonFlashAmount: 2
   flashMaterial: {fileID: 2100000, guid: 63a8ffde23822e949bdb72630f02d237, type: 2}
   poisonFlashMaterial: {fileID: 2100000, guid: 0c0ecb050b277ce48abe0e4da2ccb741, type: 2}

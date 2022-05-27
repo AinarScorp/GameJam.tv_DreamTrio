@@ -4,6 +4,7 @@ public enum EnemyState
     Wandering,
     Chasing,
     Shooting,
+    Approaching,
     Retreating,
     Dying
     

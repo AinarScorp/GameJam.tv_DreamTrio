@@ -29,11 +29,7 @@ public class EnemyHealth : MonoBehaviour
         AudioManagerScript.Instance.PlayRandomPitch("Hit");
         hitParticle.Play();
         VirtualCamera.Instance.LightAttackShake();
-        reactToHit();
-        if (currentHealth <= 0)
-        {
-            return;
-        }
+
 
         flashScript.StartFlash();
 
@@ -41,7 +37,9 @@ public class EnemyHealth : MonoBehaviour
         if (currentHealth <= 0)
         {
             StartCoroutine(Die());
+            return;
         }
+        reactToHit();
     }
 
 

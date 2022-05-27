@@ -12,7 +12,7 @@ public class EnemyChasing : MonoBehaviour
     [SerializeField] [Range(0, 100)] float minChaseDuration = 30f;
 
     [SerializeField] [Range(0, 100)] float maxChaseDuration = 60f;
-
+    [SerializeField] [Range(0, 100f)] float hitAndRunChance = 10f;
     [Header("Caching")]
 
     [SerializeField] Rigidbody2D rb;
@@ -31,6 +31,7 @@ public class EnemyChasing : MonoBehaviour
     }
     private void OnEnable()
     {
+
         timer = StartCoroutine(StartTimer());
     }
     private void OnDisable()
@@ -56,7 +57,7 @@ public class EnemyChasing : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (!behaviour.Player.IsAlive || behaviour.Player.IsInvincible)
+        if (!behaviour.Player.IsAlive || behaviour.Player.IsInvincible || this.enabled == false)
             return;
         if (collision.gameObject == behaviour.Player.gameObject)
         {
@@ -68,6 +69,9 @@ public class EnemyChasing : MonoBehaviour
                 Vector3 direction = (playerPos - transform.position).normalized;
                 PlayerMovement playerMovement = behaviour.Player.GetComponent<PlayerMovement>();
                 playerMovement.PushPlayer(direction);
+                float randomRoll = Random.Range(0f, 100f);
+                if (hitAndRunChance >= randomRoll)
+                    behaviour.SetNewEnemyState(EnemyState.Retreating);
             }
 
 

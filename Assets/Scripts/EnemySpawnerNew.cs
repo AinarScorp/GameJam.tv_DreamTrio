@@ -20,6 +20,9 @@ public class EnemySpawnerNew : MonoBehaviour
 
     public IEnumerator StartSpawningEnemies(int currentWaveNumber)
     {
+        if (currentWaveNumber > waves.Length)
+            yield break;
+
         Wave currentWave = waves[currentWaveNumber];
         currentWave.chunks.ToList().ForEach(chunk => waveManager.AddAmountOfEnemies(chunk.AllEnemies().Count));
 
