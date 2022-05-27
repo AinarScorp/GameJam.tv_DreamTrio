@@ -1,0 +1,54 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+[RequireComponent(typeof(EnemyChasing))]
+[RequireComponent(typeof(EnemyRetreat))]
+[RequireComponent(typeof(EnemyWander))]
+public class EnemyMeleeBehaviour : EnemyBehaviour
+{
+    [Header("Melee Caching")]
+
+    [SerializeField] EnemyChasing enemyChase;
+    [SerializeField] EnemyRetreat enemyRetreat;
+    [SerializeField] EnemyWander enemyWander;
+
+    public override void Awake()
+    {
+        base.Awake();
+        FindObjectOfType<PlayerManager>().SubscribeToImmidiateActions(() => SetNewEnemyState(EnemyState.Retreating), true);
+    }
+
+
+
+    public override void SetNewEnemyState(EnemyState newState)
+    {
+        base.SetNewEnemyState(newState);
+        AdjustToNewState();
+
+    }
+
+    void AdjustToNewState()
+    {
+        enemyChase.enabled = false;
+        enemyRetreat.enabled = false;
+        enemyWander.enabled = false;
+
+        switch (CurrentState)
+        {
+            case EnemyState.Dying:
+                return;
+            case EnemyState.Chasing:
+                enemyChase.enabled = true;
+                break;
+            case EnemyState.Retreating:
+                enemyRetreat.enabled = true;
+                break;
+            case EnemyState.Wandering:
+                enemyWander.enabled = true;
+                break;
+            default:
+                return;
+        }
+    }
+}

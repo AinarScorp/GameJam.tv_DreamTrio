@@ -4965,13 +4965,16 @@ GameObject:
   - component: {fileID: 3567792791662185834}
   - component: {fileID: 3567792791662185832}
   - component: {fileID: 3567792791662185846}
+  - component: {fileID: 8829177143817812110}
+  - component: {fileID: 2810280474919460104}
+  - component: {fileID: 2021189184508033330}
+  - component: {fileID: 7569210359141354071}
   - component: {fileID: 3567792791662185833}
   - component: {fileID: 3567792791662185847}
   - component: {fileID: 3567792791662185844}
   - component: {fileID: -4887696799744834867}
-  - component: {fileID: 8829177143817812110}
   m_Layer: 9
-  m_Name: Enemy
+  m_Name: Enemy_Melee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5031,7 +5034,27 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &3567792791662185833
+--- !u!95 &8829177143817812110
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3567792791662185837}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 7ccb912990efc564a9182834407b2c7b, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &2810280474919460104
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5040,12 +5063,70 @@ MonoBehaviour:
   m_GameObject: {fileID: 3567792791662185837}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 669e6113ab046e044b16acfd93c2881f, type: 3}
+  m_Script: {fileID: 11500000, guid: b3bc89787835f6344a112c475fe426d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animator: {fileID: 8829177143817812110}
+  rb: {fileID: 3567792791662185846}
+  startingState: 3
+  enemyChase: {fileID: 3567792791662185833}
+  enemyRetreat: {fileID: 2021189184508033330}
+  enemyWander: {fileID: 7569210359141354071}
+--- !u!114 &2021189184508033330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3567792791662185837}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f831a5bc7a67c34cb1c448bd460f84f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stateIfAlive: 1
+  stateIfDead: 0
+  retreatSpeed: 20
+  retreatDuration: 2
+  behaviour: {fileID: 2810280474919460104}
+  rb: {fileID: 3567792791662185846}
+--- !u!114 &7569210359141354071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3567792791662185837}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59157ccda89e8a7499ded23eba14861e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  drawGizmos: 1
+  playerTooFar: 3.94
+  playerTooClose: 1.31
+  forcedWanderDuration: 2
+  wanderSpeed: 30
+  wanderDistance: 3.11
+  behaviour: {fileID: 2810280474919460104}
+  enemyHealth: {fileID: 3567792791662185847}
+  rb: {fileID: 3567792791662185846}
+--- !u!114 &3567792791662185833
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3567792791662185837}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4e34425b115bbd4d862d13a9e23bd31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   followSpeed: 40
+  chaseDuration: 30
   rb: {fileID: 3567792791662185846}
-  animator: {fileID: 8829177143817812110}
+  behaviour: {fileID: 2810280474919460104}
 --- !u!114 &3567792791662185847
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5064,7 +5145,7 @@ MonoBehaviour:
   hitParticle: {fileID: 2580692780968347289}
   animator: {fileID: 8829177143817812110}
   enemyDrop: {fileID: 3567792791662185844}
-  enemyMovement: {fileID: 3567792791662185833}
+  behaviour: {fileID: 2810280474919460104}
 --- !u!114 &3567792791662185844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5077,6 +5158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9454ae1fb5575e4ba1c43d0f1f6124d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  drawGizmos: 0
   dropRadius: 0.97
   numberOfDrops: 1
   objectsToDrop:
@@ -5101,23 +5183,3 @@ MonoBehaviour:
   flashMaterial: {fileID: 2100000, guid: f53a006f62b0f1f428cdf671cc0a952a, type: 2}
   poisonFlashMaterial: {fileID: 0}
   spriteRenderer: {fileID: 644672988112986230}
---- !u!95 &8829177143817812110
-Animator:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3567792791662185837}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 7ccb912990efc564a9182834407b2c7b, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0

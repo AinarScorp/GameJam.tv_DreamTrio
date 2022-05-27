@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 [RequireComponent(typeof(EnemyDrop))]
 public class EnemyHealth : MonoBehaviour
@@ -14,10 +15,10 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] ParticleSystem hitParticle;
     [SerializeField] Animator animator;
     [SerializeField] EnemyDrop enemyDrop;
-    [SerializeField] EnemyMovement enemyMovement;
+    [SerializeField] EnemyBehaviour behaviour;
 
     int currentHealth;
-
+    Action reactToHit;
     private void Start()
     {
         currentHealth = startingHealth;
@@ -28,7 +29,7 @@ public class EnemyHealth : MonoBehaviour
         AudioManagerScript.Instance.PlayRandomPitch("Hit");
         hitParticle.Play();
         VirtualCamera.Instance.LightAttackShake();
-
+        reactToHit();
         if (currentHealth <= 0)
         {
             return;
@@ -39,14 +40,16 @@ public class EnemyHealth : MonoBehaviour
         currentHealth -= amount;
         if (currentHealth <= 0)
         {
-            StartCoroutine( Die());
+            StartCoroutine(Die());
         }
     }
 
 
     IEnumerator Die()
     {
-        enemyMovement.enabled = false;
+        behaviour.SetNewEnemyState(EnemyState.Dying);
+        GetComponent<Collider2D>().enabled = false;
+
         animator.SetTrigger("Death");
         AudioManagerScript.Instance.Play("Enemy Death");
         enemyDrop.DropStuffUponDeath();
@@ -60,5 +63,8 @@ public class EnemyHealth : MonoBehaviour
 
 
     }
-
+    public void SubscribeToReactHit(Action actionToAdd)
+    {
+        reactToHit += actionToAdd;
+    }
 }

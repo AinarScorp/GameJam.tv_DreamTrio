@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class EnemyDrop : MonoBehaviour
 {
+    [SerializeField] bool drawGizmos;
     [SerializeField] float dropRadius = 10f;
     [SerializeField] int numberOfDrops = 1;
     [SerializeField] ObjectToDrop[] objectsToDrop;
@@ -40,6 +41,10 @@ public class EnemyDrop : MonoBehaviour
 
     private void OnDrawGizmosSelected()
     {
+        if (!drawGizmos)
+        {
+            return;
+        }
         Gizmos.color = Color.green;
 
         Gizmos.DrawWireSphere(this.transform.position, dropRadius);
