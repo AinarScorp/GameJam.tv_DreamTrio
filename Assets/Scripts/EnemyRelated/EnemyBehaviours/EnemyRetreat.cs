@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class EnemyRetreat : MonoBehaviour
 {
-    [Header("states after retreating depending on the Player State")]
-    [Tooltip("this state will activate if the player is Alive")]
-    [SerializeField] EnemyState stateIfAlive;
-    [Tooltip("this state will activate if the player is Dead")]
-    [SerializeField] EnemyState stateIfDead;
+    //[Header("states after retreating depending on the Player State")]
+    //[Tooltip("this state will activate if the player is Alive")]
+    //[SerializeField] EnemyState stateIfAlive;
+    //[Tooltip("this state will activate if the player is Dead")]
+    //[SerializeField] EnemyState stateIfDead;
 
     [SerializeField] float retreatSpeed = 20f;
 
@@ -26,27 +26,31 @@ public class EnemyRetreat : MonoBehaviour
     }
     private void OnDisable()
     {
-        StopCoroutine(retreat);
+        if (retreat != null)
+            StopCoroutine(retreat);
+
         FinishRetrating();
     }
 
     IEnumerator StartRetreting()
     {
         Vector3 playerPos = behaviour.Player.transform.position;
-        Vector3 direction = (transform.position -playerPos).normalized;
+        Vector3 direction = (transform.position - playerPos).normalized;
         rb.velocity = direction * retreatSpeed * Time.fixedDeltaTime;
         yield return new WaitForSeconds(retreatDuration);
         FinishRetrating();
     }
     void FinishRetrating()
     {
-        if (behaviour.Player.IsAlive)
-        {
-            behaviour.SetNewEnemyState(stateIfAlive);
-        }
-        else
-        {
-            behaviour.SetNewEnemyState(stateIfDead);
-        }
+        //if (behaviour.Player.IsAlive)
+        //{
+        //    behaviour.SetNewEnemyState(stateIfAlive);
+        //}
+        //else
+        //{
+        //    behaviour.SetNewEnemyState(stateIfDead);
+        //}
+        behaviour.SetNewEnemyState(EnemyState.Wandering);
+
     }
 }

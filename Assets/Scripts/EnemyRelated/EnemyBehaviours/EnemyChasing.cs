@@ -9,7 +9,9 @@ public class EnemyChasing : MonoBehaviour
     [Header("Adjustments")]
 
     [SerializeField] [Range(0, 100)] float followSpeed = 30f;
-    [SerializeField] [Range(0, 100)] float chaseDuration = 30f;
+    [SerializeField] [Range(0, 100)] float minChaseDuration = 30f;
+
+    [SerializeField] [Range(0, 100)] float maxChaseDuration = 60f;
 
     [Header("Caching")]
 
@@ -34,7 +36,8 @@ public class EnemyChasing : MonoBehaviour
     private void OnDisable()
     {
         rb.velocity = Vector2.zero;
-        StopCoroutine(timer);
+        if (timer !=null)
+            StopCoroutine(timer);
     }
 
 
@@ -47,7 +50,8 @@ public class EnemyChasing : MonoBehaviour
     }
     IEnumerator StartTimer()
     {
-        yield return new WaitForSeconds(chaseDuration);
+        float duration = Random.Range(minChaseDuration, maxChaseDuration);
+        yield return new WaitForSeconds(duration);
         behaviour.SetNewEnemyState(EnemyState.Retreating);
     }
     private void OnCollisionEnter2D(Collision2D collision)

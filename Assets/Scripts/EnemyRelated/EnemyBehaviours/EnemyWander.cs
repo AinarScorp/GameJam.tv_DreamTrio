@@ -9,7 +9,6 @@ public class EnemyWander : MonoBehaviour
     [SerializeField] bool drawGizmos = true;
     [SerializeField] float playerTooFar = 10f;
     [SerializeField] float playerTooClose = 2f;
-    [SerializeField] float forcedWanderDuration = 2f;
     [SerializeField] float wanderSpeed = 30f;
     [SerializeField] float wanderDistance = 2f;
     #endregion
@@ -20,13 +19,10 @@ public class EnemyWander : MonoBehaviour
     [SerializeField] Rigidbody2D rb;
 
     Vector3 destination;
-    bool forcedWander;
-    Coroutine forcedWanderCorotine;
     Coroutine checkPlayerPos;
 
     private void OnEnable()
     {
-        forcedWanderCorotine = StartCoroutine(SetupForcedWander());
         checkPlayerPos = StartCoroutine(CheckPlayerPosition());
 
         StartMovingToNewPosition();
@@ -34,16 +30,12 @@ public class EnemyWander : MonoBehaviour
     }
     private void OnDisable()
     {
-        StopCoroutine(forcedWanderCorotine);
-        StopCoroutine(checkPlayerPos);
-
+        if (checkPlayerPos !=null)
+            StopCoroutine(checkPlayerPos);
     }
 
 
-    private void Start()
-    {
-        enemyHealth.SubscribeToReactHit(() => SwitchForcedWander(false));
-    }
+
 
     private void FixedUpdate()
     {
@@ -53,21 +45,14 @@ public class EnemyWander : MonoBehaviour
         }
         StartMovingToNewPosition();
     }
-    IEnumerator SetupForcedWander()
-    {
-        forcedWander = true;
-        yield return new WaitForSeconds(forcedWanderDuration);
-        forcedWander = false;
 
-    }
 
     IEnumerator CheckPlayerPosition()
     {
         while (true)
         {
-            StopWanderIfTooFar();
-            StopWanderIfTooClose();
-            yield return new WaitForSeconds(1f);
+            CheckStopWander();
+            yield return new WaitForSeconds(0.1f);
         }
     }
     private void StartMovingToNewPosition()
@@ -76,26 +61,43 @@ public class EnemyWander : MonoBehaviour
         destination = transform.position + direction * wanderDistance;
         rb.velocity = direction * wanderSpeed * Time.fixedDeltaTime;
     }
-    private void StopWanderIfTooClose()
+
+    void CheckStopWander()
     {
-        if (!behaviour.Player.IsAlive || forcedWander)
+        if (!behaviour.Player.IsAlive)
             return;
         float distanceFromPlayer = Vector3.Distance(transform.position, behaviour.Player.transform.position);
-        if (distanceFromPlayer < playerTooFar)
+        if (distanceFromPlayer < playerTooClose)
         {
             behaviour.SetNewEnemyState(EnemyState.Chasing);
-        }
-    }
-    private void StopWanderIfTooFar()
-    {
-        if (!behaviour.Player.IsAlive || forcedWander)
             return;
-        float distanceFromPlayer = Vector3.Distance(transform.position, behaviour.Player.transform.position);
+        }
         if (distanceFromPlayer > playerTooFar)
         {
             behaviour.SetNewEnemyState(EnemyState.Chasing);
+            return;
         }
     }
+    //private void StopWanderIfTooClose()
+    //{
+    //    if (!behaviour.Player.IsAlive)
+    //        return;
+    //    float distanceFromPlayer = Vector3.Distance(transform.position, behaviour.Player.transform.position);
+    //    if (distanceFromPlayer < playerTooClose)
+    //    {
+    //        behaviour.SetNewEnemyState(EnemyState.Chasing);
+    //    }
+    //}
+    //private void StopWanderIfTooFar()
+    //{
+    //    if (!behaviour.Player.IsAlive)
+    //        return;
+    //    float distanceFromPlayer = Vector3.Distance(transform.position, behaviour.Player.transform.position);
+    //    if (distanceFromPlayer > playerTooFar)
+    //    {
+    //        behaviour.SetNewEnemyState(EnemyState.Chasing);
+    //    }
+    //}
 
     Vector3 ChooseRandomDirection()
     {
@@ -103,8 +105,35 @@ public class EnemyWander : MonoBehaviour
         float randY = Random.Range(-1f, 1f);
         return new Vector3(randX, randY).normalized;
     }
-    
-    void SwitchForcedWander(bool switchTo) => forcedWander = switchTo;
+    #region forced wander - disabled
+
+    //[SerializeField] float forcedWanderDuration = 2f;
+
+    //bool forcedWander;
+    //Coroutine forcedWanderCorotine;
+
+    //OnEnable
+    //forcedWanderCorotine = StartCoroutine(SetupForcedWander());
+
+    //OnDisbale 
+    //if (forcedWanderCorotine != null)
+    //    StopCoroutine(forcedWanderCorotine);
+
+    //Start function
+    //enemyHealth.SubscribeToReactHit(() => SwitchForcedWander(false));
+
+
+
+    //IEnumerator SetupForcedWander()
+    //{
+    //    forcedWander = true;
+    //    yield return new WaitForSeconds(forcedWanderDuration);
+    //    forcedWander = false;
+
+    //}
+    //void SwitchForcedWander(bool switchTo) => forcedWander = switchTo;
+
+    #endregion
     private void OnDrawGizmosSelected()
     {
         if (!drawGizmos)

@@ -16,12 +16,12 @@ public class EnemyDrop : MonoBehaviour
             float randomRoll = Random.Range(0f, 100f);
             foreach (var drop in objectsToDrop)
             {
-                if (drop.dropChancePercent >= randomRoll)
+                if (drop.DropChancePercent >= randomRoll)
                 {
                     Instantiate(drop.DropObject, GetDropPosition(), Quaternion.identity);
                     break;
                 }
-                randomRoll -= drop.dropChancePercent;
+                randomRoll -= drop.DropChancePercent;
             }
         }
 

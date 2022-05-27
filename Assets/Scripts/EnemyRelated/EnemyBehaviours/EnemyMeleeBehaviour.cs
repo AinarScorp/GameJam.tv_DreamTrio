@@ -7,16 +7,21 @@ using UnityEngine;
 [RequireComponent(typeof(EnemyWander))]
 public class EnemyMeleeBehaviour : EnemyBehaviour
 {
+    [Header("Adjustments")]
+
+    [SerializeField] [Range(0, 100)] float retreatChance = 10f;
     [Header("Melee Caching")]
 
     [SerializeField] EnemyChasing enemyChase;
     [SerializeField] EnemyRetreat enemyRetreat;
     [SerializeField] EnemyWander enemyWander;
 
+
     public override void Awake()
     {
         base.Awake();
         FindObjectOfType<PlayerManager>().SubscribeToImmidiateActions(() => SetNewEnemyState(EnemyState.Retreating), true);
+        GetComponent<EnemyHealth>().SubscribeToReactHit(() => ReactToBeingHit(EnemyState.Chasing));
     }
 
 
@@ -25,6 +30,18 @@ public class EnemyMeleeBehaviour : EnemyBehaviour
     {
         base.SetNewEnemyState(newState);
         AdjustToNewState();
+
+    }
+    public override void ReactToBeingHit(EnemyState stateToReactWith)
+    {
+        if (CurrentState == EnemyState.Chasing)
+        {
+            float randomRoll = Random.Range(0f, 100f);
+            if (retreatChance >= randomRoll)
+                SetNewEnemyState(EnemyState.Retreating);
+            return;
+        }
+        base.ReactToBeingHit(stateToReactWith);
 
     }
 

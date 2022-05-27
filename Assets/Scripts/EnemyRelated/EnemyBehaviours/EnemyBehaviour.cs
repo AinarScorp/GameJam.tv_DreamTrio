@@ -38,4 +38,11 @@ public class EnemyBehaviour : MonoBehaviour
     {
         currentState = newState;
     }
+    public virtual void ReactToBeingHit(EnemyState stateToReactWith)
+    {
+        if (CurrentState != EnemyState.Retreating)
+        {
+            SetNewEnemyState(EnemyState.Chasing);
+        }
+    }
 }

@@ -5068,7 +5068,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animator: {fileID: 8829177143817812110}
   rb: {fileID: 3567792791662185846}
-  startingState: 3
+  startingState: 1
+  retreatChance: 10
   enemyChase: {fileID: 3567792791662185833}
   enemyRetreat: {fileID: 2021189184508033330}
   enemyWander: {fileID: 7569210359141354071}
@@ -5084,10 +5085,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f831a5bc7a67c34cb1c448bd460f84f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stateIfAlive: 1
-  stateIfDead: 0
-  retreatSpeed: 20
-  retreatDuration: 2
+  retreatSpeed: 30
+  retreatDuration: 4
   behaviour: {fileID: 2810280474919460104}
   rb: {fileID: 3567792791662185846}
 --- !u!114 &7569210359141354071
@@ -5103,11 +5102,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drawGizmos: 1
-  playerTooFar: 3.94
-  playerTooClose: 1.31
-  forcedWanderDuration: 2
-  wanderSpeed: 30
-  wanderDistance: 3.11
+  playerTooFar: 8
+  playerTooClose: 2
+  wanderSpeed: 20.41
+  wanderDistance: 2.95
   behaviour: {fileID: 2810280474919460104}
   enemyHealth: {fileID: 3567792791662185847}
   rb: {fileID: 3567792791662185846}
@@ -5124,7 +5122,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   followSpeed: 40
-  chaseDuration: 30
+  minChaseDuration: 10
+  maxChaseDuration: 20
   rb: {fileID: 3567792791662185846}
   behaviour: {fileID: 2810280474919460104}
 --- !u!114 &3567792791662185847
@@ -5140,7 +5139,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 3
-  cordIncreaseAmount: 5
+  cordIncreaseAmount: 2.2
   flashScript: {fileID: -4887696799744834867}
   hitParticle: {fileID: 2580692780968347289}
   animator: {fileID: 8829177143817812110}
@@ -5160,10 +5159,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drawGizmos: 0
   dropRadius: 0.97
-  numberOfDrops: 1
+  numberOfDrops: 2
   objectsToDrop:
   - dropObject: {fileID: 3128766248087849206, guid: ed697fc20ec2c60478302abc5ed459d5, type: 3}
-    dropChancePercent: 100
+    dropChancePercent: 50
 --- !u!114 &-4887696799744834867
 MonoBehaviour:
   m_ObjectHideFlags: 0

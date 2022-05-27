@@ -6,7 +6,8 @@ using UnityEngine;
 public class ObjectToDrop 
 {
     [SerializeField] GameObject dropObject;
-    [Range(0, 100)] public float dropChancePercent;
+    [SerializeField] [Range(0, 100)] float dropChancePercent;
 
     public GameObject DropObject { get => dropObject; }
+    public float DropChancePercent { get => dropChancePercent; }
 }
