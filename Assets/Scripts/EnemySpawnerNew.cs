@@ -20,46 +20,44 @@ public class EnemySpawnerNew : MonoBehaviour
 
     public IEnumerator StartSpawningEnemies(int currentWaveNumber)
     {
-        if (currentWaveNumber +1 > waves.Length)
+        if (currentWaveNumber + 1 > waves.Length)
             yield break;
-
         Wave currentWave = waves[currentWaveNumber];
         currentWave.chunks.ToList().ForEach(chunk => waveManager.AddAmountOfEnemies(chunk.AllEnemies().Count));
 
-
-        if (currentWave.sameTime)
+        //if (currentWave.sameTime)
+        foreach (Chunk chunk in currentWave.chunks)
         {
-            foreach (Chunk chunk in currentWave.chunks)
-            {
-                if (chunk.spawnAtOnce)
-                {
-                    //that spawns all enemies in a chunk at the same time 
 
-                    List<EnemyHealth> enemiesToSpawn = chunk.AllEnemies();
-                    enemiesToSpawn.ToList().ForEach(enemy =>
-                    {
+            if (chunk.spawnAtOnce)
+            {
+                //that spawns all enemies in a chunk at the same time 
+
+                List<EnemyHealth> enemiesToSpawn = chunk.AllEnemies();
+                enemiesToSpawn.ToList().ForEach(enemy =>
+                {
                         //float xPos = Random.Range(transform.position.x, lineToSpawn.x);
                         EnemyHealth enemyHealth = Instantiate(enemy, GetSpawnPosition(), Quaternion.identity, transform);
-                    });
-                }
-                else
+                });
+            }
+            else
+            {
+                //this spawns  enemies in a chunk with an interval between them
+
+                int numberOfEnemies = chunk.AllEnemies().Count;
+                for (int i = 0; i < numberOfEnemies; i++)
                 {
-                    //this spawns  enemies in a chunk with an interval between them
+                    //float xPos = Random.Range(transform.position.x, lineToSpawn.x);
 
-                    int numberOfEnemies = chunk.AllEnemies().Count;
-                    for (int i = 0; i < numberOfEnemies; i++)
-                    {
-                        //float xPos = Random.Range(transform.position.x, lineToSpawn.x);
-
-                        EnemyHealth enemyHealth = Instantiate(chunk.OneEnemy(), GetSpawnPosition(), Quaternion.identity, transform);
-                        yield return new WaitForSeconds(chunk.spawnInteval);
-                    }
-
+                    EnemyHealth enemyHealth = Instantiate(chunk.OneEnemy(), GetSpawnPosition(), Quaternion.identity, transform);
+                    yield return new WaitForSeconds(chunk.spawnInteval);
                 }
 
             }
-            yield return new WaitForSeconds(currentWave.timeConstant);
+
         }
+        yield return new WaitForSeconds(currentWave.timeConstant);
+
 
     }
 
@@ -88,7 +86,7 @@ public class EnemySpawnerNew : MonoBehaviour
             Gizmos.DrawLine(transform.position, new Vector3(transform.position.x, transform.position.y + spawnLineLength));
 
         else
-            Gizmos.DrawLine(transform.position, new Vector3(transform.position.x+ spawnLineLength, transform.position.y ));
+            Gizmos.DrawLine(transform.position, new Vector3(transform.position.x + spawnLineLength, transform.position.y));
 
     }
 }

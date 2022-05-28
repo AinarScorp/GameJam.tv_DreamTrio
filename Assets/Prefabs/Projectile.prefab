@@ -142,7 +142,7 @@ MonoBehaviour:
   lifespan: 9
   colisionLayer:
     serializedVersion: 2
-    m_Bits: 2049
+    m_Bits: 2048
   explosionParticle: {fileID: 1945366819240683696}
   spriteRenderer: {fileID: 9047052475679301708}
 --- !u!1 &7600369484758684723

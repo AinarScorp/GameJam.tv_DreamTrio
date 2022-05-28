@@ -68,6 +68,6 @@ public class EnemyHealth : MonoBehaviour
     {
 
         this.gameObject.SetActive(false);
-        Destroy(this.gameObject, 3);
+        //Destroy(this.gameObject, 3);
     }
 }
