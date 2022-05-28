@@ -20,7 +20,7 @@ TagManager:
   - PlayerGhost
   - PlayerAlive
   - Enemy Border
-  - 
+  - Projectile
   - 
   - 
   - 
@@ -51,6 +51,9 @@ TagManager:
     locked: 0
   - name: Enemy
     uniqueID: 4117084799
+    locked: 0
+  - name: Projectile
+    uniqueID: 644682339
     locked: 0
   - name: Player
     uniqueID: 2102908679

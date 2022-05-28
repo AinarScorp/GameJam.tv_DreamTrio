@@ -30,7 +30,6 @@ public class EnemyRetreat : MonoBehaviour
 
         if (retreat != null)
             StopCoroutine(retreat);
-
     }
 
     IEnumerator StartRetreting()
@@ -38,6 +37,7 @@ public class EnemyRetreat : MonoBehaviour
         Vector3 playerPos = behaviour.Player.transform.position;
         Vector3 direction = (transform.position - playerPos).normalized;
         rb.velocity = direction * retreatSpeed * Time.fixedDeltaTime;
+        behaviour.Animator.SetFloat("Horizontal", Mathf.Clamp(rb.velocity.x, -1, 1));
         yield return new WaitForSeconds(retreatDuration);
         FinishRetrating();
     }

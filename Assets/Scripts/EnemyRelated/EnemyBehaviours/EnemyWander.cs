@@ -48,6 +48,8 @@ public class EnemyWander : MonoBehaviour
             return;
         }
         StartMovingToNewPosition();
+        behaviour.Animator.SetFloat("Horizontal", Mathf.Clamp(rb.velocity.x, -1, 1));
+
     }
 
 

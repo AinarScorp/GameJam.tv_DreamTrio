@@ -48,6 +48,8 @@ public class EnemyChasing : MonoBehaviour
         Vector3 playerPos = behaviour.Player.transform.position;
         Vector3 direction = (playerPos - transform.position).normalized;
         rb.velocity = direction * followSpeed * Time.fixedDeltaTime;
+        behaviour.Animator.SetFloat("Horizontal", Mathf.Clamp(rb.velocity.x, -1, 1));
+
     }
     IEnumerator StartTimer()
     {

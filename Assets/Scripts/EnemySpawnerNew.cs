@@ -20,7 +20,7 @@ public class EnemySpawnerNew : MonoBehaviour
 
     public IEnumerator StartSpawningEnemies(int currentWaveNumber)
     {
-        if (currentWaveNumber > waves.Length)
+        if (currentWaveNumber +1 > waves.Length)
             yield break;
 
         Wave currentWave = waves[currentWaveNumber];

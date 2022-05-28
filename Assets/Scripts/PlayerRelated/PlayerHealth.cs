@@ -30,6 +30,7 @@ public class PlayerHealth : MonoBehaviour
 
     Transform parentForHearts;
     PlayerManager playerManager;
+    Action reactToHit;
 
 
     public bool IsAlive { get => isAlive; }
@@ -99,7 +100,7 @@ public class PlayerHealth : MonoBehaviour
         RemoveHeartImage();
 
         currentHealth -= amount;
-
+        reactToHit();
         if (currentHealth <= 0)
         {
             playerManager.StartTurningIntoGhost();
@@ -143,6 +144,7 @@ public class PlayerHealth : MonoBehaviour
     void ToggleIsAlive() => isAlive = !isAlive;
 
     public void AddCollectedHearth(int amount = 1) => collectedHearths += amount;
+    public void SubscribeToReactHit(Action actionToAdd) => reactToHit += actionToAdd;
 
     #region comments /useless stuff
     /*

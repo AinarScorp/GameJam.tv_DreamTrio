@@ -5071,7 +5071,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   animator: {fileID: 8829177143817812110}
-  rb: {fileID: 3567792791662185846}
   startingState: 0
   borderState: 1
   retreatChance: 15
@@ -5147,7 +5146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b4ee656076cc10428617dfd5a0ddd2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 3
+  startingHealth: 4
   cordIncreaseAmount: 0.8
   flashScript: {fileID: -4887696799744834867}
   hitParticle: {fileID: 2580692780968347289}

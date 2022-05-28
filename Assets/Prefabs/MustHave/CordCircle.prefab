@@ -101,11 +101,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   newRadius: 9.03
-  scaleSpeed: 0
-  subtractCordAmount: 4
-  defaultCordLength: 2.5
-  sizeToShrinkTo: 1
-  maxCordLength: 1
+  scaleSpeed: 2
+  subtractCordAmount: 2
+  defaultCordLength: 5
+  sizeToShrinkTo: 3
+  maxCordLength: 15
   secondsBeforeShrink: 1
   target: {fileID: 0}
   cirlceRenderer: {fileID: 4430289647825641719}

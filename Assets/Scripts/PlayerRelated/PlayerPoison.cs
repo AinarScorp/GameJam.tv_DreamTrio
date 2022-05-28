@@ -11,7 +11,7 @@ public class PlayerPoison : MonoBehaviour
     [SerializeField] int poisonDamage = 1;
 
     PlayerHealth player;
-
+    Coroutine playerPoison;
     private void Awake()
     {
         player = GetComponent<PlayerHealth>();
@@ -19,7 +19,8 @@ public class PlayerPoison : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(PoisonPlayer());
+        player.SubscribeToReactHit(ReactToHit);
+        playerPoison = StartCoroutine(PoisonPlayer());
     }
     IEnumerator PoisonPlayer()
     {
@@ -35,14 +36,16 @@ public class PlayerPoison : MonoBehaviour
 
             yield return new WaitForSeconds(damageInterval);
 
-            if (!player.IsAlive)
+            if (!player.IsAlive) //since we have a reset now I don't think this is needed
                 continue;
 
             player.ReceiveDamage(poisonDamage, true);
-
-
-
         }
     }
+    void ReactToHit()
+    {
+        StopCoroutine(playerPoison);
+        playerPoison = StartCoroutine(PoisonPlayer());
 
+    }
 }

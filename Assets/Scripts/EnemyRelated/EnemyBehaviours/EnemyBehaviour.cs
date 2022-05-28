@@ -10,17 +10,17 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] LayerMask defaultMask;
 
     [SerializeField] Animator animator;
-    [SerializeField] Rigidbody2D rb;
     [SerializeField] EnemyState startingState;
     [SerializeField] EnemyState borderState;
 
 
     EnemyState currentState;
     PlayerHealth player;
-    public EnemyState CurrentState { get => currentState; }
-    public PlayerHealth Player { get => player; }
-    public EnemyState BorderState { get => borderState;  }
     public float PushForce { get => pushForce; }
+    public EnemyState CurrentState { get => currentState; }
+    public EnemyState BorderState { get => borderState;  }
+    public Animator Animator { get => animator;  }
+    public PlayerHealth Player { get => player; }
 
     public virtual void Awake()
     {
@@ -33,10 +33,6 @@ public class EnemyBehaviour : MonoBehaviour
         SetNewEnemyState(startingState);
     }
 
-    private void Update()
-    {
-        animator.SetFloat("Horizontal", Mathf.Clamp(rb.velocity.x, -1, 1));
-    }
     public virtual void SetNewEnemyState(EnemyState newState)
     {
         currentState = newState;

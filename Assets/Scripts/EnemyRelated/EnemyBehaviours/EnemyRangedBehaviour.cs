@@ -33,13 +33,20 @@ public class EnemyRangedBehaviour : EnemyBehaviour
     public override void ReactToBeingHit(EnemyState stateToReactWith)
     {
         GetPushed();
-        if (CurrentState != EnemyState.Retreating)
+        switch (CurrentState)
         {
-            float randomRoll = Random.Range(0f, 100f);
-            if (retreatChance >= randomRoll)
-            {
-                SetNewEnemyState(EnemyState.Retreating);
-            }
+            case EnemyState.Shooting:
+                float randomRoll = Random.Range(0f, 100f);
+                if (retreatChance >= randomRoll)
+                    SetNewEnemyState(EnemyState.Retreating);
+                break;
+
+            case EnemyState.Approaching:
+                SetNewEnemyState(EnemyState.Shooting);
+                break;
+
+            default:
+                return;
         }
 
     }
