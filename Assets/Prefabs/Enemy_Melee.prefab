@@ -5092,6 +5092,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   retreatSpeed: 60
   retreatDuration: 4
+  drawGizmos: 0
+  checkDistance: 1
+  checkRate: 0.4
+  defaultMask:
+    serializedVersion: 2
+    m_Bits: 1
   behaviour: {fileID: 2810280474919460104}
   rb: {fileID: 3567792791662185846}
 --- !u!114 &7569210359141354071
@@ -5128,7 +5134,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e4e34425b115bbd4d862d13a9e23bd31, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  followSpeed: 80
+  followSpeed: 75
   minChaseDuration: 1
   maxChaseDuration: 15
   hitAndRunChance: 10

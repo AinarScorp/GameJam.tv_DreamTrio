@@ -69,7 +69,7 @@ public class PickUp : MonoBehaviour
         else
         {
             HandleSubsctiptions(false);
-            this.gameObject.SetActive(false);
+            DestroyMe();
         }
     }
 
@@ -87,7 +87,12 @@ public class PickUp : MonoBehaviour
         }
 
         HandleSubsctiptions(false);
-        this.gameObject.SetActive(false);
+        DestroyMe();
+    }
+    void DestroyMe()
+    {
 
+        this.gameObject.SetActive(false);
+        Destroy(this.gameObject, 3);
     }
 }

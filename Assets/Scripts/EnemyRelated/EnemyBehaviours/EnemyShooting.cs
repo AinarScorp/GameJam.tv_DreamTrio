@@ -34,6 +34,8 @@ public class EnemyShooting : MonoBehaviour
 
     IEnumerator StartShooting()
     {
+        yield return new WaitForSeconds(shootingRate);
+
         while (true)
         {
             Vector3 playerPos = behaviour.Player.transform.position;
@@ -44,13 +46,15 @@ public class EnemyShooting : MonoBehaviour
                 behaviour.SetNewEnemyState(EnemyState.Wandering);
                 yield break;
             }
+
+
             Vector3 projectileDirection = (playerPos - shootingBase.position).normalized;
             behaviour.Animator.SetFloat("Horizontal", Mathf.Clamp(projectileDirection.x, -1, 1));
 
             Projectile bullet = Instantiate(projectile, shootingBase.position, Quaternion.identity, shootingBase);
             bullet.FollowDirection(projectileDirection);
-
             yield return new WaitForSeconds(shootingRate);
+
         }
     }
     private void OnDrawGizmosSelected()

@@ -57,12 +57,17 @@ public class EnemyHealth : MonoBehaviour
         {
             yield return null;
         }
-        this.gameObject.SetActive(false);
-
+        DestroyMe();
 
     }
     public void SubscribeToReactHit(Action actionToAdd)
     {
         reactToHit += actionToAdd;
+    }
+    void DestroyMe()
+    {
+
+        this.gameObject.SetActive(false);
+        Destroy(this.gameObject, 3);
     }
 }

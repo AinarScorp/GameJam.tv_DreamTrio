@@ -5075,7 +5075,7 @@ MonoBehaviour:
   animator: {fileID: 8829177143817812110}
   startingState: 0
   borderState: 3
-  retreatChance: 70
+  retreatChance: 60
   colider: {fileID: 3567792791662185832}
   enemyShooting: {fileID: 7372317290778965362}
   enemyApproach: {fileID: 3157933531418568081}
@@ -5095,6 +5095,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   retreatSpeed: 80
   retreatDuration: 2
+  drawGizmos: 0
+  checkDistance: 1
+  checkRate: 0.4
+  defaultMask:
+    serializedVersion: 2
+    m_Bits: 1
   behaviour: {fileID: 7915601979525261323}
   rb: {fileID: 3567792791662185846}
 --- !u!114 &7569210359141354071

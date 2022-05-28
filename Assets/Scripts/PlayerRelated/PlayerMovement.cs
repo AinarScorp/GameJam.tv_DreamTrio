@@ -62,7 +62,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!animator.GetBool("CanMove") || movementInputs.sqrMagnitude <0)
         {
-            rb.velocity *= 0;
+            rb.velocity *= 0; // do I need this since I'm multiplying movement inputs by 0, CHECK LATER
 
             return;
         }
