@@ -2,22 +2,20 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TitleManager : MonoBehaviour
+
+public class TitleManager : SceneHandler
 {
     [Header("Confirmation Exit Setup")]
     [TextArea]
     [SerializeField] string confirmationMessage;
 
-    public void StartGame()
+
+
+
+
+    public override void QuitGame()
     {
 
-    }
-    public void GoToCreatorScreen()
-    {
-
-    }
-    public void QuitGame()
-    {
         ConfirmationMessage.Instance.ConfirmationQuestion(confirmationMessage, () => 
         {
             Application.Quit();

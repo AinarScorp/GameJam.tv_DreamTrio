@@ -12,4 +12,30 @@ public class SceneHandler : MonoBehaviour
         Debug.Log("main menu booooo");
     }
 
+    public void StartMainLevel()
+    {
+        StartCoroutine(LoadingMainLevel());
+
+    }
+
+
+    IEnumerator LoadingMainLevel()
+    {
+        transitionAnimPlaying = true;
+        //transition.SetTrigger("TriggerStartTransition");
+        while (transitionAnimPlaying)
+            yield return null;
+        int currentScene = SceneManager.GetActiveScene().buildIndex;
+        int nextSceneIndex = currentScene + 1;
+        SceneManager.LoadScene(nextSceneIndex);
+    }
+    public void GoToCreatorScreen()
+    {
+
+    }
+    public virtual void QuitGame()
+    {
+        Application.Quit();
+    }
+
 }
