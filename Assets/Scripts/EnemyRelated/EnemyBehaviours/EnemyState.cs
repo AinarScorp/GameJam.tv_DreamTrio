@@ -6,7 +6,8 @@ public enum EnemyState
     Shooting,
     Approaching,
     Retreating,
-    Dying
+    Dying,
+    Callibrating
     
 }
 //Melee - Wander, Chase, Retreat

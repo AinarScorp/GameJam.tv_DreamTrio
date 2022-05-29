@@ -34,7 +34,6 @@ public class EnemyShooting : MonoBehaviour
 
     IEnumerator StartShooting()
     {
-        yield return new WaitForSeconds(shootingRate);
 
         while (true)
         {

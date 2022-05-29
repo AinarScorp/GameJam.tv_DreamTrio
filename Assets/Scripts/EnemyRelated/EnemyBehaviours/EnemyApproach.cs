@@ -49,7 +49,10 @@ public class EnemyApproach : MonoBehaviour
     }
     void CheckStopApproaching()
     {
-
+        if (behaviour.Player.IsAlive)
+        {
+            return;
+        }
         float distanceFromPlayer = Vector3.Distance(transform.position, behaviour.Player.transform.position);
         if (distanceFromPlayer < approachDistance)
         {

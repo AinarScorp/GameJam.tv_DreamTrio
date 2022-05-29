@@ -14,10 +14,8 @@ public class EnemyBorder : MonoBehaviour
         {
             EnemyBehaviour enemyBehaviour = collision.gameObject.GetComponent<EnemyBehaviour>();
 
-            if (enemyBehaviour !=null)
-            {
-                enemyBehaviour.SetNewEnemyState(enemyBehaviour.BorderState);
-            }
+            enemyBehaviour?.SetNewEnemyState(enemyBehaviour.BorderState);
         }
     }
+
 }

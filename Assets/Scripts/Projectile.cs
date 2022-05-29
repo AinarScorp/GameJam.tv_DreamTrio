@@ -38,11 +38,14 @@ public class Projectile : MonoBehaviour
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
+        if (playerHealth == null || !playerHealth.IsAlive)
+            return;
+
         moving = false;
         rb.velocity *= 0;
 
         explosionParticle.gameObject.SetActive(true);
-        PlayerHealth playerHealth = collision.gameObject.GetComponent<PlayerHealth>();
         if (playerHealth != null)
             playerHealth.ReceiveDamage();
         

@@ -57,6 +57,9 @@ public class EnemyMeleeBehaviour : EnemyBehaviour
         {
             case EnemyState.Dying:
                 break;
+            case EnemyState.Callibrating:
+                StartCallibration();
+                break;
             case EnemyState.Chasing:
                 enemyChase.enabled = true;
                 break;

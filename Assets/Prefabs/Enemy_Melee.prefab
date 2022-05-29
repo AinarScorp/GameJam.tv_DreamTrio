@@ -4966,6 +4966,7 @@ GameObject:
   - component: {fileID: 3567792791662185832}
   - component: {fileID: 3567792791662185846}
   - component: {fileID: 8829177143817812110}
+  - component: {fileID: 8539283827458339667}
   - component: {fileID: 2810280474919460104}
   - component: {fileID: 2021189184508033330}
   - component: {fileID: 7569210359141354071}
@@ -5054,6 +5055,24 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8539283827458339667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3567792791662185837}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 334853146b8310946bcb548d909c5c6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  destination: {x: -5, y: 0, z: 0}
+  calibrationDuration: 2
+  followSpeed: 75
+  nextState: 1
+  rb: {fileID: 3567792791662185846}
+  behaviour: {fileID: 2810280474919460104}
 --- !u!114 &2810280474919460104
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5069,10 +5088,11 @@ MonoBehaviour:
   pushForce: 0.5
   defaultMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 4097
+  callibration: {fileID: 8539283827458339667}
   animator: {fileID: 8829177143817812110}
   startingState: 0
-  borderState: 1
+  borderState: 6
   retreatChance: 15
   colider: {fileID: 3567792791662185832}
   enemyChase: {fileID: 3567792791662185833}

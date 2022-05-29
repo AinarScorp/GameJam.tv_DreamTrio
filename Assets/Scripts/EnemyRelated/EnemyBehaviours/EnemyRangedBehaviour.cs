@@ -63,6 +63,9 @@ public class EnemyRangedBehaviour : EnemyBehaviour
         {
             case EnemyState.Dying:
                 break;
+            case EnemyState.Callibrating:
+                StartCallibration();
+                break;
             case EnemyState.Shooting:
                 enemyShooting.enabled = true;
                 break;

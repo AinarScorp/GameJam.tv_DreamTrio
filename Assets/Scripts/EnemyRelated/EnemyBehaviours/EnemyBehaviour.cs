@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(EnemyCallibration))]
 public class EnemyBehaviour : MonoBehaviour
 {
     [Header("Basic Behaviour Settings")]
     [SerializeField] float pushForce = 0.5f;
 
     [SerializeField] LayerMask defaultMask;
-
+    [SerializeField] EnemyCallibration callibration;
     [SerializeField] Animator animator;
     [SerializeField] EnemyState startingState;
     [SerializeField] EnemyState borderState;
-
 
     EnemyState currentState;
     PlayerHealth player;
@@ -21,6 +21,7 @@ public class EnemyBehaviour : MonoBehaviour
     public EnemyState BorderState { get => borderState;  }
     public Animator Animator { get => animator;  }
     public PlayerHealth Player { get => player; }
+    public EnemyCallibration Callibration { get => callibration; }
 
     public virtual void Awake()
     {
@@ -35,6 +36,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     public virtual void SetNewEnemyState(EnemyState newState)
     {
+        callibration.enabled = false;
         currentState = newState;
     }
     public virtual void ReactToBeingHit(EnemyState stateToReactWith)
@@ -54,5 +56,10 @@ public class EnemyBehaviour : MonoBehaviour
             return;
         }
         transform.position = newPlayerPos;
+    }
+    public void StartCallibration()
+    {
+        callibration.enabled = true;
+
     }
 }
