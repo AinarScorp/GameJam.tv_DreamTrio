@@ -5062,15 +5062,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3567792791662185837}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 334853146b8310946bcb548d909c5c6c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {x: -5, y: 0, z: 0}
-  calibrationDuration: 2
+  calibrationDuration: 1
   followSpeed: 75
-  nextState: 1
+  nextState: 0
   rb: {fileID: 3567792791662185846}
   behaviour: {fileID: 2810280474919460104}
 --- !u!114 &2810280474919460104
@@ -5151,7 +5151,7 @@ MonoBehaviour:
   followSpeed: 75
   minChaseDuration: 1
   maxChaseDuration: 15
-  hitAndRunChance: 10
+  hitAndRunChance: 0
   rb: {fileID: 3567792791662185846}
   behaviour: {fileID: 2810280474919460104}
 --- !u!114 &3567792791662185847

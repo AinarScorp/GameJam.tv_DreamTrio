@@ -5070,9 +5070,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destination: {x: -5, y: 0, z: 0}
-  calibrationDuration: 2
+  calibrationDuration: 1
   followSpeed: 80
-  nextState: 3
+  nextState: 0
   rb: {fileID: 3567792791662185846}
   behaviour: {fileID: 7915601979525261323}
 --- !u!114 &7915601979525261323

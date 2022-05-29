@@ -48,8 +48,17 @@ public class PlayerMovement : MonoBehaviour
         input.PlayerBasic.Movement.canceled += _ => movementInputs *= 0;
 
         PlayerManager playerManager = FindObjectOfType<PlayerManager>();
-        playerManager.SubscribeToImmidiateActions(() => this.enabled = false, true);
-        playerManager.SubscribeToActivateControls(() => this.enabled = true, false);
+        playerManager.SubscribeToImmidiateActions(() =>
+        {
+            this.enabled = false;
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        }, true);
+        playerManager.SubscribeToActivateControls(() =>
+        {
+            this.enabled = true;
+            rb.constraints = ~RigidbodyConstraints2D.FreezePosition;
+
+        }, false);
 
     }
 

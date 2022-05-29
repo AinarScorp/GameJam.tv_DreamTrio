@@ -34,16 +34,31 @@ public class EnemyMeleeBehaviour : EnemyBehaviour
     public override void ReactToBeingHit(EnemyState stateToReactWith)
     {
         GetPushed();
-        if (CurrentState == EnemyState.Chasing)
+        switch (CurrentState)
         {
+            case EnemyState.Callibrating:
+                SetNewEnemyState(EnemyState.Chasing);
+                break;
+            case EnemyState.Chasing:
 
-            float randomRoll = Random.Range(0f, 100f);
-            if (retreatChance >= randomRoll)
-            {
-                SetNewEnemyState(EnemyState.Retreating);
-            }
-            return;
+                float randomRoll = Random.Range(0f, 100f);
+                if (retreatChance >= randomRoll)
+                    SetNewEnemyState(EnemyState.Retreating);
+                break;
+
+            default:
+                return;
         }
+        //if (CurrentState == EnemyState.Chasing)
+        //{
+
+        //    float randomRoll = Random.Range(0f, 100f);
+        //    if (retreatChance >= randomRoll)
+        //    {
+        //        SetNewEnemyState(EnemyState.Retreating);
+        //    }
+        //    return;
+        //}
 
     }
 

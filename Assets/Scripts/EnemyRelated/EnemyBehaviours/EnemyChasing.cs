@@ -37,7 +37,7 @@ public class EnemyChasing : MonoBehaviour
     private void OnDisable()
     {
         rb.velocity = Vector2.zero;
-        if (timer !=null)
+        if (timer != null)
             StopCoroutine(timer);
     }
 
@@ -60,7 +60,11 @@ public class EnemyChasing : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (!behaviour.Player.IsAlive || behaviour.Player.IsInvincible || this.enabled == false)
+        {
+
+            behaviour.SetNewEnemyState(EnemyState.Retreating);
             return;
+        }
         if (collision.gameObject == behaviour.Player.gameObject)
         {
             behaviour.Player.ReceiveDamage();

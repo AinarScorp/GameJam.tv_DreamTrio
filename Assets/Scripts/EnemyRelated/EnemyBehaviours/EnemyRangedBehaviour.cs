@@ -35,6 +35,10 @@ public class EnemyRangedBehaviour : EnemyBehaviour
         GetPushed();
         switch (CurrentState)
         {
+            case EnemyState.Callibrating:
+                SetNewEnemyState(EnemyState.Shooting);
+                break;
+
             case EnemyState.Shooting:
                 float randomRoll = Random.Range(0f, 100f);
                 if (retreatChance >= randomRoll)
