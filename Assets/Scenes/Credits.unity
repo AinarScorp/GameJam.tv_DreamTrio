@@ -637,7 +637,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &490014951
 RectTransform:
   m_ObjectHideFlags: 0
@@ -655,7 +655,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -471, y: 194}
+  m_AnchoredPosition: {x: 23, y: 259}
   m_SizeDelta: {x: 330.9604, y: 93.1488}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &490014952
@@ -830,7 +830,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -471, y: -120.26}
+  m_AnchoredPosition: {x: 23, y: -55.260002}
   m_SizeDelta: {x: 292.14, y: 535.3696}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &959071430
@@ -906,7 +906,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 11.000029, y: -319}
+  m_AnchoredPosition: {x: -472, y: -435}
   m_SizeDelta: {x: 292.14, y: 93.1488}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &994143715
@@ -1475,8 +1475,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -471, y: 287.15}
-  m_SizeDelta: {x: 292.14, y: 93.1488}
+  m_AnchoredPosition: {x: 18.939, y: 281.0088}
+  m_SizeDelta: {x: 356.51, y: 119.9129}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1344406378
 MonoBehaviour:
@@ -1498,7 +1498,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Einar Hallik
+  m_text: 'Einar Hallik
+
+    (AinarScorp)'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 35a3f9d4ecbc64a4ebc9652bb5db49fd, type: 2}
   m_sharedMaterial: {fileID: 620054374255415109, guid: 35a3f9d4ecbc64a4ebc9652bb5db49fd, type: 2}
@@ -1537,7 +1539,7 @@ MonoBehaviour:
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
-  m_lineSpacing: 0
+  m_lineSpacing: 13.23
   m_lineSpacingMax: 0
   m_paragraphSpacing: 0
   m_charWidthMaxAdj: 0
@@ -1784,7 +1786,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -471, y: -437}
+  m_AnchoredPosition: {x: 23, y: -372}
   m_SizeDelta: {x: 364.6273, y: 93.1488}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1622954730
@@ -2222,7 +2224,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 11.000029, y: -0.000005722}
+  m_AnchoredPosition: {x: -471.99997, y: -116.00001}
   m_SizeDelta: {x: 292.14, y: 535.3696}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2087488333
@@ -2392,7 +2394,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 11, y: 314.26}
+  m_AnchoredPosition: {x: -472, y: 198.26001}
   m_SizeDelta: {x: 434.4407, y: 93.1488}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2134669473
