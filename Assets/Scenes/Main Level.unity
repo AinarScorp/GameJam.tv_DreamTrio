@@ -14519,6 +14519,72 @@ Transform:
   m_Father: {fileID: 1192685223}
   m_RootOrder: 99
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &597006375 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 229573293682539610, guid: 73643f85185109b4fb418844b82011b4, type: 3}
+  m_PrefabInstance: {fileID: 229573294655980875}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &597006376 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 229573293682539609, guid: 73643f85185109b4fb418844b82011b4, type: 3}
+  m_PrefabInstance: {fileID: 229573294655980875}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597006375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0a2711ac58c336a47a690e9c250301a9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &597006378
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597006375}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: 62ae6517cc91da342ac0d04a4dd971e8, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: b7934ff7-56d8-422c-8949-ac43d4bde1ef
+    m_ActionName: GameInterraction/PauseGame[/Keyboard/escape]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 597006376}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: SpacePressed
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: 95ba38ed-87bd-4f6d-8bb0-738432b670ab
+    m_ActionName: GameInterraction/StartGame[/Keyboard/space]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: GameInterraction
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &598272984
 GameObject:
   m_ObjectHideFlags: 0
@@ -25419,6 +25485,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 301284099}
     m_Modifications:
+    - target: {fileID: 1935866704945242612, guid: f4aa456a073d8d84da15201edbd94b11, type: 3}
+      propertyPath: clockDown
+      value: 
+      objectReference: {fileID: 895697790}
     - target: {fileID: 1935866704945242613, guid: f4aa456a073d8d84da15201edbd94b11, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -49293,7 +49363,7 @@ PrefabInstance:
       objectReference: {fileID: 1104188866}
     - target: {fileID: 1564411553, guid: 1a9bc005fcd59db46a9dbd370225f50f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1564411558, guid: 1a9bc005fcd59db46a9dbd370225f50f, type: 3}
       propertyPath: m_UpdateMode
@@ -49303,6 +49373,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1104188866}
+    - target: {fileID: 1831550743, guid: 1a9bc005fcd59db46a9dbd370225f50f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 309755060322068049, guid: 1a9bc005fcd59db46a9dbd370225f50f, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 309755060459248321, guid: 1a9bc005fcd59db46a9dbd370225f50f, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -49799,6 +49877,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 301284099}
     m_Modifications:
+    - target: {fileID: 8320223908534947588, guid: bbf7346ce1a94304ba340d63e2d80c59, type: 3}
+      propertyPath: m_DefaultActionMap
+      value: GameInterraction
+      objectReference: {fileID: 0}
+    - target: {fileID: 8320223908534947588, guid: bbf7346ce1a94304ba340d63e2d80c59, type: 3}
+      propertyPath: m_ActionEvents.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8320223908534947588, guid: bbf7346ce1a94304ba340d63e2d80c59, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_ActionId
+      value: 95ba38ed-87bd-4f6d-8bb0-738432b670ab
+      objectReference: {fileID: 0}
+    - target: {fileID: 8320223908534947588, guid: bbf7346ce1a94304ba340d63e2d80c59, type: 3}
+      propertyPath: m_ActionEvents.Array.data[1].m_ActionName
+      value: GameInterraction/StartGame[/Keyboard/space]
+      objectReference: {fileID: 0}
     - target: {fileID: 8320223908534947589, guid: bbf7346ce1a94304ba340d63e2d80c59, type: 3}
       propertyPath: m_Name
       value: PauseManager

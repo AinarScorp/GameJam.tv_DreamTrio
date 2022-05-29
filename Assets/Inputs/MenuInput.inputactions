@@ -2,13 +2,22 @@
     "name": "MenuInput",
     "maps": [
         {
-            "name": "PauseMenu",
+            "name": "GameInterraction",
             "id": "77da21d2-8df0-42c3-bf0c-6cd1d46285df",
             "actions": [
                 {
                     "name": "PauseGame",
                     "type": "Button",
                     "id": "b7934ff7-56d8-422c-8949-ac43d4bde1ef",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "StartGame",
+                    "type": "Button",
+                    "id": "95ba38ed-87bd-4f6d-8bb0-738432b670ab",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "",
@@ -24,6 +33,17 @@
                     "processors": "",
                     "groups": "",
                     "action": "PauseGame",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "be279400-2bcc-4d14-9ca3-fe6905cdf6ce",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "StartGame",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
