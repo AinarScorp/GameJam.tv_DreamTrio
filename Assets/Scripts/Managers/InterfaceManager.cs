@@ -10,6 +10,11 @@ public class InterfaceManager : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI currentWaveText;
 
+    private void Awake()
+    {
+        if (Instance == null)
+            Instance = this;
+    }
     private void Start()
     {
         DisplayCurrentKillCount(0, 0);

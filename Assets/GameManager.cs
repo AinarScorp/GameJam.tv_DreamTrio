@@ -12,4 +12,12 @@ public class GameManager : MonoBehaviour
         if (!Application.isEditor)
             Cursor.visible = false;
     }
+
+    public void SpacePressed()
+    {
+        if (gameStarted == true)
+            return;
+        FindObjectOfType<WaveManager>().NextWave();
+
+    }
 }
