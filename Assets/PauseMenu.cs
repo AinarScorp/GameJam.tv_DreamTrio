@@ -59,7 +59,7 @@ public class PauseMenu : MonoBehaviour
 
     public void QuitTheGame()
     {
-        InterfaceManager.Instance.ConfirmationQuestion(confirmationMessage, () =>
+        ConfirmationMessage.Instance.ConfirmationQuestion(confirmationMessage, () =>
         {
             FindObjectOfType<SceneHandler>().GoToMainMenu();
             pauseMenu.SetActive(false);
