@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
         if (gameStarted == true)
             return;
         FindObjectOfType<WaveManager>().NextWave();
+        gameStarted = true;
 
     }
 }

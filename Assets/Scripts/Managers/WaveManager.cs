@@ -67,7 +67,7 @@ public class WaveManager : MonoBehaviour
             yield break;
         }
         yield return WaveTimerStart();
-        
+
         remainingEnemies = 0;
         enemySpawners.ToList().ForEach(spawner => StartCoroutine(spawner.StartSpawningEnemies(currentWave)));
         enemiesTotal = remainingEnemies;
@@ -82,12 +82,14 @@ public class WaveManager : MonoBehaviour
     {
         clockDown.gameObject.SetActive(true);
         float timeRemaining = waveStartTimer;
-        while (timeRemaining >0)
+
+        while (timeRemaining > 0.1f)
         {
             timeRemaining -= Time.deltaTime;
             UpdateTime(timeRemaining);
             yield return null;
         }
+
         clockDown.gameObject.SetActive(false);
 
     }
