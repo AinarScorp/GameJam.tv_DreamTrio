@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     bool gameStarted;
 
+
     private void Start()
     {
         if (!Application.isEditor)
