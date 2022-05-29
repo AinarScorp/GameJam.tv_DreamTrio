@@ -5,6 +5,7 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     [SerializeField] Rigidbody2D rb;
+    [SerializeField] Collider2D col;
     [SerializeField] float speed = 10f;
     [SerializeField] float lifespan = 5f;
     [SerializeField] LayerMask colisionLayer;
@@ -28,6 +29,8 @@ public class Projectile : MonoBehaviour
         this.direction = direction;
         StartCoroutine(DestroyAfterLifespan());
     }
+
+
     IEnumerator DestroyAfterLifespan(float customLifespan = 0)
     {
         if (customLifespan != 0)
@@ -52,9 +55,9 @@ public class Projectile : MonoBehaviour
         DestroyMe();
     }
 
-    void DestroyMe()
+    public void DestroyMe()
     {
-        
+        col.enabled = false;
         spriteRenderer.enabled = false;
         Destroy(this.gameObject,3);
     }

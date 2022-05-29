@@ -137,6 +137,7 @@ public class PlayerHealth : MonoBehaviour
         }
         if (currentHealth <= 0)
         {
+            playerManager.StartGameOver(false);
             Debug.LogWarning("you lost");
             return;
         }

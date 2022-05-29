@@ -10,13 +10,13 @@ public class PlayerManager : MonoBehaviour
     PlayerAnimator playerAnimator;
 
 
-
     Action PlayerDeathImmidiateActions;
     Action PlayerRevivalImmidiateActions;
 
     Action ActivateGhostControls;
     Action ActivateLivingControls;
-
+    Action PlayerDiedForReal;
+    Action GameOverFailure;
 
 
     private void Awake()
@@ -27,7 +27,19 @@ public class PlayerManager : MonoBehaviour
 
     public void StartTurningIntoGhost() => StartCoroutine(TurnIntoGhost());
     public void StartTurningIntoLiving() => StartCoroutine(TurnIntoAliveForm());
+    public void StartGameOver(bool hasWon)
+    {
+        // move it to Game manager
+        if (hasWon)
+        {
+            // turn off pause Manager
+        }
+        else
+        {
+            StartCoroutine(GameLost());
+        }
 
+    }
     IEnumerator TurnIntoGhost()
     {
         PlayerDeathImmidiateActions();
@@ -47,26 +59,40 @@ public class PlayerManager : MonoBehaviour
         AudioManagerScript.Instance.Play("Ghost Appear");
         ghost.transform.position = playerAnimator.transform.position;
         ghost.gameObject.SetActive(true);
-
+        while (ghost.AnimationIsPlaying)
+        {
+            yield return new WaitForSeconds(0.5f);
+        }
         ActivateGhostControls();
     }
     IEnumerator TurnIntoAliveForm()
     {
         PlayerRevivalImmidiateActions();
+        ghost.GhostVanish();
         playerAnimator.SetTrigger("Revive");
-        if (playerAnimator.AnimationIsPlaying)
+
+        while (playerAnimator.AnimationIsPlaying)
         {
             yield return new WaitForSeconds(0.5f);
         }
         AudioManagerScript.Instance.Play("Revive");
         StartCoroutine(AudioManagerScript.Instance.FadeOut("Ghost Atmos"));
 
-        ghost.gameObject.SetActive(false);
 
         ActivateLivingControls();
-
-
     }
+    IEnumerator GameLost()
+    {
+        PlayerDiedForReal();
+        ghost.GhostVanish();
+        while (ghost.AnimationIsPlaying)
+        {
+            yield return new WaitForSeconds(0.5f);
+
+        }
+        GameOverFailure();
+    }
+
     #region subscriptions
     public void SubscribeToImmidiateActions(Action actionToAdd, bool toDeath)
     {
@@ -105,6 +131,21 @@ public class PlayerManager : MonoBehaviour
         }
         ActivateLivingControls -= actionToRemove;
     }
+    public void SubscribeToGameOver(Action actionToAdd, bool playerWon)
+    {
+        if (playerWon)
+        {
+            // add win
+            return;
+        }
+        GameOverFailure += actionToAdd;
+    }
+    public void SubscribeToPlayerDied(Action actionToAdd)
+    {
+
+        PlayerDiedForReal += actionToAdd;
+    }
+
 
     #endregion
 }

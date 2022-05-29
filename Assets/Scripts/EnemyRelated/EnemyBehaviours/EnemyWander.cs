@@ -43,12 +43,12 @@ public class EnemyWander : MonoBehaviour
 
     private void FixedUpdate()
     {
+        behaviour.Animator.SetFloat("Horizontal", Mathf.Clamp(rb.velocity.x, -1, 1));
         if (Vector3.Distance(transform.position, destination) > 0.1f)
         {
             return;
         }
         StartMovingToNewPosition();
-        behaviour.Animator.SetFloat("Horizontal", Mathf.Clamp(rb.velocity.x, -1, 1));
 
     }
 

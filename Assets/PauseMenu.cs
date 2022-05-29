@@ -22,6 +22,7 @@ public class PauseMenu : MonoBehaviour
     {
         pauseMenu.SetActive(false);
         gameIsPaused = false;
+        FindObjectOfType<PlayerManager>().SubscribeToPlayerDied(() => this.enabled = false);
 
     }
 

@@ -88,4 +88,11 @@ public class EnemyRangedBehaviour : EnemyBehaviour
                 return;
         }
     }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (!Player.IsAlive || Player.IsInvincible)
+        {
+            SetNewEnemyState(EnemyState.Retreating);
+        }
+    }
 }

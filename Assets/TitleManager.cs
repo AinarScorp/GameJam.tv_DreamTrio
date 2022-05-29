@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 public class TitleManager : SceneHandler
 {
@@ -10,7 +10,11 @@ public class TitleManager : SceneHandler
     [SerializeField] string confirmationMessage;
 
 
+    public override void GoToCreatorScreen()
+    {
+        SceneManager.LoadScene(2);
 
+    }
 
 
     public override void QuitGame()

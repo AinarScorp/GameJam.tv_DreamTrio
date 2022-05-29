@@ -53,6 +53,7 @@ public class VirtualCamera : MonoBehaviour
         PlayerManager playerManager = FindObjectOfType<PlayerManager>();
         playerManager.SubscribeToActivateControls(StartZoomOut, true);
         playerManager.SubscribeToImmidiateActions(StartZoomIn, false);
+        playerManager.SubscribeToPlayerDied(StartZoomIn);
 
         startingCameraValue = virtualCamera.m_Lens.OrthographicSize;
         noise = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
@@ -137,6 +138,7 @@ public class VirtualCamera : MonoBehaviour
 
         yield return new WaitForSeconds(revivalWait);
         yield return ZoomOut(startingCameraValue);
+
 
     }
     //IEnumerator ZoomIn()

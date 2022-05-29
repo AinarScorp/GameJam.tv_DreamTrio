@@ -14,8 +14,14 @@ public class SceneHandler : MonoBehaviour
     {
         if (transition == null)
         {
-            transition = FindObjectOfType<TransitionAnimation>().GetComponent<Animator>();
+            transition = FindObjectOfType<TransitionAnimation>()?.GetComponent<Animator>();
         }
+    }
+    private void Start()
+    {
+        if (transition == null)
+            return;
+        transition.gameObject.SetActive(true);
     }
     public void GoToMainMenu()
     {
@@ -37,14 +43,34 @@ public class SceneHandler : MonoBehaviour
         animationTrans =StartCoroutine(StartTransition(nextSceneIndex));
 
     }
-    public void GoToCreatorScreen()
+    public void RestartLevel()
     {
+        if (animationTrans != null)
+        {
+            StopCoroutine(animationTrans);
+        }
+        int currentScene = SceneManager.GetActiveScene().buildIndex;
+        animationTrans = StartCoroutine(StartTransition(currentScene));
 
+    }
+    public virtual void GoToCreatorScreen()
+    {
+        if (animationTrans != null)
+        {
+            StopCoroutine(animationTrans);
+        }
+        animationTrans = StartCoroutine(StartTransition(2));
     }
 
 
     IEnumerator StartTransition(int sceneIndex)
     {
+        if (transition == null)
+        {
+            SceneManager.LoadScene(sceneIndex);
+
+            yield break;
+        }
         transitionAnimPlaying = true;
         transition.SetTrigger("TransitionOpening");
         while (transitionAnimPlaying)

@@ -43,14 +43,15 @@ public class EnemyApproach : MonoBehaviour
             {
                 yield break;
             }
-            CheckStopApproaching();
+            StopApproaching();
             yield return new WaitForSeconds(0.1f);
         }
     }
-    void CheckStopApproaching()
+    void StopApproaching()
     {
-        if (behaviour.Player.IsAlive)
+        if (!behaviour.Player.IsAlive)
         {
+            behaviour.SetNewEnemyState(EnemyState.Wandering);
             return;
         }
         float distanceFromPlayer = Vector3.Distance(transform.position, behaviour.Player.transform.position);

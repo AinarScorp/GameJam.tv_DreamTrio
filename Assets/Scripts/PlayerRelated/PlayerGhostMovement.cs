@@ -4,31 +4,35 @@ using UnityEngine;
 
 public class PlayerGhostMovement : MonoBehaviour
 {
+    [SerializeField] Animator animator;
 
+    bool animationIsPlaying;
     float speed = 10f;
 
     Vector2 movementInputs;
 
-
-    [SerializeField] Animator animator;
     Rigidbody2D rb;
     PlayerInput input;
 
+    public bool AnimationIsPlaying { get => animationIsPlaying; }
     private void Awake()
     {
         input = new PlayerInput();
         rb = GetComponent<Rigidbody2D>();
+        speed = FindObjectOfType<PlayerMovement>().Speed;
+
         if (animator == null)
             animator = GetComponent<Animator>();
     }
     private void OnEnable()
     {
-        speed = FindObjectOfType<PlayerMovement>().Speed;
+        animationIsPlaying = true;
         input.Enable();
     }
     private void OnDisable()
     {
         input.Disable();
+
         rb.velocity *= 0;
 
     }
@@ -36,10 +40,16 @@ public class PlayerGhostMovement : MonoBehaviour
     {
         input.PlayerBasic.Movement.performed += ctx => movementInputs = ctx.ReadValue<Vector2>();
         input.PlayerBasic.Movement.canceled += _ => movementInputs *= 0;
+        //PlayerManager playerManager = FindObjectOfType<PlayerManager>();
+        //playerManager.SubscribeToActivateControls(() => this.enabled = true, true);
         gameObject.SetActive(false);
     }
     private void FixedUpdate()
     {
+        if (animationIsPlaying)
+        {
+            return;
+        }
         HandleMovement();
     }
     void HandleMovement()
@@ -51,4 +61,23 @@ public class PlayerGhostMovement : MonoBehaviour
         animator.SetFloat("Vertical", movementInputs.y);
         rb.velocity = movementInputs * speed * Time.fixedDeltaTime;
     }
+    public void GhostVanish()
+    {
+        animationIsPlaying = true;
+        animator.SetTrigger("Died");
+        StartCoroutine(TurnOffGameObject());
+    }
+    IEnumerator TurnOffGameObject()
+    {
+        while (animationIsPlaying)
+        {
+            yield return null;
+
+        }
+        gameObject.SetActive(false);
+
+    }
+
+    void StopAnimationPlaying() => animationIsPlaying = false;
+
 }
