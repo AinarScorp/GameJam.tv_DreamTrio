@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class TitleManager : MonoBehaviour
 {
+    [Header("Confirmation Exit Setup")]
+    [TextArea]
+    [SerializeField] string confirmationMessage;
+
     public void StartGame()
     {
 
@@ -14,7 +18,9 @@ public class TitleManager : MonoBehaviour
     }
     public void QuitGame()
     {
-
-        Application.Quit();
+        ConfirmationMessage.Instance.ConfirmationQuestion(confirmationMessage, () => 
+        {
+            Application.Quit();
+        }, null);
     }
 }
