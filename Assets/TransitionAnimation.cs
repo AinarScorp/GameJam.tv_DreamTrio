@@ -8,5 +8,6 @@ public class TransitionAnimation : MonoBehaviour
     void FinishTransition()
     {
         FindObjectOfType<SceneHandler>().FininshTransitionAnimation();
+        Time.timeScale = 1f;
     }
 }

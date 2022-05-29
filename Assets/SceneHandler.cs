@@ -8,6 +8,8 @@ public class SceneHandler : MonoBehaviour
 {
     bool transitionAnimPlaying = false;
     [SerializeField] Animator transition;
+    Coroutine animationTrans;
+
     private void Awake()
     {
         if (transition == null)
@@ -17,14 +19,22 @@ public class SceneHandler : MonoBehaviour
     }
     public void GoToMainMenu()
     {
-        Debug.Log("main menu booooo");
+        if (animationTrans != null)
+        {
+            StopCoroutine(animationTrans);
+        }
+        animationTrans =StartCoroutine(StartTransition(0));
     }
 
     public void StartFirstLevel()
     {
+        if (animationTrans != null)
+        {
+            StopCoroutine(animationTrans);
+        }
         int currentScene = SceneManager.GetActiveScene().buildIndex;
         int nextSceneIndex = currentScene + 1;
-        StartCoroutine(StartTransition(nextSceneIndex));
+        animationTrans =StartCoroutine(StartTransition(nextSceneIndex));
 
     }
     public void GoToCreatorScreen()
@@ -39,13 +49,10 @@ public class SceneHandler : MonoBehaviour
         transition.SetTrigger("TransitionOpening");
         while (transitionAnimPlaying)
             yield return null;
-        LoadScene(sceneIndex);
-    }
-
-    void LoadScene(int sceneIndex)
-    {
         SceneManager.LoadScene(sceneIndex);
     }
+
+
 
     public virtual void QuitGame()
     {
