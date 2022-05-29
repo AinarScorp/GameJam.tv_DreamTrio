@@ -22,15 +22,14 @@ public class CordCircle : MonoBehaviour
     AdjustCollider adjustCollider;
     SpriteRenderer spriteRenderer;
 
-    InterfaceManager inerfaceManager;
     PlayerHealth playerHealth;
 
 
+    public bool AutoApplySize { get => autoApplySize; }
 
     private void Awake()
     {
         target = FindObjectOfType<PlayerHealth>().transform;
-        inerfaceManager = FindObjectOfType<InterfaceManager>();
         adjustCollider = GetComponent<AdjustCollider>();
         spriteRenderer = GetComponent<SpriteRenderer>();
     }
@@ -38,14 +37,13 @@ public class CordCircle : MonoBehaviour
     {
         cordLength = defaultCordLength;
         SwitchCordCircle(false);
-        inerfaceManager?.DisplayNewCordLength(cordLength);
-
-        FindObjectOfType<PlayerManager>().SubscribeToActivateControls(StartCircleShrinking, true);
+        if (Application.isPlaying)
+            FindObjectOfType<PlayerManager>().SubscribeToActivateControls(StartCircleShrinking, true);
     }
-    public bool AutoApplySize { get => autoApplySize; }
 
-
+    #if UNITY_EDITOR
     public void ToggleAutoApplySize() => autoApplySize = !autoApplySize;
+    #endif
 
 
     public void ApplyNewSize()
@@ -72,7 +70,6 @@ public class CordCircle : MonoBehaviour
         cordLength += amount;
         if (cordLength > maxCordLength)
             cordLength = maxCordLength;
-        inerfaceManager?.DisplayNewCordLength(cordLength);
 
     }
     IEnumerator ExpandCircle()
@@ -122,7 +119,6 @@ public class CordCircle : MonoBehaviour
         playerHealth.Revive();
 
         SwitchCordCircle(false);
-        inerfaceManager?.DisplayNewCordLength(cordLength);
     }
 
     void SwitchCordCircle(bool turnOn)

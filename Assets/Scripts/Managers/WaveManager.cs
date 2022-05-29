@@ -8,8 +8,8 @@ public class WaveManager : MonoBehaviour
     [SerializeField] bool testStartWave;
     EnemySpawnerNew[] enemySpawners;
     
-    int numberOfEnemiesInTheWave;
-
+    int remainingEnemies;
+    int enemiesTotal;
     [SerializeField] int currentWave = 0;
     int numberOfWaves;
     private void Awake()
@@ -37,17 +37,20 @@ public class WaveManager : MonoBehaviour
 
     public void AddAmountOfEnemies(int amount)
     {
-        numberOfEnemiesInTheWave += amount;
+        remainingEnemies += amount;
     }
     public void RemoveFromWaveCount()
     {
-        numberOfEnemiesInTheWave--;
+        remainingEnemies--;
+        int killedNumber = enemiesTotal - remainingEnemies;
+        InterfaceManager.Instance.DisplayCurrentKillCount(killedNumber, enemiesTotal);
+
         StartNextWave();
     }
 
     bool ReadyForTheNextWave()
     {
-        return numberOfEnemiesInTheWave <= 0;
+        return remainingEnemies <= 0;
     }
     void StartNextWave()
     {
@@ -58,8 +61,12 @@ public class WaveManager : MonoBehaviour
             Debug.LogWarning("you have won");
             return;
         }
-        numberOfEnemiesInTheWave = 0;
+        remainingEnemies = 0;
         enemySpawners.ToList().ForEach(spawner => StartCoroutine(spawner.StartSpawningEnemies(currentWave)));
+        enemiesTotal = remainingEnemies;
+        InterfaceManager.Instance.DisplayCurrentKillCount(0, enemiesTotal);
         currentWave++;
+        InterfaceManager.Instance.DisplayCurrentWaveNumber(currentWave);
+
     }
 }

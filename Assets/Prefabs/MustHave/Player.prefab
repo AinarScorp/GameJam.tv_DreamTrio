@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 140
-  pushForce: 1.8
+  pushForce: 0.9
   defaultMask:
     serializedVersion: 2
     m_Bits: 1

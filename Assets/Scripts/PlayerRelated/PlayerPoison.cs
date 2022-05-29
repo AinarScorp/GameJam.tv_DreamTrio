@@ -20,7 +20,7 @@ public class PlayerPoison : MonoBehaviour
     private void Start()
     {
         player.SubscribeToReactHit(ReactToHit);
-        playerPoison = StartCoroutine(PoisonPlayer());
+        StartPoisonCount();
     }
     IEnumerator PoisonPlayer()
     {
@@ -41,6 +41,14 @@ public class PlayerPoison : MonoBehaviour
 
             player.ReceiveDamage(poisonDamage, true);
         }
+    }
+    public void AbruptPoisonCount()
+    {
+        StopCoroutine(playerPoison);
+    }
+    public void StartPoisonCount()
+    {
+        playerPoison = StartCoroutine(PoisonPlayer());
     }
     void ReactToHit()
     {

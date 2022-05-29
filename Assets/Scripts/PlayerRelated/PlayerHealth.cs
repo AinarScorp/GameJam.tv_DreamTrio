@@ -9,6 +9,7 @@ public class PlayerHealth : MonoBehaviour
 
     [Header("Adjustment")]
     [SerializeField] int startingHealth = 5;
+    [SerializeField] int maxHealth = 24;
     [SerializeField] float invulnerabilityTime = 1f;
 
 
@@ -130,6 +131,10 @@ public class PlayerHealth : MonoBehaviour
     {
         currentHealth = collectedHearths;
         collectedHearths = 0;
+        if (currentHealth >maxHealth)
+        {
+            currentHealth = maxHealth;
+        }
         if (currentHealth <= 0)
         {
             Debug.LogWarning("you lost");

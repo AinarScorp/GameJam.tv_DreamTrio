@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-using System.Reflection;
-
 public class PlayerBasicAttack : MonoBehaviour
 {
     public static PlayerBasicAttack Instance { get; private set; }
@@ -76,13 +74,7 @@ public class PlayerBasicAttack : MonoBehaviour
         attackPoint.localPosition = playerMovement.FacingDirection * attackPointDistance;
 
     }
-    public void ClearLog() //you can copy/paste this code to the bottom of your script
-    {
-        var assembly = Assembly.GetAssembly(typeof(UnityEditor.Editor));
-        var type = assembly.GetType("UnityEditor.LogEntries");
-        var method = type.GetMethod("Clear");
-        method.Invoke(new object(), null);
-    }
+
     void Attack()
     {
         if (!IsAttacking)
