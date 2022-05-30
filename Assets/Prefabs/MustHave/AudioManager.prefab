@@ -120,10 +120,5 @@ MonoBehaviour:
     volume: 0.2
     pitch: 1
     loop: 1
-  - name: Button
-    clip: {fileID: 8300000, guid: b21f30da02745a64d9e5e860b2d1f980, type: 3}
-    volume: 1
-    pitch: 1
-    loop: 1
   fadeInTime: 3
   fadeOutTime: 2
