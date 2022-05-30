@@ -33,9 +33,7 @@ public class PlayerBasicAttack : MonoBehaviour
 
     private void Awake()
     {
-        if (Instance != null)
-            Destroy(this);
-
+        if (Instance == null)
         Instance = this;
 
         input = new PlayerInput();
@@ -108,13 +106,13 @@ public class PlayerBasicAttack : MonoBehaviour
 
 
 
-
+#if UNITY_EDITOR
     #region editor
     public void SetDrawPositionLines(bool setTo) => drawPositionLines = setTo;
     public void SetDrawRadiusCircle(bool setTo) => drawRadiusCircle = setTo;
     public void SetDrawAllCircles(bool setTo) => drawAllCircles = setTo;
     #endregion
-
+#endif
     #region comments /useless stuff
 
 

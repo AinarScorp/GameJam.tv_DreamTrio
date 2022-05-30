@@ -42,6 +42,24 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""id"": ""72a89628-3ca7-4d34-8ed1-3d8ddef0bc22"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
+                    ""interactions"": ""Tap"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MagicAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""e8a99517-8a8e-46a5-ae92-709dd52559ce"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": ""Hold"",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""MousePos"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""6c2eb0cb-02f9-4e0c-a97f-930bf3512e5f"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
                 }
@@ -112,6 +130,28 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                     ""action"": ""MeleeAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4c1ae14b-5cb3-4b9a-9ff5-412c27a4d499"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MagicAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""70e7cdcb-7830-418c-a32d-97e903652a88"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""MousePos"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -122,6 +162,8 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
         m_PlayerBasic = asset.FindActionMap("PlayerBasic", throwIfNotFound: true);
         m_PlayerBasic_Movement = m_PlayerBasic.FindAction("Movement", throwIfNotFound: true);
         m_PlayerBasic_MeleeAttack = m_PlayerBasic.FindAction("MeleeAttack", throwIfNotFound: true);
+        m_PlayerBasic_MagicAttack = m_PlayerBasic.FindAction("MagicAttack", throwIfNotFound: true);
+        m_PlayerBasic_MousePos = m_PlayerBasic.FindAction("MousePos", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -183,12 +225,16 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     private IPlayerBasicActions m_PlayerBasicActionsCallbackInterface;
     private readonly InputAction m_PlayerBasic_Movement;
     private readonly InputAction m_PlayerBasic_MeleeAttack;
+    private readonly InputAction m_PlayerBasic_MagicAttack;
+    private readonly InputAction m_PlayerBasic_MousePos;
     public struct PlayerBasicActions
     {
         private @PlayerInput m_Wrapper;
         public PlayerBasicActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_PlayerBasic_Movement;
         public InputAction @MeleeAttack => m_Wrapper.m_PlayerBasic_MeleeAttack;
+        public InputAction @MagicAttack => m_Wrapper.m_PlayerBasic_MagicAttack;
+        public InputAction @MousePos => m_Wrapper.m_PlayerBasic_MousePos;
         public InputActionMap Get() { return m_Wrapper.m_PlayerBasic; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -204,6 +250,12 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @MeleeAttack.started -= m_Wrapper.m_PlayerBasicActionsCallbackInterface.OnMeleeAttack;
                 @MeleeAttack.performed -= m_Wrapper.m_PlayerBasicActionsCallbackInterface.OnMeleeAttack;
                 @MeleeAttack.canceled -= m_Wrapper.m_PlayerBasicActionsCallbackInterface.OnMeleeAttack;
+                @MagicAttack.started -= m_Wrapper.m_PlayerBasicActionsCallbackInterface.OnMagicAttack;
+                @MagicAttack.performed -= m_Wrapper.m_PlayerBasicActionsCallbackInterface.OnMagicAttack;
+                @MagicAttack.canceled -= m_Wrapper.m_PlayerBasicActionsCallbackInterface.OnMagicAttack;
+                @MousePos.started -= m_Wrapper.m_PlayerBasicActionsCallbackInterface.OnMousePos;
+                @MousePos.performed -= m_Wrapper.m_PlayerBasicActionsCallbackInterface.OnMousePos;
+                @MousePos.canceled -= m_Wrapper.m_PlayerBasicActionsCallbackInterface.OnMousePos;
             }
             m_Wrapper.m_PlayerBasicActionsCallbackInterface = instance;
             if (instance != null)
@@ -214,6 +266,12 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
                 @MeleeAttack.started += instance.OnMeleeAttack;
                 @MeleeAttack.performed += instance.OnMeleeAttack;
                 @MeleeAttack.canceled += instance.OnMeleeAttack;
+                @MagicAttack.started += instance.OnMagicAttack;
+                @MagicAttack.performed += instance.OnMagicAttack;
+                @MagicAttack.canceled += instance.OnMagicAttack;
+                @MousePos.started += instance.OnMousePos;
+                @MousePos.performed += instance.OnMousePos;
+                @MousePos.canceled += instance.OnMousePos;
             }
         }
     }
@@ -222,5 +280,7 @@ public partial class @PlayerInput : IInputActionCollection2, IDisposable
     {
         void OnMovement(InputAction.CallbackContext context);
         void OnMeleeAttack(InputAction.CallbackContext context);
+        void OnMagicAttack(InputAction.CallbackContext context);
+        void OnMousePos(InputAction.CallbackContext context);
     }
 }

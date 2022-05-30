@@ -20,6 +20,24 @@
                     "id": "72a89628-3ca7-4d34-8ed1-3d8ddef0bc22",
                     "expectedControlType": "Button",
                     "processors": "",
+                    "interactions": "Tap",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MagicAttack",
+                    "type": "Button",
+                    "id": "e8a99517-8a8e-46a5-ae92-709dd52559ce",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Hold",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "MousePos",
+                    "type": "PassThrough",
+                    "id": "6c2eb0cb-02f9-4e0c-a97f-930bf3512e5f",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
                 }
@@ -88,6 +106,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "MeleeAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "4c1ae14b-5cb3-4b9a-9ff5-412c27a4d499",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MagicAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "70e7cdcb-7830-418c-a32d-97e903652a88",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MousePos",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
