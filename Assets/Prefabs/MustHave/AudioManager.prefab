@@ -105,6 +105,16 @@ MonoBehaviour:
     volume: 1
     pitch: 1
     loop: 0
+  - name: Start
+    clip: {fileID: 8300000, guid: a65faef627128f946993636f09faa50c, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
+  - name: Fireball
+    clip: {fileID: 8300000, guid: b2b97eb90d91efd4f95e2bb355a38346, type: 3}
+    volume: 1
+    pitch: 1
+    loop: 0
   fadeInTime: 3
   fadeOutTime: 2
   desiredVolume: 0.1
