@@ -14794,6 +14794,11 @@ Transform:
   m_Father: {fileID: 1192685223}
   m_RootOrder: 51
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &518462440 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6832522039479051241, guid: 1a9bc005fcd59db46a9dbd370225f50f, type: 3}
+  m_PrefabInstance: {fileID: 309755061503826861}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &529840312
 GameObject:
   m_ObjectHideFlags: 0
@@ -29657,7 +29662,7 @@ PrefabInstance:
       objectReference: {fileID: 313599330}
     - target: {fileID: 1935866704945242612, guid: f4aa456a073d8d84da15201edbd94b11, type: 3}
       propertyPath: currentWave
-      value: 3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1935866704945242612, guid: f4aa456a073d8d84da15201edbd94b11, type: 3}
       propertyPath: waveStartTimer
@@ -57976,11 +57981,6 @@ CanvasGroup:
   m_CorrespondingSourceObject: {fileID: 7271715999817288310, guid: 1a9bc005fcd59db46a9dbd370225f50f, type: 3}
   m_PrefabInstance: {fileID: 309755061503826861}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &309755061503826865 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6832522039479051241, guid: 1a9bc005fcd59db46a9dbd370225f50f, type: 3}
-  m_PrefabInstance: {fileID: 309755061503826861}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &816335199461864119
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -58501,7 +58501,7 @@ PrefabInstance:
     - target: {fileID: 8320223908534947591, guid: bbf7346ce1a94304ba340d63e2d80c59, type: 3}
       propertyPath: tutorialMenu
       value: 
-      objectReference: {fileID: 309755061503826865}
+      objectReference: {fileID: 518462440}
     - target: {fileID: 8320223908534947591, guid: bbf7346ce1a94304ba340d63e2d80c59, type: 3}
       propertyPath: quitYesOption
       value: 'Yes
