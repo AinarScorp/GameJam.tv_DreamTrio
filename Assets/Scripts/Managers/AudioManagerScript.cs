@@ -11,7 +11,6 @@ public class AudioManagerScript : MonoBehaviour
     List<AudioSource> audioSources = new List<AudioSource>();
     [SerializeField] float fadeInTime;
     [SerializeField] float fadeOutTime;
-    [SerializeField] float desiredVolume;
 
     private void Awake()
     {
@@ -28,7 +27,6 @@ public class AudioManagerScript : MonoBehaviour
         }
 
         Instance = this;
-        PlayLoop("Music");
     }
 
     public void PlayLoop(string name)
@@ -80,7 +78,7 @@ public class AudioManagerScript : MonoBehaviour
             }
         }
     }
-    public IEnumerator FadeIn(string soundName)
+    public IEnumerator FadeIn(string soundName, float desiredVolume)
     {
         AudioSource tempSound = null;
 
@@ -111,7 +109,7 @@ public class AudioManagerScript : MonoBehaviour
         yield return null;
     }
 
-    public IEnumerator FadeOut(string soundName)
+    public IEnumerator FadeOut(string soundName, float desiredVolume, bool turnOff)
     {
         AudioSource tempSound = null;
 
@@ -125,7 +123,6 @@ public class AudioManagerScript : MonoBehaviour
         }
 
         float elapsedTime = 0;
-        float desiredVolume = 0;
 
         float currentVolume = tempSound.volume;
 
@@ -139,9 +136,30 @@ public class AudioManagerScript : MonoBehaviour
 
         tempSound.volume = desiredVolume;
 
-        StopPlayingSound(soundName);
+        if (turnOff)
+        {
+            StopPlayingSound(soundName);
+        }
 
         yield return null;
+    }
+
+
+
+    public void ChangeVolume(string soundName, float desiredVolume)
+    {
+        AudioSource tempSound = null;
+
+        foreach (Sound sound in sounds)
+        {
+            if (sound.GetName() == soundName)
+            {
+                tempSound = sound.GetSource();
+                break;
+            }
+        }
+
+        tempSound.volume = desiredVolume;
     }
 
     public void SpeedUp(string soundName)

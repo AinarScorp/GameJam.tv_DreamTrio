@@ -151,6 +151,7 @@ public class PlayerHealth : MonoBehaviour
         }
         if (currentHealth <= 0)
         {
+            StartCoroutine(AudioManagerScript.Instance.FadeOut("Music", 0f, true));
             playerManager.StartGameOver(false);
             Debug.LogWarning("you lost");
             return;

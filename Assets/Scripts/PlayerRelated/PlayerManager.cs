@@ -54,9 +54,9 @@ public class PlayerManager : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
         }
 
-
+        StartCoroutine(AudioManagerScript.Instance.FadeOut("Music", 0.05f, false));
         AudioManagerScript.Instance.Play("Ghost Atmos");
-        StartCoroutine(AudioManagerScript.Instance.FadeIn("Ghost Atmos"));
+        StartCoroutine(AudioManagerScript.Instance.FadeIn("Ghost Atmos", 0.1f));
 
 
         yield return FindObjectOfType<CordCircle>().EncircleTarget();
@@ -81,7 +81,8 @@ public class PlayerManager : MonoBehaviour
             yield return new WaitForSeconds(0.5f);
         }
         AudioManagerScript.Instance.Play("Revive");
-        StartCoroutine(AudioManagerScript.Instance.FadeOut("Ghost Atmos"));
+        StartCoroutine(AudioManagerScript.Instance.FadeOut("Ghost Atmos", 0f, true));
+        StartCoroutine(AudioManagerScript.Instance.FadeIn("Music", 0.2f));
 
 
         ActivateLivingControls();

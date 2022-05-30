@@ -26,6 +26,7 @@ public class WaveManager : MonoBehaviour
     private void Start()
     {
         CalculateNumberOfWaves();
+        AudioManagerScript.Instance.PlayLoop("Music");
     }
 
 
