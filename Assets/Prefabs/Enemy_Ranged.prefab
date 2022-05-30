@@ -5154,6 +5154,7 @@ MonoBehaviour:
   drawGizmos: 1
   shootingRadius: 5.5
   shootingRate: 2
+  flyingDelay: 1
   behaviour: {fileID: 7915601979525261323}
   shootingBase: {fileID: 8137096358936413910}
   projectile: {fileID: 1713431048268549646, guid: dcb93df6dd4738d41b6902d526c34d6d, type: 3}
@@ -5212,6 +5213,8 @@ MonoBehaviour:
   objectsToDrop:
   - dropObject: {fileID: 3128766248087849206, guid: ed697fc20ec2c60478302abc5ed459d5, type: 3}
     dropChancePercent: 80
+  - dropObject: {fileID: 3128766248087849206, guid: eba32f712d7f48243ae299e8ffa2d689, type: 3}
+    dropChancePercent: 15
 --- !u!114 &-4887696799744834867
 MonoBehaviour:
   m_ObjectHideFlags: 0

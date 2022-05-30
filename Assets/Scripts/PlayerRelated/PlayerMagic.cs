@@ -49,6 +49,7 @@ public class PlayerMagic : MonoBehaviour
         playerManager.SubscribeToImmidiateActions(() => this.enabled = false, true);
         playerManager.SubscribeToActivateControls( Revive, false);
         availableFireballs = startingFireballs;
+        AddFireballImages();
     }
     Vector3 dir;
 
@@ -69,11 +70,16 @@ public class PlayerMagic : MonoBehaviour
         aimArrow.transform.rotation = Quaternion.AngleAxis(angle - 90f, Vector3.forward);
         animator.SetFloat("AimingRight", Mathf.Clamp(dir.x, -1, 1));
         animator.SetFloat("AimingUp", Mathf.Clamp(dir.y, -1, 1));
+
     }
 
 
     void AimFireball()
     {
+        if (availableFireballs<= 0)
+        {
+            return;
+        }
         animator.SetBool("CanMove", false);
         if (!animator.GetBool("MagicAim"))
         {
@@ -90,7 +96,7 @@ public class PlayerMagic : MonoBehaviour
             return;
         }
         aimArrow.SetActive(false);
-
+        availableFireballs--;
         aiming = false;
         animator.SetBool("MagicAim", false);
         FireBall fireShot = Instantiate(fireBall, transform.position, Quaternion.identity);

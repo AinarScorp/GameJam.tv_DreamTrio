@@ -421,10 +421,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47d3f8a971063834b9f45c4091435f0f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startingFireballs: 1
+  playerHealth: {fileID: 8120152830727472717}
   animator: {fileID: 8120152830727472724}
   aimArrow: {fileID: 4026515366641941312}
   fireBall: {fileID: 6178655917554641358, guid: 7e032f73b1d47a34d82e52ee93e85867, type: 3}
-  playerHealth: {fileID: 8120152830727472717}
+  fireImage: {fileID: 8545042708625577979, guid: fda153f4706124d48a61148ae4442105, type: 3}
+  parentForFireballs: {fileID: 0}
 --- !u!1 &8120152831148383533
 GameObject:
   m_ObjectHideFlags: 0

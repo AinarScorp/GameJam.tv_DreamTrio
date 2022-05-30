@@ -81,7 +81,6 @@ public class FireBall : MonoBehaviour
         col.enabled = false;
         spriteRenderer.enabled = false;
         Destroy(this.gameObject, 3);
-        Debug.Log("boom");
     }
     private void OnDrawGizmosSelected()
     {
