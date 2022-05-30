@@ -58,11 +58,11 @@ TagManager:
   - name: Player
     uniqueID: 2102908679
     locked: 0
-  - name: Trees
-    uniqueID: 2044969111
-    locked: 0
   - name: PickUps
     uniqueID: 3362500291
+    locked: 0
+  - name: Trees
+    uniqueID: 2044969111
     locked: 0
   - name: PlayerGhost
     uniqueID: 144473623

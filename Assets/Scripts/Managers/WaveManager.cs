@@ -73,7 +73,7 @@ public class WaveManager : MonoBehaviour
         enemiesTotal = remainingEnemies;
         InterfaceManager.Instance.DisplayCurrentKillCount(0, enemiesTotal);
         currentWave++;
-        InterfaceManager.Instance.DisplayCurrentWaveNumber(currentWave);
+        InterfaceManager.Instance.DisplayCurrentWaveNumber(currentWave, numberOfWaves);
         poison.StartPoisonCount();
 
     }

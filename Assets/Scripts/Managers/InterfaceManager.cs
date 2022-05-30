@@ -18,7 +18,7 @@ public class InterfaceManager : MonoBehaviour
     private void Start()
     {
         DisplayCurrentKillCount(0, 0);
-        DisplayCurrentWaveNumber(0);
+        DisplayCurrentWaveNumber(0,0);
     }
 
     public void DisplayNewCordLength(float newAmount)
@@ -29,9 +29,9 @@ public class InterfaceManager : MonoBehaviour
         enemiesKilledCount.text = string.Format("Killed: {0:00}/{1:00}", enemiesKilled, allEnemies);
 
     }
-    public void DisplayCurrentWaveNumber(int currentWave)
+    public void DisplayCurrentWaveNumber(int currentWave, int waveCount)
     {
-        currentWaveText.text = $"Wave: {currentWave}";
+        currentWaveText.text = $"Wave: {currentWave} / {waveCount}";
     }
 
 
