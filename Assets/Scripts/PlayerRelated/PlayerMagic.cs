@@ -94,6 +94,7 @@ public class PlayerMagic : MonoBehaviour
         {
             return;
         }
+        AudioManagerScript.Instance.PlayRandomPitch("Fireball");s
         aimArrow.SetActive(false);
         availableFireballs--;
         aiming = false;
