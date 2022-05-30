@@ -14,6 +14,7 @@ public class TitleManager : SceneHandler
 
         base.StartFirstLevel();
         AudioManagerScript.Instance.Play("Start");
+
     }
     public override void GoToCreatorScreen()
     {
