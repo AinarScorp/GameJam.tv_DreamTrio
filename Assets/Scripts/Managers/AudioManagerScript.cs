@@ -28,6 +28,19 @@ public class AudioManagerScript : MonoBehaviour
         }
 
         Instance = this;
+        PlayLoop("Music");
+    }
+
+    public void PlayLoop(string name)
+    {
+        foreach (Sound sound in sounds)
+        {
+            if (sound.GetName() == name)
+            {
+                sound.GetSource().Play();
+                break;
+            }
+        }
     }
 
     public void Play(string name)
