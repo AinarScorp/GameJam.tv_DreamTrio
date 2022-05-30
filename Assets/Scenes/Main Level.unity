@@ -49398,6 +49398,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 301284099}
     m_Modifications:
+    - target: {fileID: 374591845, guid: de068dea7a15c1f45809bb30ffc4de99, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 807964615618627655, guid: de068dea7a15c1f45809bb30ffc4de99, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -49550,10 +49554,22 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1104188866}
+    - target: {fileID: 1372429906, guid: 1a9bc005fcd59db46a9dbd370225f50f, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 917.5641
+      objectReference: {fileID: 0}
+    - target: {fileID: 1372429907, guid: 1a9bc005fcd59db46a9dbd370225f50f, type: 3}
+      propertyPath: m_text
+      value: RESTLESS BATTLE
+      objectReference: {fileID: 0}
     - target: {fileID: 1646889464, guid: 1a9bc005fcd59db46a9dbd370225f50f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1104188866}
+    - target: {fileID: 1831550743, guid: 1a9bc005fcd59db46a9dbd370225f50f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 309755060459248321, guid: 1a9bc005fcd59db46a9dbd370225f50f, type: 3}
       propertyPath: m_Pivot.x
       value: 0
