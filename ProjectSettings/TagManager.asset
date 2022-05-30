@@ -43,6 +43,9 @@ TagManager:
   - name: Ground
     uniqueID: 2571444939
     locked: 0
+  - name: TreesBottom
+    uniqueID: 3457867877
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
@@ -52,9 +55,6 @@ TagManager:
   - name: Projectile
     uniqueID: 644682339
     locked: 0
-  - name: TreesBottom
-    uniqueID: 3457867877
-    locked: 0
   - name: Player
     uniqueID: 2102908679
     locked: 0
@@ -63,4 +63,7 @@ TagManager:
     locked: 0
   - name: PickUps
     uniqueID: 3362500291
+    locked: 0
+  - name: PlayerGhost
+    uniqueID: 144473623
     locked: 0
