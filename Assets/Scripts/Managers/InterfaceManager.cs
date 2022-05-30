@@ -9,6 +9,8 @@ public class InterfaceManager : MonoBehaviour
     [Header("Pause menu HUD")]
 
     [SerializeField] TextMeshProUGUI currentWaveText;
+    [Header("Victory Setup HUD")]
+    [TextArea] [SerializeField] string congratsMessage;
 
     private void Awake()
     {
@@ -19,9 +21,10 @@ public class InterfaceManager : MonoBehaviour
     {
         DisplayCurrentKillCount(0, 0);
         DisplayCurrentWaveNumber(0,0);
+        FindObjectOfType<PlayerManager>().SubscribeToGameOver(() => enemiesKilledCount.text = congratsMessage, true);
     }
 
-    public void DisplayNewCordLength(float newAmount)
+    void DisplayNewCordLength(float newAmount)
     {
     }
     public void DisplayCurrentKillCount(int enemiesKilled, int allEnemies)
