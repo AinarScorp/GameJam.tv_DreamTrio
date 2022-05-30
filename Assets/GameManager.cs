@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,7 +16,8 @@ public class GameManager : MonoBehaviour
 
     [Header("Victory Setup")]
     [SerializeField] GameObject victoryMenu;
-
+    [TextArea]
+    [SerializeField] string victoryMessageInfo;
 
     bool gameStarted;
     bool gameWon = false;
@@ -42,6 +44,7 @@ public class GameManager : MonoBehaviour
     {
         if (!gameWon)
             return;
+        spaceMessage.GetComponent<TextMeshProUGUI>().text = victoryMessageInfo;
         victoryMenu.SetActive(true);
         Time.timeScale = 1f;
 
