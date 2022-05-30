@@ -101,7 +101,9 @@ public class PlayerMagic : MonoBehaviour
         FireBall fireShot = Instantiate(fireBall, transform.position, Quaternion.identity);
         fireShot.gameObject.SetActive(true);
         fireShot.FollowDirection(dir);
-        DimOneFireBallImages();
+        DimFireballImages();
+        HighlightAlpha(availableFireballs);
+
     }
 
     void Revive()
