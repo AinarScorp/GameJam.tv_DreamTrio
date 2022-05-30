@@ -13,14 +13,20 @@ public class GameManager : MonoBehaviour
     [TextArea]
     [SerializeField] string restartNoOption;
 
+    [Header("Victory Setup")]
+    [SerializeField] GameObject victoryMenu;
+
+
     bool gameStarted;
+    bool gameWon = false;
     private void Start()
     {
         PlayerManager playerManager = FindObjectOfType<PlayerManager>();
         playerManager.SubscribeToPlayerDied(() => Time.timeScale = 0.5f);
         playerManager.SubscribeToGameOver(GameLostMessage, false);
+        playerManager.SubscribeToGameOver(() => gameWon = true, true);
         AudioManagerScript.Instance.PlayLoop("Music");
-
+        victoryMenu.SetActive(false);
     }
 
     public void SpacePressed()
@@ -31,6 +37,12 @@ public class GameManager : MonoBehaviour
         spaceMessage.gameObject.SetActive(false);
         gameStarted = true;
 
+    }
+    public void EscapePressed()
+    {
+        if (!gameWon)
+            return;
+        victoryMenu.SetActive(true);
     }
 
     public void GameLostMessage()
