@@ -29758,7 +29758,7 @@ PrefabInstance:
       objectReference: {fileID: 313599330}
     - target: {fileID: 1935866704945242612, guid: f4aa456a073d8d84da15201edbd94b11, type: 3}
       propertyPath: currentWave
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1935866704945242612, guid: f4aa456a073d8d84da15201edbd94b11, type: 3}
       propertyPath: waveStartTimer

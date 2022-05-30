@@ -65,6 +65,8 @@ public class PauseMenu : MonoBehaviour
     }
     public void TutorialScreen(bool turnOn)
     {
+        AudioManagerScript.Instance.Play("Button");
+
         pauseMenu.SetActive(!turnOn);
         tutorialMenu.SetActive(turnOn);
     }

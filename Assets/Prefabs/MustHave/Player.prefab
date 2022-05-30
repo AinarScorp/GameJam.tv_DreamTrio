@@ -337,7 +337,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 8
-  maxHealth: 24
+  maxHealth: 15
   invulnerabilityTime: 1.2
   heartImage: {fileID: 910927117292983901, guid: b5155bdabf196994dbc13f056ff69dbb, type: 3}
   flashScript: {fileID: 2428019265046939057}
