@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+//this script is more like a gamemanager script at this point
 public class PlayerManager : MonoBehaviour
 {
 
@@ -17,6 +17,7 @@ public class PlayerManager : MonoBehaviour
     Action ActivateLivingControls;
     Action PlayerDiedForReal;
     Action GameOverFailure;
+    Action GameOverVictory;
 
 
     int collectedHearths;
@@ -38,6 +39,7 @@ public class PlayerManager : MonoBehaviour
         if (hasWon)
         {
             // turn off pause Manager
+            GameOverVictory();
         }
         else
         {
@@ -141,7 +143,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (playerWon)
         {
-            // add win
+            GameOverVictory += actionToAdd;
             return;
         }
         GameOverFailure += actionToAdd;

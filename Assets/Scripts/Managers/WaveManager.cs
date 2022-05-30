@@ -26,7 +26,6 @@ public class WaveManager : MonoBehaviour
     private void Start()
     {
         CalculateNumberOfWaves();
-        AudioManagerScript.Instance.PlayLoop("Music");
     }
 
 
@@ -64,6 +63,7 @@ public class WaveManager : MonoBehaviour
         poison.AbruptPoisonCount();
         if (currentWave >= numberOfWaves)
         {
+            FindObjectOfType<PlayerManager>().StartGameOver(true);
             Debug.LogWarning("you have won");
             yield break;
         }
@@ -97,8 +97,8 @@ public class WaveManager : MonoBehaviour
     void UpdateTime(float timeToDisplay)
     {
         float seconds = Mathf.FloorToInt(timeToDisplay % 60);
-        float miliSeconds = Mathf.FloorToInt(timeToDisplay * 1000f % 1000);
+        //float miliSeconds = Mathf.FloorToInt(timeToDisplay * 1000f % 1000);
 
-        clockDown.text = string.Format("{0:00}:{1:000}", seconds, miliSeconds);
+        clockDown.text = string.Format("{0:0}", seconds);
     }
 }

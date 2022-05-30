@@ -9881,6 +9881,11 @@ Transform:
   m_Father: {fileID: 1192685223}
   m_RootOrder: 179
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &385034653 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1025820425779512590, guid: 1a9bc005fcd59db46a9dbd370225f50f, type: 3}
+  m_PrefabInstance: {fileID: 309755061503826861}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &388901017
 GameObject:
   m_ObjectHideFlags: 0
@@ -50745,8 +50750,16 @@ PrefabInstance:
       value: Ready to give up?
       objectReference: {fileID: 0}
     - target: {fileID: 8320223908534947591, guid: bbf7346ce1a94304ba340d63e2d80c59, type: 3}
+      propertyPath: stuffToTurnOff.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8320223908534947591, guid: bbf7346ce1a94304ba340d63e2d80c59, type: 3}
       propertyPath: stuffToTurnOff.Array.data[0]
       value: 
       objectReference: {fileID: 1563567219}
+    - target: {fileID: 8320223908534947591, guid: bbf7346ce1a94304ba340d63e2d80c59, type: 3}
+      propertyPath: stuffToTurnOff.Array.data[1]
+      value: 
+      objectReference: {fileID: 385034653}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bbf7346ce1a94304ba340d63e2d80c59, type: 3}

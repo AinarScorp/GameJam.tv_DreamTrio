@@ -19,6 +19,8 @@ public class GameManager : MonoBehaviour
         PlayerManager playerManager = FindObjectOfType<PlayerManager>();
         playerManager.SubscribeToPlayerDied(() => Time.timeScale = 0.5f);
         playerManager.SubscribeToGameOver(GameLostMessage, false);
+        AudioManagerScript.Instance.PlayLoop("Music");
+
     }
 
     public void SpacePressed()
