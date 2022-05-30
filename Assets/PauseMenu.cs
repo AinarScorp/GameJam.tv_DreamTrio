@@ -41,7 +41,7 @@ public class PauseMenu : MonoBehaviour
     }
     public void ResumeTheGame()
     {
-
+        AudioManagerScript.Instance.Play("Button");
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
         gameIsPaused = false;
@@ -58,6 +58,8 @@ public class PauseMenu : MonoBehaviour
 
     public void QuitTheGame()
     {
+        AudioManagerScript.Instance.Play("Button");
+
         ConfirmationMessage.Instance.ConfirmationQuestion(confirmationMessage, () =>
         {
             FindObjectOfType<SceneHandler>().GoToMainMenu();

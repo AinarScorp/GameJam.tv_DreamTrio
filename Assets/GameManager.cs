@@ -43,6 +43,8 @@ public class GameManager : MonoBehaviour
         if (!gameWon)
             return;
         victoryMenu.SetActive(true);
+        Time.timeScale = 1f;
+
     }
 
     public void GameLostMessage()

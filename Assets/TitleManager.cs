@@ -15,9 +15,11 @@ public class TitleManager : SceneHandler
         base.StartFirstLevel();
         AudioManagerScript.Instance.Play("Start");
 
+
     }
     public override void GoToCreatorScreen()
     {
+        AudioManagerScript.Instance.Play("Button");
         SceneManager.LoadScene(2);
 
     }
@@ -25,9 +27,10 @@ public class TitleManager : SceneHandler
 
     public override void QuitGame()
     {
-
+        AudioManagerScript.Instance.Play("Button");
         ConfirmationMessage.Instance.ConfirmationQuestion(confirmationMessage, () => 
         {
+            AudioManagerScript.Instance.Play("Button");
             Application.Quit();
         }, null);
     }

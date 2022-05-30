@@ -40,12 +40,14 @@ public class ConfirmationMessage : MonoBehaviour
 
             yesAction?.Invoke();
 
+            AudioManagerScript.Instance.Play("Button");
         });
         noBtn.onClick.AddListener(() =>
         {
 
             ToggleQuestion(false);
             noAction?.Invoke();
+            AudioManagerScript.Instance.Play("Button");
 
         });
     }

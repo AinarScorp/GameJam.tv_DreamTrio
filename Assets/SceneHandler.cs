@@ -25,6 +25,7 @@ public class SceneHandler : MonoBehaviour
     }
     public void GoToMainMenu()
     {
+
         if (animationTrans != null)
         {
             StopCoroutine(animationTrans);
@@ -34,6 +35,8 @@ public class SceneHandler : MonoBehaviour
 
     public virtual void StartFirstLevel()
     {
+        AudioManagerScript.Instance.Play("Button");
+
         if (animationTrans != null)
         {
             StopCoroutine(animationTrans);
