@@ -13,8 +13,8 @@ public class PlayerMagic : MonoBehaviour
     [SerializeField] Animator animator;
     [SerializeField] GameObject aimArrow;
 
+    [SerializeField] List<CanvasGroup> fireBallImages = new List<CanvasGroup>();
     [SerializeField] FireBall fireBall;
-    [SerializeField] GameObject fireImage;
     [SerializeField] Transform parentForFireballs;
 
 
@@ -25,7 +25,6 @@ public class PlayerMagic : MonoBehaviour
     bool aiming;
 
 
-    List<GameObject> fireBallImages = new List<GameObject>();
 
     private void Awake()
     {
@@ -49,7 +48,7 @@ public class PlayerMagic : MonoBehaviour
         playerManager.SubscribeToImmidiateActions(() => this.enabled = false, true);
         playerManager.SubscribeToActivateControls( Revive, false);
         availableFireballs = startingFireballs;
-        AddFireballImages();
+        HighlightAlpha(availableFireballs);
     }
     Vector3 dir;
 
@@ -102,7 +101,7 @@ public class PlayerMagic : MonoBehaviour
         FireBall fireShot = Instantiate(fireBall, transform.position, Quaternion.identity);
         fireShot.gameObject.SetActive(true);
         fireShot.FollowDirection(dir);
-        RemoveFireBallImage();
+        DimFireballImages();
     }
 
     void Revive()
@@ -113,24 +112,19 @@ public class PlayerMagic : MonoBehaviour
         {
             availableFireballs = maxShots;
         }
-        AddFireballImages();
+        DimFireballImages();
+        HighlightAlpha(availableFireballs);
     }
-    private void AddFireballImages()
+    private void HighlightAlpha(int fireballsToHighlight)
     {
-        for (int i = 0; i < availableFireballs; i++)
+        for (int i = 0; i < fireballsToHighlight; i++)
         {
-            GameObject newHeartImage = Instantiate(fireImage, parentForFireballs);
-            fireBallImages.Add(newHeartImage);
+            fireBallImages[i].alpha = 1f;
         }
     }
-    private void RemoveFireBallImage()
+    private void DimFireballImages()
     {
-        if (fireBallImages.Count < 1)
-            return;
 
-        GameObject firstHeartImage = fireBallImages.ToList().FirstOrDefault();
-        fireBallImages.Remove(firstHeartImage);
-        Destroy(firstHeartImage);
-
+        fireBallImages.ToList().ForEach(image => image.alpha = 0.3f);
     }
 }
