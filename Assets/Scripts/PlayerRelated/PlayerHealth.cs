@@ -52,6 +52,8 @@ public class PlayerHealth : MonoBehaviour
         playerManager.SubscribeToImmidiateActions(ToggleIsAlive, true);
         playerManager.SubscribeToActivateControls(AddHeartImages, false);
         playerManager.SubscribeToActivateControls(ToggleIsAlive, false);
+        playerManager.SubscribeToActivateControls(SetInvincility, false);
+
     }
 
     private void AddHeartImages()
@@ -91,7 +93,6 @@ public class PlayerHealth : MonoBehaviour
 
         VirtualCamera.Instance.PlayerDamageShake(fromPoison);
         PlayParticle(fromPoison);
-        flashScript.StartFlash(fromPoison);
 
 
         if (currentHealth <= 0) //not needed later
@@ -106,7 +107,8 @@ public class PlayerHealth : MonoBehaviour
             playerManager.StartTurningIntoGhost();
             return;
         }
-        StartCoroutine(SetInvinsibility());
+
+        SetInvincility(fromPoison);
 
     }
     void PlayParticle(bool isPoison)
@@ -118,8 +120,22 @@ public class PlayerHealth : MonoBehaviour
         }
         hitParticle.Play();
     }
+    void SetInvincility(bool fromPoison)
+    {
+        flashScript.StartFlash(fromPoison);
 
-    IEnumerator SetInvinsibility()
+        StartCoroutine(SetInvinsibilityTimer());
+
+    }
+    void SetInvincility()
+    {
+        flashScript.StartFlash(true);
+
+        StartCoroutine(SetInvinsibilityTimer());
+
+    }
+
+    IEnumerator SetInvinsibilityTimer()
     {
         isInvincible = true;
         yield return new WaitForSeconds(invulnerabilityTime);
