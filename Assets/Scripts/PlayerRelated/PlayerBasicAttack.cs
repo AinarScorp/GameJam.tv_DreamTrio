@@ -75,6 +75,10 @@ public class PlayerBasicAttack : MonoBehaviour
 
     void Attack()
     {
+        if (PauseMenu.GameIsPaused)
+        {
+            return;
+        }
         if (!IsAttacking)
         {
 

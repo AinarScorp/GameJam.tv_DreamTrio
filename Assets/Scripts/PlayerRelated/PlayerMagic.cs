@@ -75,7 +75,7 @@ public class PlayerMagic : MonoBehaviour
 
     void AimFireball()
     {
-        if (availableFireballs<= 0)
+        if (availableFireballs<= 0 || PauseMenu.GameIsPaused)
         {
             return;
         }

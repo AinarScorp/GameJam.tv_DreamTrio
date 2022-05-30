@@ -5,7 +5,7 @@ using System.Linq;
 
 public class PauseMenu : MonoBehaviour
 {
-    bool gameIsPaused = false;
+    static bool gameIsPaused = false;
     [Header("Confirmation Quit Setup")]
     [TextArea]
     [SerializeField] string confirmationMessage;
@@ -19,6 +19,8 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] GameObject tutorialMenu;
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject[] stuffToTurnOff;
+
+    public static bool GameIsPaused { get => gameIsPaused; } //Change after game jam
 
     private void Start()
     {
