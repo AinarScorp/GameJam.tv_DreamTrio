@@ -20,6 +20,10 @@ public class PlayerPoison : MonoBehaviour
     private void Start()
     {
         player.SubscribeToReactHit(ReactToHit);
+        PlayerManager playerManager =  FindObjectOfType<PlayerManager>();
+        playerManager.SubscribeToImmidiateActions(AbruptPoisonCount, true);
+        playerManager.SubscribeToActivateControls(StartPoisonCount, false);
+
     }
     IEnumerator PoisonPlayer()
     {
