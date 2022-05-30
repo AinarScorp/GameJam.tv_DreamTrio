@@ -9,6 +9,7 @@ public class PickUp : MonoBehaviour
     [SerializeField] float dragSpeed = 5f;
     [SerializeField] Transform particles;
     [SerializeField] LineRenderer lineRenderer;
+    [SerializeField] SpriteRenderer spriteRenderer;
 
     bool pickedUp;
 
@@ -27,11 +28,11 @@ public class PickUp : MonoBehaviour
         if (subscribe)
         {
             playerManager.SubscribeToImmidiateActions(ReactToRevival, false);
-            playerManager.SubscribeToActivateControls(TurnOnParticles, true);
+            playerManager.SubscribeToActivateControls(GhostActivated, true);
             return;
         }
         playerManager.UnsubscribeFromImmidiateActions(ReactToRevival, false);
-        playerManager.UnsubscribeFromActivateControls(TurnOnParticles, true);
+        playerManager.UnsubscribeFromActivateControls(GhostActivated, true);
 
     }
 
@@ -54,7 +55,13 @@ public class PickUp : MonoBehaviour
 
     }
 
-    void TurnOnParticles() => particles.gameObject.SetActive(true);
+    void GhostActivated()
+    {
+        particles.gameObject.SetActive(true);
+        var modifiedColor = spriteRenderer.color;
+        modifiedColor.a = 1f;
+        spriteRenderer.color = modifiedColor;
+    }
 
     void ReactToRevival()
     {
