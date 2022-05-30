@@ -39,23 +39,19 @@ public class PickUp : MonoBehaviour
     {
         if (pickedUp)
             return;
+        pickedUp = true;
+
+        particles.gameObject.SetActive(false);
 
         lineRenderer.positionCount = 2;
         lineRenderer.SetPosition(0, this.transform.position);
         lineRenderer.SetPosition(1, playerManager.Player.transform.position);
+        AudioManagerScript.Instance.PlayRandomPitch("Pick up");
 
         if (isHearth)
-        {
-            AudioManagerScript.Instance.PlayRandomPitch("Pick up");
-
             playerManager.AddCollectedHearth();
-        }
         else
-        {
             playerManager.AddCollectedFireBall();
-        }
-        particles.gameObject.SetActive(false);
-        pickedUp = true;
 
     }
 
