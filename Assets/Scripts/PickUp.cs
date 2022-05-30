@@ -12,12 +12,10 @@ public class PickUp : MonoBehaviour
 
     bool pickedUp;
 
-    PlayerHealth playerHealth;
     PlayerManager playerManager;
 
     private void Awake()
     {
-        playerHealth = FindObjectOfType<PlayerHealth>();
         playerManager = FindObjectOfType<PlayerManager>();
     }
     private void Start()
@@ -44,7 +42,7 @@ public class PickUp : MonoBehaviour
 
         lineRenderer.positionCount = 2;
         lineRenderer.SetPosition(0, this.transform.position);
-        lineRenderer.SetPosition(1, playerHealth.transform.position);
+        lineRenderer.SetPosition(1, playerManager.Player.transform.position);
 
         if (isHearth)
         {
@@ -77,7 +75,7 @@ public class PickUp : MonoBehaviour
     IEnumerator DragItemsToCorpse()
     {
         Vector3 startPos = this.transform.position;
-        Vector3 endPos = playerHealth.transform.position;
+        Vector3 endPos = playerManager.Player.transform.position;
         float percent = 0f;
         while (percent < 1f)
         {

@@ -1652,7 +1652,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -0.000030518, y: 448.1}
-  m_SizeDelta: {x: 1069.0958, y: 183.7928}
+  m_SizeDelta: {x: 1583.3519, y: 183.7928}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1394702517
 MonoBehaviour:
@@ -1674,7 +1674,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Game Name
+  m_text: Restless Battle
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 73f8646289c500843af223f3f4cf719e, type: 2}
   m_sharedMaterial: {fileID: -8189895589449255979, guid: 73f8646289c500843af223f3f4cf719e, type: 2}
