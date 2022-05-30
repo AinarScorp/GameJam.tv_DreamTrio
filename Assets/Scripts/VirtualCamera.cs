@@ -53,7 +53,7 @@ public class VirtualCamera : MonoBehaviour
         PlayerManager playerManager = FindObjectOfType<PlayerManager>();
         playerManager.SubscribeToActivateControls(StartZoomOut, true);
         playerManager.SubscribeToImmidiateActions(StartZoomIn, false);
-        playerManager.SubscribeToPlayerDied(StartZoomIn);
+        playerManager.SubscribeToPlayerDied(StartDeathZoom);
 
         startingCameraValue = virtualCamera.m_Lens.OrthographicSize;
         noise = virtualCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
@@ -109,6 +109,13 @@ public class VirtualCamera : MonoBehaviour
 
         yield return null;
     }
+
+    void StartDeathZoom()
+    {
+        virtualCamera.Follow = player.transform;
+        StartCoroutine(DeathZoomIn(zoomInValue));
+    }
+
     void StartZoomIn()
     {
         virtualCamera.Follow = player.transform;
@@ -138,9 +145,24 @@ public class VirtualCamera : MonoBehaviour
 
         yield return new WaitForSeconds(revivalWait);
         yield return ZoomOut(startingCameraValue);
-
-
     }
+
+    IEnumerator DeathZoomIn(float endValue)
+    {
+        float elapsedTime = 0;
+        float currentOrthoSize = virtualCamera.m_Lens.OrthographicSize; ;
+
+        while (zoomInTime > elapsedTime)
+        {
+            virtualCamera.m_Lens.OrthographicSize = Mathf.Lerp(currentOrthoSize, endValue, inCurve.Evaluate(elapsedTime / zoomInTime));
+            elapsedTime += Time.deltaTime;
+
+            yield return null;
+        }
+
+        virtualCamera.m_Lens.OrthographicSize = zoomInValue;
+    }
+
     //IEnumerator ZoomIn()
     //{
     //    float elapsedTime = 0;
