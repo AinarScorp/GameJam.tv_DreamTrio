@@ -23,8 +23,8 @@ public class PauseMenu : MonoBehaviour
         pauseMenu.SetActive(false);
         gameIsPaused = false;
         PlayerManager playerManager = FindObjectOfType<PlayerManager>();
-        playerManager.SubscribeToPlayerDied(() => this.enabled = false);
-        playerManager.SubscribeToGameOver(() => this.enabled = false, true);
+        playerManager.SubscribeToPlayerDied(() => this.gameObject.SetActive(false));
+        playerManager.SubscribeToGameOver(() => this.gameObject.SetActive(false), true);
 
     }
 
