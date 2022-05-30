@@ -13,14 +13,18 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] string quitYesOption;
     [TextArea]
     [SerializeField] string quitNoOption;
+    [Header("Tutorial Setup")]
 
 
+    [SerializeField] GameObject tutorialMenu;
     [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject[] stuffToTurnOff;
 
     private void Start()
     {
         pauseMenu.SetActive(false);
+        tutorialMenu.SetActive(false);
+
         gameIsPaused = false;
         PlayerManager playerManager = FindObjectOfType<PlayerManager>();
         playerManager.SubscribeToPlayerDied(() => this.gameObject.SetActive(false));
@@ -42,6 +46,8 @@ public class PauseMenu : MonoBehaviour
     public void ResumeTheGame()
     {
         AudioManagerScript.Instance.Play("Button");
+        tutorialMenu.SetActive(false);
+
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
         gameIsPaused = false;
@@ -55,6 +61,12 @@ public class PauseMenu : MonoBehaviour
         gameIsPaused = true;
         stuffToTurnOff.ToList().ForEach(item => item.SetActive(false));
     }
+    public void TutorialScreen(bool turnOn)
+    {
+        pauseMenu.SetActive(!turnOn);
+        tutorialMenu.SetActive(turnOn);
+    }
+
 
     public void QuitTheGame()
     {

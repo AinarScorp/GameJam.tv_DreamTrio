@@ -21356,6 +21356,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &796976659 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 796976659, guid: 1a9bc005fcd59db46a9dbd370225f50f, type: 3}
+  m_PrefabInstance: {fileID: 309755061503826861}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &797865288
 GameObject:
   m_ObjectHideFlags: 0
@@ -57720,6 +57731,10 @@ PrefabInstance:
       value: I guess...
       objectReference: {fileID: 0}
     - target: {fileID: 229573293682539609, guid: 73643f85185109b4fb418844b82011b4, type: 3}
+      propertyPath: tutorialMessage
+      value: 
+      objectReference: {fileID: 796976659}
+    - target: {fileID: 229573293682539609, guid: 73643f85185109b4fb418844b82011b4, type: 3}
       propertyPath: restartYesOption
       value: No, bring me back
       objectReference: {fileID: 0}
@@ -57752,6 +57767,18 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1104188866}
+    - target: {fileID: 143907345167745055, guid: 1a9bc005fcd59db46a9dbd370225f50f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 143907345167745055, guid: 1a9bc005fcd59db46a9dbd370225f50f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1104188866}
+    - target: {fileID: 143907345167745055, guid: 1a9bc005fcd59db46a9dbd370225f50f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TutorialScreen
+      objectReference: {fileID: 0}
     - target: {fileID: 309755060459248321, guid: 1a9bc005fcd59db46a9dbd370225f50f, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -57840,6 +57867,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 662015102232298616, guid: 1a9bc005fcd59db46a9dbd370225f50f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1104188866}
     - target: {fileID: 1667284250841241770, guid: 1a9bc005fcd59db46a9dbd370225f50f, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -57864,6 +57895,22 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3288710182756778524, guid: 1a9bc005fcd59db46a9dbd370225f50f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 3288710182756778524, guid: 1a9bc005fcd59db46a9dbd370225f50f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1104188866}
+    - target: {fileID: 3288710182756778524, guid: 1a9bc005fcd59db46a9dbd370225f50f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: TutorialScreen
+      objectReference: {fileID: 0}
+    - target: {fileID: 3288710182756778524, guid: 1a9bc005fcd59db46a9dbd370225f50f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3790861649103006458, guid: 1a9bc005fcd59db46a9dbd370225f50f, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -57883,6 +57930,10 @@ PrefabInstance:
     - target: {fileID: 3790861649103006458, guid: 1a9bc005fcd59db46a9dbd370225f50f, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6832522039479051241, guid: 1a9bc005fcd59db46a9dbd370225f50f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8261778976193054763, guid: 1a9bc005fcd59db46a9dbd370225f50f, type: 3}
       propertyPath: m_AnchorMax.y
@@ -57923,6 +57974,11 @@ CanvasGroup:
 --- !u!225 &309755061503826864 stripped
 CanvasGroup:
   m_CorrespondingSourceObject: {fileID: 7271715999817288310, guid: 1a9bc005fcd59db46a9dbd370225f50f, type: 3}
+  m_PrefabInstance: {fileID: 309755061503826861}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &309755061503826865 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6832522039479051241, guid: 1a9bc005fcd59db46a9dbd370225f50f, type: 3}
   m_PrefabInstance: {fileID: 309755061503826861}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &816335199461864119
@@ -58442,6 +58498,10 @@ PrefabInstance:
       propertyPath: quitNoOption
       value: Not yet
       objectReference: {fileID: 0}
+    - target: {fileID: 8320223908534947591, guid: bbf7346ce1a94304ba340d63e2d80c59, type: 3}
+      propertyPath: tutorialMenu
+      value: 
+      objectReference: {fileID: 309755061503826865}
     - target: {fileID: 8320223908534947591, guid: bbf7346ce1a94304ba340d63e2d80c59, type: 3}
       propertyPath: quitYesOption
       value: 'Yes

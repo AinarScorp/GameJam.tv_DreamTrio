@@ -265,7 +265,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 644682339
-  m_SortingLayer: 4
+  m_SortingLayer: 2
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 62967d6013d8e944cbb0da497e21d9f9, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -330,7 +330,7 @@ MonoBehaviour:
   rb: {fileID: 1961405482079124224}
   col: {fileID: 6707454155512277363}
   spriteRenderer: {fileID: 8086624523149444693}
-  explostionRadius: 0.6
+  explostionRadius: 0.9
   fireballDamage: 5
   speed: 30
   colisionLayer:
@@ -5178,7 +5178,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 644682339
-  m_SortingLayer: 4
+  m_SortingLayer: 2
   m_SortingOrder: 5
   m_RenderMode: 0
   m_MeshDistribution: 0

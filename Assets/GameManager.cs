@@ -6,6 +6,7 @@ using TMPro;
 public class GameManager : MonoBehaviour
 {
     [SerializeField]RectTransform spaceMessage;
+    [SerializeField] TextMeshProUGUI tutorialMessage;
     [Header("Restart Setup")]
     [TextArea]
     [SerializeField] string qustionMessage;
@@ -37,15 +38,19 @@ public class GameManager : MonoBehaviour
         if (gameStarted == true)
             return;
         FindObjectOfType<WaveManager>().NextWave();
+        tutorialMessage.gameObject.SetActive(false);
         spaceMessage.gameObject.SetActive(false);
         gameStarted = true;
 
     }
     public void EscapePressed()
     {
+        tutorialMessage.gameObject.SetActive(false);
         if (!gameWon)
             return;
+
         spaceMessage.GetComponent<TextMeshProUGUI>().text = victoryMessageInfo;
+        spaceMessage.gameObject.SetActive(true);
         victoryMenu.SetActive(true);
         Time.timeScale = 1f;
 
