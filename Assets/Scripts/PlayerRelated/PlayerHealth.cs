@@ -93,7 +93,6 @@ public class PlayerHealth : MonoBehaviour
 
         VirtualCamera.Instance.PlayerDamageShake(fromPoison);
         PlayParticle(fromPoison);
-        flashScript.StartFlash(fromPoison);
 
 
         if (currentHealth <= 0) //not needed later
@@ -108,7 +107,8 @@ public class PlayerHealth : MonoBehaviour
             playerManager.StartTurningIntoGhost();
             return;
         }
-        SetInvincility();
+
+        SetInvincility(fromPoison);
 
     }
     void PlayParticle(bool isPoison)
@@ -120,11 +120,21 @@ public class PlayerHealth : MonoBehaviour
         }
         hitParticle.Play();
     }
-    void SetInvincility()
+    void SetInvincility(bool fromPoison)
     {
+        flashScript.StartFlash(fromPoison);
+
         StartCoroutine(SetInvinsibilityTimer());
 
     }
+    void SetInvincility()
+    {
+        flashScript.StartFlash(true);
+
+        StartCoroutine(SetInvinsibilityTimer());
+
+    }
+
     IEnumerator SetInvinsibilityTimer()
     {
         isInvincible = true;
