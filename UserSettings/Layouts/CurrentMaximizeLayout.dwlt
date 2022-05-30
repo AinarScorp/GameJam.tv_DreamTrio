@@ -86,7 +86,7 @@ MonoBehaviour:
     m_HSlider: 0
     m_VSlider: 0
     m_IgnoreScrollWheelUntilClicked: 0
-    m_EnableMouseInput: 0
+    m_EnableMouseInput: 1
     m_EnableSliderZoomHorizontal: 0
     m_EnableSliderZoomVertical: 0
     m_UniformScale: 1
@@ -226,7 +226,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 4263faffa663faff4266faff7869faffdc69faff1eb0faff6cdafaff7056ffff9456ffffea56ffff6c59ffffd25affff4e9effff16a1ffff6ca1ffffbea9ffff2aacffff80acffff92afffff20f9ffff64faffffbafaffff96670000586800005afd0000621901001c2b0100fe35010082470400aa470400d6470400e4470400c6c704009ec80400d6d1040044d40400
+      m_ExpandedIDs: 744ef9fffa4ef9ff9651f9ffbe54f9ff2255f9ff4263faffa663faff4266faff7869faffdc69faff1eb0faff6cdafaff7056ffff9456ffffea56ffff6c59ffffd25affff4e9effff16a1ffff6ca1ffffbea9ffff2aacffff80acffff92afffff20f9ffff64faffffbafaffff96670000586800005afd0000621901001c2b0100fe35010082470400aa470400d6470400e4470400c6c704009ec80400d6d1040044d40400
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -819,21 +819,21 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Prefabs
+    - Assets/Prefabs/Managers
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Prefabs
+  - Assets/Prefabs/Managers
   m_LastFoldersGridSize: -1
   m_LastProjectPath: C:\Unity\Github\GameDevTv_Jam\GameDevTv_Jam\GameJam.tv_DreamTrio
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 3e7a0000
-    m_LastClickedID: 31294
+    m_SelectedIDs: 647a0000
+    m_LastClickedID: 31332
     m_ExpandedIDs: 000000003a7a00003c7a00003e7a0000407a0000427a0000447a0000467a0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -942,7 +942,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 83834
+  controlID: 85209
 --- !u!114 &14
 MonoBehaviour:
   m_ObjectHideFlags: 52

@@ -58160,6 +58160,11 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: TutorialScreen
       objectReference: {fileID: 0}
+    - target: {fileID: 295656641712527470, guid: 1a9bc005fcd59db46a9dbd370225f50f, type: 3}
+      propertyPath: m_text
+      value: WHEN YOU DIE, AN AURA SURROUNDS YOU THAT YOUR GHOST CAN MOVE WITHIN.
+        THE MORE ENEMIES YOU KILL THE LARGER YOUR AURA WILL BE.
+      objectReference: {fileID: 0}
     - target: {fileID: 309755060459248321, guid: 1a9bc005fcd59db46a9dbd370225f50f, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -58276,6 +58281,10 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2401654594097736318, guid: 1a9bc005fcd59db46a9dbd370225f50f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3288710182756778524, guid: 1a9bc005fcd59db46a9dbd370225f50f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
       value: 6
@@ -58291,6 +58300,13 @@ PrefabInstance:
     - target: {fileID: 3288710182756778524, guid: 1a9bc005fcd59db46a9dbd370225f50f, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_BoolArgument
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3758071097222068192, guid: 1a9bc005fcd59db46a9dbd370225f50f, type: 3}
+      propertyPath: m_text
+      value: 'EVERY FEW SECONDS YOU WILL GET DAMAGED BY THE CURSE.
+
+        KILL
+        FAST!'
       objectReference: {fileID: 0}
     - target: {fileID: 3790861649103006458, guid: 1a9bc005fcd59db46a9dbd370225f50f, type: 3}
       propertyPath: m_AnchorMax.y
@@ -58314,7 +58330,29 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6832522039479051241, guid: 1a9bc005fcd59db46a9dbd370225f50f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7695326504043671296, guid: 1a9bc005fcd59db46a9dbd370225f50f, type: 3}
+      propertyPath: m_text
+      value: 'DON''T BE SCARED OF DEATH.
+
+
+        YOUR SOUL IS STRONG ENOUGH TO
+        BRING YOU BACK TO LIFE.
+
+
+        (AS LONG AS THE GHOST FIND HEARTS).'
+      objectReference: {fileID: 0}
+    - target: {fileID: 7949366037249412640, guid: 1a9bc005fcd59db46a9dbd370225f50f, type: 3}
+      propertyPath: m_text
+      value: 'MOVEMENT - WASD.
+
+        FIREBALL - HOLD LEFT CLICK.
+
+        SWING
+        SWORD - TAP LEFT CLICK.
+
+'
       objectReference: {fileID: 0}
     - target: {fileID: 8261778976193054763, guid: 1a9bc005fcd59db46a9dbd370225f50f, type: 3}
       propertyPath: m_AnchorMax.y
