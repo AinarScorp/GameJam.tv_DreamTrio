@@ -5111,8 +5111,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f831a5bc7a67c34cb1c448bd460f84f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  retreatSpeed: 60
-  retreatDuration: 4
+  retreatSpeed: 65
+  retreatDuration: 2
   behaviour: {fileID: 2810280474919460104}
   rb: {fileID: 3567792791662185846}
 --- !u!114 &7569210359141354071
@@ -5168,7 +5168,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 4
-  cordIncreaseAmount: 0.8
+  cordIncreaseAmount: 0.6
   flashScript: {fileID: -4887696799744834867}
   hitParticle: {fileID: 2580692780968347289}
   animator: {fileID: 8829177143817812110}
@@ -5192,8 +5192,6 @@ MonoBehaviour:
   objectsToDrop:
   - dropObject: {fileID: 3128766248087849206, guid: ed697fc20ec2c60478302abc5ed459d5, type: 3}
     dropChancePercent: 45
-  - dropObject: {fileID: 3128766248087849206, guid: eba32f712d7f48243ae299e8ffa2d689, type: 3}
-    dropChancePercent: 10
   - dropObject: {fileID: 3128766248087849206, guid: eba32f712d7f48243ae299e8ffa2d689, type: 3}
     dropChancePercent: 10
 --- !u!114 &-4887696799744834867

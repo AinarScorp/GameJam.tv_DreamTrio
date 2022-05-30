@@ -5199,7 +5199,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   retreatSpeed: 80
-  retreatDuration: 2
+  retreatDuration: 1
   behaviour: {fileID: 7915601979525261323}
   rb: {fileID: 3567792791662185846}
 --- !u!114 &7569210359141354071
@@ -5217,7 +5217,7 @@ MonoBehaviour:
   drawGizmos: 1
   nextStateIfClose: 2
   nextStateIfFar: 3
-  playerTooFar: 7
+  playerTooFar: 6
   playerTooClose: 4
   wanderSpeed: 40
   wanderDistance: 1.5
@@ -5237,7 +5237,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   drawGizmos: 1
-  shootingRadius: 5.5
+  shootingRadius: 6
   shootingRate: 2
   flyingDelay: 1
   behaviour: {fileID: 7915601979525261323}
@@ -5258,7 +5258,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   drawGizmos: 1
   approachSpeed: 80
-  approachDistance: 7
+  approachDistance: 6
   rb: {fileID: 3567792791662185846}
   behaviour: {fileID: 7915601979525261323}
 --- !u!114 &3567792791662185847
@@ -5274,7 +5274,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 3
-  cordIncreaseAmount: 1.2
+  cordIncreaseAmount: 1
   flashScript: {fileID: -4887696799744834867}
   hitParticle: {fileID: 2580692780968347289}
   animator: {fileID: 8829177143817812110}
@@ -5296,10 +5296,10 @@ MonoBehaviour:
   dropRadius: 1.7
   numberOfDrops: 3
   objectsToDrop:
-  - dropObject: {fileID: 3128766248087849206, guid: ed697fc20ec2c60478302abc5ed459d5, type: 3}
-    dropChancePercent: 80
   - dropObject: {fileID: 3128766248087849206, guid: eba32f712d7f48243ae299e8ffa2d689, type: 3}
-    dropChancePercent: 25
+    dropChancePercent: 15
+  - dropObject: {fileID: 3128766248087849206, guid: ed697fc20ec2c60478302abc5ed459d5, type: 3}
+    dropChancePercent: 50
 --- !u!114 &-4887696799744834867
 MonoBehaviour:
   m_ObjectHideFlags: 0

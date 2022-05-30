@@ -27,7 +27,11 @@ public class GameManager : MonoBehaviour
         PlayerManager playerManager = FindObjectOfType<PlayerManager>();
         playerManager.SubscribeToPlayerDied(() => Time.timeScale = 0.5f);
         playerManager.SubscribeToGameOver(GameLostMessage, false);
-        playerManager.SubscribeToGameOver(() => gameWon = true, true);
+        playerManager.SubscribeToGameOver(() =>
+        {
+            VictoryEscape();
+            gameWon = true;
+        }, true);
         AudioManagerScript.Instance.PlayLoop("Music");
         victoryMenu.SetActive(false);
         spaceMessage.gameObject.SetActive(true);
@@ -45,14 +49,19 @@ public class GameManager : MonoBehaviour
         gameStarted = true;
 
     }
+    void VictoryEscape()
+    {
+
+        spaceMessage.GetComponent<TextMeshProUGUI>().text = victoryMessageInfo;
+        spaceMessage.gameObject.SetActive(true);
+    }
     public void EscapePressed()
     {
         tutorialMessage.gameObject.SetActive(false);
         if (!gameWon)
             return;
 
-        spaceMessage.GetComponent<TextMeshProUGUI>().text = victoryMessageInfo;
-        spaceMessage.gameObject.SetActive(true);
+        spaceMessage.gameObject.SetActive(false);
         victoryMenu.SetActive(true);
         Time.timeScale = 1f;
 
