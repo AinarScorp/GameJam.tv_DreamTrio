@@ -41,7 +41,6 @@ public class PickUp : MonoBehaviour
             return;
         pickedUp = true;
 
-        particles.gameObject.SetActive(false);
 
         lineRenderer.positionCount = 2;
         lineRenderer.SetPosition(0, this.transform.position);
