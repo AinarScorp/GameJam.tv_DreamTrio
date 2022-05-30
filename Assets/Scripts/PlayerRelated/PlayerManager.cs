@@ -22,6 +22,7 @@ public class PlayerManager : MonoBehaviour
     int collectedHearths;
     int collectedFireBalls;
 
+    public PlayerAnimator Player { get => playerAnimator; }
 
     private void Awake()
     {
