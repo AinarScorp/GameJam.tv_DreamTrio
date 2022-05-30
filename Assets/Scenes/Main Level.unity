@@ -49502,6 +49502,10 @@ PrefabInstance:
       propertyPath: speed
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 8120152830727472717, guid: b98a534b8ea1c4e45b4d942bf3709fc5, type: 3}
+      propertyPath: startingHealth
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8120152830727472726, guid: b98a534b8ea1c4e45b4d942bf3709fc5, type: 3}
       propertyPath: m_RootOrder
       value: 2

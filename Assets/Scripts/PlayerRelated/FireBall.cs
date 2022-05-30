@@ -57,4 +57,9 @@ public class FireBall : MonoBehaviour
         Destroy(this.gameObject, 3);
         Debug.Log("boom");
     }
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.black;
+        Gizmos.DrawWireSphere(this.transform.position, explostionRadius);
+    }
 }

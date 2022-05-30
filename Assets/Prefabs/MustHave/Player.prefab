@@ -5551,7 +5551,7 @@ MonoBehaviour:
   rb: {fileID: 2407883051030294327}
   col: {fileID: 7442023562015849796}
   spriteRenderer: {fileID: 5362587782030381666}
-  explostionRadius: 10
+  explostionRadius: 1
   fireballDamage: 5
   speed: 1000
   colisionLayer:
