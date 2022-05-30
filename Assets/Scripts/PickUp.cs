@@ -40,22 +40,23 @@ public class PickUp : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (pickedUp)
-        {
             return;
-        }
+
+        lineRenderer.positionCount = 2;
+        lineRenderer.SetPosition(0, this.transform.position);
+        lineRenderer.SetPosition(1, playerHealth.transform.position);
+
         if (isHearth)
         {
             AudioManagerScript.Instance.PlayRandomPitch("Pick up");
-            lineRenderer.positionCount = 2;
 
-
-            playerHealth.AddCollectedHearth();
-            lineRenderer.SetPosition(0, this.transform.position);
-            lineRenderer.SetPosition(1, playerHealth.transform.position);
-            particles.gameObject.SetActive(false);
-
-            //this.gameObject.SetActive(false);
+            playerManager.AddCollectedHearth();
         }
+        else
+        {
+            playerManager.AddCollectedFireBall();
+        }
+        particles.gameObject.SetActive(false);
         pickedUp = true;
 
     }

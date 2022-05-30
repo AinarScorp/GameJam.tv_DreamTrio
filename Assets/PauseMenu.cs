@@ -39,8 +39,6 @@ public class PauseMenu : MonoBehaviour
     }
     public void ResumeTheGame()
     {
-        if (!Application.isEditor)
-            Cursor.visible = false;
 
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
@@ -49,8 +47,6 @@ public class PauseMenu : MonoBehaviour
     }
     void PauseTheGame()
     {
-        if (!Application.isEditor)
-            Cursor.visible = true;
 
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;

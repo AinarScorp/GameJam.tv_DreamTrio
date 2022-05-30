@@ -22,7 +22,6 @@ public class PlayerHealth : MonoBehaviour
 
 
     int currentHealth;
-    int collectedHearths;
     bool isInvincible;
     bool isAlive =true;
 
@@ -129,8 +128,7 @@ public class PlayerHealth : MonoBehaviour
     
     public void Revive()
     {
-        currentHealth = collectedHearths;
-        collectedHearths = 0;
+        currentHealth = playerManager.GetCollectedHearts();
         if (currentHealth >maxHealth)
         {
             currentHealth = maxHealth;
@@ -149,7 +147,6 @@ public class PlayerHealth : MonoBehaviour
 
     void ToggleIsAlive() => isAlive = !isAlive;
 
-    public void AddCollectedHearth(int amount = 1) => collectedHearths += amount;
     public void SubscribeToReactHit(Action actionToAdd) => reactToHit += actionToAdd;
 
     #region comments /useless stuff

@@ -14,7 +14,7 @@ public class FireBall : MonoBehaviour
     [SerializeField] float speed = 10f;
     [SerializeField] LayerMask colisionLayer;
     [SerializeField] LayerMask enemyLayer;
-
+    [SerializeField] ParticleSystem explosion;
     bool exploded;
 
     Vector3 direction;
@@ -25,7 +25,7 @@ public class FireBall : MonoBehaviour
         {
             return;
         }
-        rb.velocity = direction * speed;
+        rb.velocity = direction * speed * Time.deltaTime *100;
 
     }
     public void FollowDirection(Vector3 direction)
@@ -34,8 +34,12 @@ public class FireBall : MonoBehaviour
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        if (exploded)
+        {
+            return;
+        }
         DestroyMe();
-        exploded = true;
+        Explode();
         Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, explostionRadius, enemyLayer);
         foreach (var enemy in hitEnemies)
         {
@@ -46,8 +50,30 @@ public class FireBall : MonoBehaviour
             }
         }
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (exploded)
+        {
+            return;
+        }
+        DestroyMe();
+        Explode();
+        Collider2D[] hitEnemies = Physics2D.OverlapCircleAll(transform.position, explostionRadius, enemyLayer);
+        foreach (var enemy in hitEnemies)
+        {
+            EnemyHealth enemyHealth = enemy.GetComponent<EnemyHealth>();
+            if (enemyHealth != null)
+            {
+                enemyHealth.ReceiveDamage(fireballDamage);
+            }
+        }
+    }
+
     void Explode()
     {
+        exploded = true;
+        explosion.gameObject.SetActive(true);
+        rb.velocity *= 0;
 
     }
     public void DestroyMe()

@@ -1,20 +1,36 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
+
 
 public class PlayerMagic : MonoBehaviour
 {
+    [SerializeField] int startingFireballs = 1;
+    [Header("Better not touch")]
+
+    [SerializeField] PlayerHealth playerHealth;
     [SerializeField] Animator animator;
     [SerializeField] GameObject aimArrow;
 
     [SerializeField] FireBall fireBall;
-    PlayerInput input;
+    [SerializeField] GameObject fireImage;
+    [SerializeField] Transform parentForFireballs;
 
+
+    int maxShots = 3;
+    int availableFireballs;
+    PlayerInput input;
+    PlayerManager playerManager;
     bool aiming;
+
+
+    List<GameObject> fireBallImages = new List<GameObject>();
 
     private void Awake()
     {
         input = new PlayerInput();
+        playerManager = FindObjectOfType<PlayerManager>();
 
     }
     private void OnEnable() => input.Enable();
@@ -29,6 +45,10 @@ public class PlayerMagic : MonoBehaviour
         input.PlayerBasic.MagicAttack.performed += _ => AimFireball();
         input.PlayerBasic.MagicAttack.canceled += _ => ShootFireball();
         aimArrow.SetActive(false);
+        PlayerManager playerManager = FindObjectOfType<PlayerManager>();
+        playerManager.SubscribeToImmidiateActions(() => this.enabled = false, true);
+        playerManager.SubscribeToActivateControls( Revive, false);
+        availableFireballs = startingFireballs;
     }
     Vector3 dir;
 
@@ -46,7 +66,7 @@ public class PlayerMagic : MonoBehaviour
         Vector3 pos = Camera.main.WorldToScreenPoint(transform.position);
         dir = (mousePos - pos).normalized;
         float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
-        aimArrow.transform.rotation = Quaternion.AngleAxis(angle-90f, Vector3.forward);
+        aimArrow.transform.rotation = Quaternion.AngleAxis(angle - 90f, Vector3.forward);
         animator.SetFloat("AimingRight", Mathf.Clamp(dir.x, -1, 1));
         animator.SetFloat("AimingUp", Mathf.Clamp(dir.y, -1, 1));
     }
@@ -65,7 +85,7 @@ public class PlayerMagic : MonoBehaviour
     }
     void ShootFireball()
     {
-        if (aiming == false)
+        if (aiming == false || !playerHealth.IsAlive)
         {
             return;
         }
@@ -76,5 +96,35 @@ public class PlayerMagic : MonoBehaviour
         FireBall fireShot = Instantiate(fireBall, transform.position, Quaternion.identity);
         fireShot.gameObject.SetActive(true);
         fireShot.FollowDirection(dir);
+        RemoveFireBallImage();
+    }
+
+    void Revive()
+    {
+        this.enabled = true;
+        availableFireballs += playerManager.GetCollectedFireBalls();
+        if (availableFireballs > maxShots)
+        {
+            availableFireballs = maxShots;
+        }
+        AddFireballImages();
+    }
+    private void AddFireballImages()
+    {
+        for (int i = 0; i < availableFireballs; i++)
+        {
+            GameObject newHeartImage = Instantiate(fireImage, parentForFireballs);
+            fireBallImages.Add(newHeartImage);
+        }
+    }
+    private void RemoveFireBallImage()
+    {
+        if (fireBallImages.Count < 1)
+            return;
+
+        GameObject firstHeartImage = fireBallImages.ToList().FirstOrDefault();
+        fireBallImages.Remove(firstHeartImage);
+        Destroy(firstHeartImage);
+
     }
 }

@@ -19,6 +19,10 @@ public class PlayerManager : MonoBehaviour
     Action GameOverFailure;
 
 
+    int collectedHearths;
+    int collectedFireBalls;
+
+
     private void Awake()
     {
         playerAnimator = FindObjectOfType<PlayerAnimator>();
@@ -148,4 +152,22 @@ public class PlayerManager : MonoBehaviour
 
 
     #endregion
+    #region pickUps
+    public void AddCollectedHearth(int amount = 1) => collectedHearths += amount;
+    public int GetCollectedHearts()
+    {
+        int numberToReturn = collectedHearths;
+        collectedHearths = 0;
+        return numberToReturn;
+    }
+
+    public void AddCollectedFireBall(int amount = 1) => collectedFireBalls += amount;
+    public int GetCollectedFireBalls()
+    {
+        int numberToReturn = collectedFireBalls;
+        collectedFireBalls = 0;
+        return numberToReturn;
+    }
+    #endregion
+
 }

@@ -16,8 +16,6 @@ public class GameManager : MonoBehaviour
     bool gameStarted;
     private void Start()
     {
-        if (!Application.isEditor)
-            Cursor.visible = false;
         PlayerManager playerManager = FindObjectOfType<PlayerManager>();
         playerManager.SubscribeToPlayerDied(() => Time.timeScale = 0.5f);
         playerManager.SubscribeToGameOver(GameLostMessage, false);
@@ -46,11 +44,11 @@ public class GameManager : MonoBehaviour
                 ConfirmationMessage.Instance.ConfirmationQuestion("Thank you for playing",
                     () =>
                     {
-                        sceneHandler.GoToMainMenu();
+                        sceneHandler.GoToCreatorScreen();
 
                     }, () =>
                     {
-                        sceneHandler.GoToMainMenu();
+                        sceneHandler.GoToCreatorScreen();
 
                     }, "It was fun", "Let me die");
 
