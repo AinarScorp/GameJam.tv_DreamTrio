@@ -29,12 +29,12 @@ public class PlayerPoison : MonoBehaviour
     {
         while (true)
         {
-            if (!player.IsAlive)
-            {
+            //if (!player.IsAlive)
+            //{
 
-                yield return new WaitForSeconds(30f);
-                continue;
-            }
+            //    yield return new WaitForSeconds(30f);
+            //    continue;
+            //}
 
 
             yield return new WaitForSeconds(damageInterval);
