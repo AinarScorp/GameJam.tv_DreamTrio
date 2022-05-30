@@ -49570,6 +49570,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2025355126, guid: 1a9bc005fcd59db46a9dbd370225f50f, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 718.8497
+      objectReference: {fileID: 0}
+    - target: {fileID: 2025355126, guid: 1a9bc005fcd59db46a9dbd370225f50f, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.00002058
+      objectReference: {fileID: 0}
+    - target: {fileID: 2025355127, guid: 1a9bc005fcd59db46a9dbd370225f50f, type: 3}
+      propertyPath: m_text
+      value: 'Wave: 0 /9'
+      objectReference: {fileID: 0}
     - target: {fileID: 309755060459248321, guid: 1a9bc005fcd59db46a9dbd370225f50f, type: 3}
       propertyPath: m_Pivot.x
       value: 0
