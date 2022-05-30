@@ -187,7 +187,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 2102908679
-  m_SortingLayer: 5
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: a913d58f460bace4e8deff46701acfcb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -336,7 +336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 617aad62618abe14a97f5edb40343f86, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startingHealth: 5
+  startingHealth: 8
   maxHealth: 24
   invulnerabilityTime: 1.2
   heartImage: {fileID: 910927117292983901, guid: b5155bdabf196994dbc13f056ff69dbb, type: 3}
@@ -426,8 +426,8 @@ MonoBehaviour:
   playerHealth: {fileID: 8120152830727472717}
   animator: {fileID: 8120152830727472724}
   aimArrow: {fileID: 4026515366641941312}
+  fireBallImages: []
   fireBall: {fileID: 6178655917554641358, guid: 7e032f73b1d47a34d82e52ee93e85867, type: 3}
-  fireImage: {fileID: 8545042708625577979, guid: fda153f4706124d48a61148ae4442105, type: 3}
   parentForFireballs: {fileID: 0}
 --- !u!1 &8120152831148383533
 GameObject:

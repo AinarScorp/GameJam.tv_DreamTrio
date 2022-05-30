@@ -29,6 +29,7 @@ public class GameManager : MonoBehaviour
         playerManager.SubscribeToGameOver(() => gameWon = true, true);
         AudioManagerScript.Instance.PlayLoop("Music");
         victoryMenu.SetActive(false);
+        spaceMessage.gameObject.SetActive(true);
     }
 
     public void SpacePressed()
