@@ -9,7 +9,11 @@ public class TitleManager : SceneHandler
     [TextArea]
     [SerializeField] string confirmationMessage;
 
+    public override void StartFirstLevel()
+    {
+        base.StartFirstLevel();
 
+    }
     public override void GoToCreatorScreen()
     {
         SceneManager.LoadScene(2);

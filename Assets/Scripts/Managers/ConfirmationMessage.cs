@@ -28,8 +28,6 @@ public class ConfirmationMessage : MonoBehaviour
     }
     public void ConfirmationQuestion(string questionText, Action yesAction, Action noAction, string yesText = "Yes", string noText = "No")
     {
-        bool cursorWasOn = Cursor.visible;
-        Cursor.visible = true;
         RemoveListeners();
 
         ToggleQuestion(true);
@@ -41,7 +39,6 @@ public class ConfirmationMessage : MonoBehaviour
             ToggleQuestion(false);
 
             yesAction?.Invoke();
-            Cursor.visible = cursorWasOn;
 
         });
         noBtn.onClick.AddListener(() =>
@@ -49,7 +46,6 @@ public class ConfirmationMessage : MonoBehaviour
 
             ToggleQuestion(false);
             noAction?.Invoke();
-            Cursor.visible = cursorWasOn;
 
         });
     }

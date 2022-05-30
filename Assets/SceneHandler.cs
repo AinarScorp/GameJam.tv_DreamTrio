@@ -32,7 +32,7 @@ public class SceneHandler : MonoBehaviour
         animationTrans =StartCoroutine(StartTransition(0));
     }
 
-    public void StartFirstLevel()
+    public virtual void StartFirstLevel()
     {
         if (animationTrans != null)
         {
